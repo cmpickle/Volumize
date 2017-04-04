@@ -50,6 +50,10 @@ dependencies {
     provided "frankiesardo:icepick-processor:${icepick_version}"
     compile "com.google.dagger:dagger:${dagger2_version}"
     annotationProcessor "com.google.dagger:dagger-compiler:${dagger2_version}"
+    provided 'javax.annotation:jsr250-api:1.0'
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     annotationProcessor "com.github.Raizlabs.DBFlow:dbflow-processor:${dbflow_version}"
     compile "com.github.Raizlabs.DBFlow:dbflow-core:${dbflow_version}"
     compile "com.github.Raizlabs.DBFlow:dbflow:${dbflow_version}"
