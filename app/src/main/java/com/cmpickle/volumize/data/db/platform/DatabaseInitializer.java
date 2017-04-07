@@ -23,7 +23,7 @@ public class DatabaseInitializer {
     }
 
     public final void init(Application application, Class<? extends BaseDatabase>... databaseTypes) {
-        System.loadLibrary("sqliteX");
+//        System.loadLibrary("sqliteX");
         FlowConfig.Builder flowConfigBuilder = new FlowConfig.Builder(application);
         for(Class<? extends BaseDatabase> databaseType : databaseTypes) {
             DatabaseConfig databaseConfig = new DatabaseConfig.Builder(databaseType)

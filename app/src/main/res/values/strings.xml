@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Volumize</string>
-    <string name="ringer_volume">Ringer Volume</string>
+    <string name="ring_tone">Ring Tone</string>
     <string name="media_volume">Media Volume</string>
-    <string name="alarm_volume">Alarm Volume</string>
+    <string name="notifications">Notifications</string>
     <string name="system_volume">System Volume</string>
     <string name="volumes">Volumes</string>
     <string name="schedule">Schedule</string>

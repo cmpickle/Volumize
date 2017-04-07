@@ -4,7 +4,7 @@
         android:id="@+id/main_items"
         android:checkableBehavior="single">
         <item
-            android:id="@+id/menu_volumes"
+            android:id="@+id/menu_nav_volumes"
             android:icon="@drawable/ic_volumes"
             android:title="@string/volumes" />
         <item

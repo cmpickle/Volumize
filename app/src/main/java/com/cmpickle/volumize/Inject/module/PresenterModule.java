@@ -1,5 +1,6 @@
 package com.cmpickle.volumize.Inject.module;
 
+import com.cmpickle.volumize.view.TopLevelPresenter;
 import com.cmpickle.volumize.view.volumeadjust.VolumeAdjustPresenter;
 
 import dagger.Module;
@@ -12,6 +13,17 @@ import dagger.Provides;
 
 @Module
 public class PresenterModule {
+
+    @Provides
+    public TopLevelPresenter provideTopLevelPresenter() {
+        return new TopLevelPresenter() {
+
+            @Override
+            protected void setView(Object o) {
+
+            }
+        };
+    }
 
     @Provides
     public VolumeAdjustPresenter provideVolumeAdjustPresenter() {

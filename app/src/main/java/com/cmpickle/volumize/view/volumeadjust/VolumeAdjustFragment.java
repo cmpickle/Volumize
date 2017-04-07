@@ -28,7 +28,7 @@ public class VolumeAdjustFragment extends BaseFragment implements VolumeAdjustVi
     VolumeAdjustPresenter volumeAdjustPresenter;
 
     public VolumeAdjustFragment() {
-//        Injector.get().inject(this);
+        Injector.get().inject(this);
     }
 
     @Nullable
@@ -39,8 +39,22 @@ public class VolumeAdjustFragment extends BaseFragment implements VolumeAdjustVi
     }
 
     @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        final VolumeAdjustActivity activity = (VolumeAdjustActivity) getActivity();
+        Toolbar toolbar = activity.getToolbar();
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.openNavigationDrawer();
+            }
+        });
+    }
+
+    @Override
     protected void onSetViewOnPresenter() {
-//        volumeAdjustPresenter.setView(this);
+        volumeAdjustPresenter.setView(this);
     }
 
     @Override

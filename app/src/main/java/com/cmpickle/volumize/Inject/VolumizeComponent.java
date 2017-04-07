@@ -3,6 +3,8 @@ package com.cmpickle.volumize.Inject;
 import com.cmpickle.volumize.Inject.module.AppModule;
 import com.cmpickle.volumize.Inject.module.PresenterModule;
 import com.cmpickle.volumize.VolumizeApp;
+import com.cmpickle.volumize.view.TopLevelActivity;
+import com.cmpickle.volumize.view.TopLevelPresenter;
 import com.cmpickle.volumize.view.volumeadjust.VolumeAdjustFragment;
 
 import javax.inject.Singleton;
@@ -20,6 +22,8 @@ import dagger.Component;
         PresenterModule.class})
 public interface VolumizeComponent {
     void inject(VolumizeApp volumizeApp);
+
+    void inject(TopLevelActivity topLevelActivity);
 
     void inject(VolumeAdjustFragment volumeAdjustFragment);
 }
