@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import com.cmpickle.volumize.R;
 import com.facebook.stetho.Stetho;
 
+import io.fabric.sdk.android.Fabric;
+
 /**
  * @author Cameron Pickle
  *         Copyright (C) Cameron Pickle (cmpickle) on 4/1/2017.
@@ -20,6 +22,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Fabric.with(this);
 
         Stetho.initializeWithDefaults(this);
 

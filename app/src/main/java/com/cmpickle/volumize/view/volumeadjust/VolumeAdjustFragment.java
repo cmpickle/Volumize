@@ -7,9 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cmpickle.volumize.Inject.Injector;
 import com.cmpickle.volumize.R;
 import com.cmpickle.volumize.view.BaseFragment;
 import com.cmpickle.volumize.view.BasePresenter;
+
+import javax.inject.Inject;
+
+import icepick.State;
 
 
 /**
@@ -19,7 +24,12 @@ import com.cmpickle.volumize.view.BasePresenter;
 
 public class VolumeAdjustFragment extends BaseFragment implements VolumeAdjustView {
 
+    @Inject
     VolumeAdjustPresenter volumeAdjustPresenter;
+
+    public VolumeAdjustFragment() {
+//        Injector.get().inject(this);
+    }
 
     @Nullable
     @Override
@@ -30,7 +40,7 @@ public class VolumeAdjustFragment extends BaseFragment implements VolumeAdjustVi
 
     @Override
     protected void onSetViewOnPresenter() {
-        this.volumeAdjustPresenter = new VolumeAdjustPresenter();
+//        volumeAdjustPresenter.setView(this);
     }
 
     @Override

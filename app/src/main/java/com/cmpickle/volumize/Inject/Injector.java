@@ -3,6 +3,7 @@ package com.cmpickle.volumize.Inject;
 import android.app.Application;
 
 import com.cmpickle.volumize.Inject.module.AppModule;
+import com.cmpickle.volumize.Inject.module.PresenterModule;
 
 /**
  * @author Cameron Pickle
@@ -20,6 +21,7 @@ public class Injector {
     public static void init(Application application) {
         volumizeComponent = DaggerVolumizeComponent.builder()
                 .appModule(new AppModule(application))
+                .presenterModule(new PresenterModule())
                 .build();
     }
 
