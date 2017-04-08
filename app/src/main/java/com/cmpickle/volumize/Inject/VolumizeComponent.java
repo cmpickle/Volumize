@@ -7,6 +7,7 @@ import com.cmpickle.volumize.view.TopLevelActivity;
 import com.cmpickle.volumize.view.TopLevelPresenter;
 import com.cmpickle.volumize.view.profile.ProfileFragment;
 import com.cmpickle.volumize.view.schedule.ScheduleFragment;
+import com.cmpickle.volumize.view.settings.SettingsFragment;
 import com.cmpickle.volumize.view.volumeadjust.VolumeAdjustFragment;
 
 import javax.inject.Singleton;
@@ -32,4 +33,6 @@ public interface VolumizeComponent {
     void inject(ScheduleFragment scheduleFragment);
 
     void inject(ProfileFragment profileFragment);
+
+    void inject(SettingsFragment settingsFragment);
 }

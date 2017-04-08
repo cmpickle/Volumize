@@ -2,6 +2,7 @@ package com.cmpickle.volumize.Inject.module;
 
 import com.cmpickle.volumize.view.profile.ProfilePresenter;
 import com.cmpickle.volumize.view.schedule.SchedulePresenter;
+import com.cmpickle.volumize.view.settings.SettingsPresenter;
 import com.cmpickle.volumize.view.volumeadjust.VolumeAdjustPresenter;
 
 import dagger.Module;
@@ -28,5 +29,10 @@ public class PresenterModule {
     @Provides
     public ProfilePresenter providesProfilePresenter() {
         return new ProfilePresenter();
+    }
+
+    @Provides
+    public SettingsPresenter providesSettingsPresenter() {
+        return new SettingsPresenter();
     }
 }
