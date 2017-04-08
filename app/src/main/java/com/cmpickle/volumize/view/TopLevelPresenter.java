@@ -1,20 +1,34 @@
 package com.cmpickle.volumize.view;
 
+import javax.inject.Inject;
+
 /**
  * @author Cameron Pickle
  *         Copyright (C) Cameron Pickle (cmpickle) on 4/6/2017.
  */
 
-public abstract class TopLevelPresenter extends BasePresenter {
+public class TopLevelPresenter extends BasePresenter<TopLevelView> {
+
+    TopLevelView topLevelView;
 
     TopLevelRouter topLevelRouter;
 
-    public void initialize() {
+    @Inject
+    public TopLevelPresenter() {
 
+    }
+
+    @Override
+    protected void setView(TopLevelView View) {
+        this.topLevelView = topLevelView;
     }
 
     public void setRouter(TopLevelRouter topLevelRouter) {
         this.topLevelRouter = topLevelRouter;
+    }
+
+    public void initialize() {
+
     }
 
     public void onVolumesSelected() {
@@ -22,18 +36,18 @@ public abstract class TopLevelPresenter extends BasePresenter {
     }
 
     public void onScheduleSelected() {
-
+        topLevelRouter.moveToSchedulePage();
     }
 
     public void onProfileSelected() {
-
+        topLevelRouter.moveToProfilePage();
     }
 
     public void onSettingSelected() {
-
+        topLevelRouter.moveToSettingsPage();
     }
 
     public void onAboutSelected() {
-
+        topLevelRouter.moveToAboutPage();
     }
 }

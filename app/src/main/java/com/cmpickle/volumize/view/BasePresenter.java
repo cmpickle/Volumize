@@ -1,6 +1,7 @@
 package com.cmpickle.volumize.view;
 
 import android.os.Bundle;
+import android.view.View;
 
 import icepick.Icepick;
 
@@ -9,9 +10,9 @@ import icepick.Icepick;
  *         Copyright (C) Cameron Pickle (cmpickle) on 4/1/2017.
  */
 
-public abstract class BasePresenter {
+public abstract class BasePresenter<V> {
 
-    protected abstract void setView(Object o);
+    protected abstract void setView(V View);
 
     void saveInstanceState(Bundle out) {
         Icepick.saveInstanceState(this, out);

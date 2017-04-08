@@ -6,4 +6,5 @@ package com.cmpickle.volumize.view.volumeadjust;
  */
 
 public interface VolumeAdjustView {
+
 }
