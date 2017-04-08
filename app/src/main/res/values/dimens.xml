@@ -1,0 +1,8 @@
+<resources>
+    <dimen name="card_horizontal_padding">16dp</dimen>
+    <dimen name="card_vertical_padding">16dp</dimen>
+    <dimen name="card_horizontal_margin">16dp</dimen >
+    <dimen name="card_top_margin">16dp</dimen >
+    <dimen name="card_corner_radius">4dp</dimen>
+    <dimen name="card_text_title">18sp</dimen>
+</resources>

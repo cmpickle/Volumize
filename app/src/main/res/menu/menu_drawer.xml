@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/main_items"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_nav_volumes"
+            android:icon="@drawable/ic_volumes"
+            android:title="@string/volumes" />
+        <item
+            android:id="@+id/menu_nav_schedule"
+            android:icon="@drawable/ic_schedule"
+            android:title="@string/schedule" />
+        <item
+            android:id="@+id/menu_nav_profiles"
+            android:icon="@drawable/ic_profiles"
+            android:title="@string/profiles" />
+        <item
+            android:id="@+id/menu_nav_settings"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/settings" />
+        <item
+            android:id="@+id/menu_nav_about"
+            android:icon="@drawable/ic_about"
+            android:title="@string/about" />
+    </group>
+</menu>
