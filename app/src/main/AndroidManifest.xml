@@ -22,6 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".view.schedule.ScheduleActivity" />
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="de0dc5800df099c2ec295b7d1b74462a3d03f5d4"

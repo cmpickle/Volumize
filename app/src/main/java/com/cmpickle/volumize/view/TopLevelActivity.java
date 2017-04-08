@@ -1,6 +1,5 @@
 package com.cmpickle.volumize.view;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
@@ -14,6 +13,7 @@ import android.view.MenuItem;
 
 import com.cmpickle.volumize.Inject.Injector;
 import com.cmpickle.volumize.R;
+import com.cmpickle.volumize.view.schedule.ScheduleActivity;
 import com.cmpickle.volumize.view.volumeadjust.VolumeAdjustActivity;
 
 import javax.inject.Inject;
@@ -27,7 +27,7 @@ import butterknife.Unbinder;
  *         Copyright (C) Cameron Pickle (cmpickle) on 4/6/2017.
  */
 
-public abstract class TopLevelActivity extends BaseActivity implements TopLevelRouter {
+public abstract class TopLevelActivity extends BaseActivity implements TopLevelRouter, TopLevelView {
 
     @Inject
     TopLevelPresenter topLevelPresenter;
@@ -63,7 +63,7 @@ public abstract class TopLevelActivity extends BaseActivity implements TopLevelR
 
     @Override
     public void moveToSchedulePage() {
-
+        ScheduleActivity.start(this);
     }
 
     @Override

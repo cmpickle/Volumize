@@ -32,7 +32,7 @@ public class VolumeAdjustActivity extends TopLevelActivity {
 
     @Override
     protected int getNavigationMenuItemId() {
-        return 0;
+        return R.id.menu_nav_volumes;
     }
 
     @Override
