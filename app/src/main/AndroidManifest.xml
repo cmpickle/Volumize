@@ -25,6 +25,7 @@
         <activity android:name=".view.schedule.ScheduleActivity" />
         <activity android:name=".view.profile.ProfileActivity" />
         <activity android:name=".view.settings.SettingsActivity" />
+        <activity android:name=".view.about.AboutActivity" />
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="de0dc5800df099c2ec295b7d1b74462a3d03f5d4"
