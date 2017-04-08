@@ -13,6 +13,7 @@ import android.view.MenuItem;
 
 import com.cmpickle.volumize.Inject.Injector;
 import com.cmpickle.volumize.R;
+import com.cmpickle.volumize.view.about.AboutActivity;
 import com.cmpickle.volumize.view.profile.ProfileActivity;
 import com.cmpickle.volumize.view.schedule.ScheduleActivity;
 import com.cmpickle.volumize.view.settings.SettingsActivity;
@@ -80,7 +81,7 @@ public abstract class TopLevelActivity extends BaseActivity implements TopLevelR
 
     @Override
     public void moveToAboutPage() {
-
+        AboutActivity.start(this);
     }
 
     @Override
