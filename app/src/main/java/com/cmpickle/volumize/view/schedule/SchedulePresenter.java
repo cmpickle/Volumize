@@ -10,9 +10,18 @@ import com.cmpickle.volumize.view.BasePresenter;
 public class SchedulePresenter extends BasePresenter<ScheduleView> {
 
     ScheduleView scheduleView;
+    ScheduleRouter scheduleRouter;
 
     @Override
     protected void setView(ScheduleView scheduleView) {
         this.scheduleView = scheduleView;
+    }
+
+    public void setRouter(ScheduleRouter scheduleRouter) {
+        this.scheduleRouter = scheduleRouter;
+    }
+
+    public void addSchedule() {
+        scheduleRouter.moveToEditSchedulePage();
     }
 }

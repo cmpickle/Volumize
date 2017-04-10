@@ -20,6 +20,8 @@ import io.fabric.sdk.android.Fabric;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
+    public static final int FRAME_CONTAINER_ID = R.id.frame_container;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,5 +63,9 @@ public abstract class BaseActivity extends AppCompatActivity {
                 .addToBackStack(fragment.getClass().getSimpleName())
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
+    }
+
+    protected Fragment getFragment() {
+        return getSupportFragmentManager().findFragmentById(FRAME_CONTAINER_ID);
     }
 }

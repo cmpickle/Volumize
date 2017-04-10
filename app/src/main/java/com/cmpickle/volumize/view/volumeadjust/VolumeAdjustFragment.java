@@ -53,7 +53,7 @@ public class VolumeAdjustFragment extends BaseFragment implements VolumeAdjustVi
     }
 
     @Override
-    protected void onSetViewOnPresenter() {
+    protected void onSetViewAndRouterOnPresenter() {
         volumeAdjustPresenter.setView(this);
     }
 

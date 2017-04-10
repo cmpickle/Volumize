@@ -9,5 +9,8 @@
     <string name="profiles">Profiles</string>
     <string name="settings">Settings</string>
     <string name="about">About</string>
+    <string name="common_delete_title">Delete?</string>
+    <string name="menu_edit_save">Save</string>
+    <string name="edit_schedule_title">Edit Volume Event</string>
     <string name="schedule_emptystate">There are currently no scheduled volume settings</string>
 </resources>

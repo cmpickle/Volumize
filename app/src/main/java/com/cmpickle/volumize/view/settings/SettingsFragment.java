@@ -49,7 +49,7 @@ public class SettingsFragment extends BaseFragment implements SettingsView {
     }
 
     @Override
-    protected void onSetViewOnPresenter() {
+    protected void onSetViewAndRouterOnPresenter() {
         settingsPresenter.setView(this);
     }
 

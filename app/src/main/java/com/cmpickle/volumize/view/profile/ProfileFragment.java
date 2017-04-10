@@ -49,7 +49,7 @@ public class ProfileFragment extends BaseFragment implements ProfileView {
     }
 
     @Override
-    protected void onSetViewOnPresenter() {
+    protected void onSetViewAndRouterOnPresenter() {
         profilePresenter.setView(this);
     }
 
