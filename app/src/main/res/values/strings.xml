@@ -13,4 +13,5 @@
     <string name="menu_edit_save">Save</string>
     <string name="edit_schedule_title">Edit Volume Event</string>
     <string name="schedule_emptystate">There are currently no scheduled volume settings</string>
+    <string name="app_icon">App icon</string>
 </resources>

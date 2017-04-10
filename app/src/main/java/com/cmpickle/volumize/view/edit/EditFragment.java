@@ -1,6 +1,5 @@
 package com.cmpickle.volumize.view.edit;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
 import android.view.Menu;
@@ -9,7 +8,6 @@ import android.view.MenuItem;
 
 import com.cmpickle.volumize.R;
 import com.cmpickle.volumize.view.BaseFragment;
-import com.cmpickle.volumize.view.BasePresenter;
 
 /**
  * @author Cameron Pickle

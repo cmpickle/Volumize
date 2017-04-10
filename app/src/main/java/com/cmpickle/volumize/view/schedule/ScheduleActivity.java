@@ -10,8 +10,6 @@ import com.cmpickle.volumize.R;
 import com.cmpickle.volumize.view.TopLevelActivity;
 import com.cmpickle.volumize.view.schedule.edit.EditScheduleActivity;
 
-import javax.inject.Inject;
-
 /**
  * @author Cameron Pickle
  *         Copyright (C) Cameron Pickle (cmpickle) on 4/7/2017.

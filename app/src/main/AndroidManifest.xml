@@ -13,8 +13,6 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-        </activity>
         <activity android:name=".view.volumeadjust.VolumeAdjustActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

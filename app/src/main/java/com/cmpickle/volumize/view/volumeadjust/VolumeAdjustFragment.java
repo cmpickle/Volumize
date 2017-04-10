@@ -14,9 +14,6 @@ import com.cmpickle.volumize.view.BasePresenter;
 
 import javax.inject.Inject;
 
-import icepick.State;
-
-
 /**
  * @author Cameron Pickle
  *         Copyright (C) Cameron Pickle (cmpickle) on 4/3/2017.
