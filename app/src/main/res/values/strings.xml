@@ -14,4 +14,9 @@
     <string name="edit_schedule_title">Edit Volume Event</string>
     <string name="schedule_emptystate">There are currently no scheduled volume settings</string>
     <string name="app_icon">App icon</string>
+    <string name="time">Time</string>
+    <string name="reoccuring">Reoccuring</string>
+    <string name="type">Type</string>
+    <string name="volume">Volume</string>
+    <string name="vibrate">Vibrate</string>
 </resources>
