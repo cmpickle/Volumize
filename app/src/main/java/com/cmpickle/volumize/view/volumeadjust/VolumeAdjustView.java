@@ -7,4 +7,11 @@ package com.cmpickle.volumize.view.volumeadjust;
 
 public interface VolumeAdjustView {
 
+    void setRingToneEditText(int progress);
+
+    void setMediaVolumeEditText(int progress);
+
+    void setNotificationsEditText(int progress);
+
+    void setSystemVolumeEditText(int progress);
 }

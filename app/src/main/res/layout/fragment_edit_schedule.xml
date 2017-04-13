@@ -1,74 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp">
-        <TextView
-            android:id="@+id/tv_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/time"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp">
-        <TextView
-            android:id="@+id/tv_reoccurring"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/reoccuring"/>
-
-        <Switch
-            android:id="@+id/toggle_reoccurring"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"/>
-    </RelativeLayout>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal">
-            <ToggleButton
-                android:id="@+id/toggle_sunday"
+            android:padding="@dimen/element_padding"
+            android:paddingTop="16dp">
+
+            <TextView
+                android:id="@+id/tv_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textOn="Su"
-                android:textOff="Su"/>
+                android:text="@string/time" />
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="textStart" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/element_padding">
+
+            <TextView
+                android:id="@+id/tv_reoccurring"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reoccurring" />
+
+            <Switch
+                android:id="@+id/toggle_reoccurring"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:paddingBottom="8dp"
+            android:paddingTop="@dimen/element_padding">
+
+            <ToggleButton
+                android:id="@+id/toggle_sunday"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/toggle_selector"
+                android:textOff="Su"
+                android:textOn="Su" />
 
             <ToggleButton
                 android:id="@+id/toggle_monday"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:textOn="M"
-                android:textOff="M"/>
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/toggle_selector"
+                android:textOff="M"
+                android:textOn="M" />
 
             <ToggleButton
                 android:id="@+id/toggle_tuesday"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:textOn="Tu"
-                android:textOff="Tu"/>
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/toggle_selector"
+                android:textOff="Tu"
+                android:textOn="Tu" />
 
             <ToggleButton
                 android:id="@+id/toggle_wednesday"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:textOn="W"
-                android:textOff="W"/>
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/toggle_selector"
+                android:textOff="W"
+                android:textOn="W" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/element_padding"
+            android:paddingTop="8dp">
+
+            <ToggleButton
+                android:id="@+id/toggle_thursday"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/toggle_selector"
+                android:textOff="Th"
+                android:textOn="Th" />
+
+            <ToggleButton
+                android:id="@+id/toggle_friday"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/toggle_selector"
+                android:textOff="F"
+                android:textOn="F" />
+
+            <ToggleButton
+                android:id="@+id/toggle_saturday"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/toggle_selector"
+                android:textOff="Sa"
+                android:textOn="Sa" />
 
         </LinearLayout>
 
@@ -76,80 +139,82 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center_horizontal">
-            <ToggleButton
-                android:id="@+id/toggle_thursday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOn="Th"
-                android:textOff="Th"/>
+            android:padding="@dimen/element_padding">
 
-            <ToggleButton
-                android:id="@+id/toggle_friday"
+            <TextView
+                android:id="@+id/tv_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textOn="F"
-                android:textOff="F"/>
+                android:text="@string/type" />
 
-            <ToggleButton
-                android:id="@+id/toggle_saturday"
-                android:layout_width="wrap_content"
+            <Spinner
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textOn="Sa"
-                android:textOff="Sa"/>
+                android:layout_weight="1">
+
+            </Spinner>
 
         </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:id="@+id/tv_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/type"/>
-
-        <Spinner
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-        </Spinner>
-
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/tv_volume"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/volume"/>
-
-        <android.support.v7.widget.AppCompatSeekBar
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/tv_volume"/>
-    </RelativeLayout>
+            android:padding="@dimen/element_padding">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_mute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mute" />
 
-        <TextView
-            android:id="@+id/tv_vibrate"
-            android:layout_width="wrap_content"
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/switch_mute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/vibrate"/>
+            android:padding="@dimen/element_padding">
 
-        <android.support.v7.widget.SwitchCompat
-            android:id="@+id/switch_vibrate"
-            android:layout_alignParentEnd="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_volume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/volume" />
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/tv_volume_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="@string/volume_placeholder" />
+
+            <android.support.v7.widget.AppCompatSeekBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_volume" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/element_padding">
+
+            <TextView
+                android:id="@+id/tv_vibrate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/vibrate" />
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/switch_vibrate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+
+    </LinearLayout>
+</ScrollView>

@@ -24,6 +24,11 @@ public class EditSchedulePresenter extends EditPresenter {
 
     @Override
     public void onAttemptSave() {
+        //save event to database
+        editScheduleRouter.leave();
+    }
 
+    public void onViewCreated() {
+        onEnteredData();
     }
 }

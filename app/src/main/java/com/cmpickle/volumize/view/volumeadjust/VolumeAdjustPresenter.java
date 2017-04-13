@@ -22,4 +22,20 @@ public class VolumeAdjustPresenter extends BasePresenter {
     protected void setView(Object o) {
         this.volumeAdjustView = (VolumeAdjustView) o;
     }
+
+    public void seekBarRingToneMoved(int progress) {
+        volumeAdjustView.setRingToneEditText(progress);
+    }
+
+    public void seekBarMediaVolumeMoved(int progress) {
+        volumeAdjustView.setMediaVolumeEditText(progress);
+    }
+
+    public void seekBarNotificationMoved(int progress) {
+        volumeAdjustView.setNotificationsEditText(progress);
+    }
+
+    public void seekBarSystemVolumeMoved(int progress) {
+        volumeAdjustView.setSystemVolumeEditText(progress);
+    }
 }

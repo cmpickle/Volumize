@@ -1,9 +1,19 @@
 package com.cmpickle.volumize.view;
 
 import android.os.Bundle;
+import android.support.annotation.CallSuper;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.view.View;
+
+import com.cmpickle.volumize.R;
+import com.cmpickle.volumize.view.alerts.AlertDialogParams;
+import com.cmpickle.volumize.view.alerts.AlertListener;
+import com.cmpickle.volumize.view.alerts.AlertUtil;
+import com.cmpickle.volumize.view.alerts.Alerts;
+
+import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -14,7 +24,12 @@ import icepick.Icepick;
  *         Copyright (C) Cameron Pickle (cmpickle) on 4/1/2017.
  */
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment extends Fragment implements AlertListener {
+
+    @Inject
+    Alerts alerts;
+
+    AlertUtil alertUtil;
 
     private Unbinder unbinder;
 
@@ -26,18 +41,27 @@ public abstract class BaseFragment extends Fragment {
         if(savedInstanceState != null) {
             getPresenter().restoreInstanceState(savedInstanceState);
         }
-    }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        unbinder = ButterKnife.bind(this, view);
         onSetViewAndRouterOnPresenter();
     }
 
     @Override
+    @CallSuper
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        unbinder = ButterKnife.bind(this, view);
+
+        alertUtil = new AlertUtil(alerts, getContext(), this);
+        alertUtil.restore(savedInstanceState);
+    }
+
+    @Override
     public void onDestroyView() {
-        unbinder.unbind();
+        if(unbinder != null)
+            unbinder.unbind();
+
+        if(alertUtil != null)
+            alertUtil.destroy();
 
         super.onDestroyView();
     }
@@ -49,6 +73,7 @@ public abstract class BaseFragment extends Fragment {
         if(getPresenter() != null) {
             getPresenter().saveInstanceState(outState);
         }
+        alertUtil.save(outState);
     }
 
     @Override
@@ -57,6 +82,36 @@ public abstract class BaseFragment extends Fragment {
 //            getPresenter().terminate();
         }
         super.onDestroy();
+    }
+
+    @Override
+    public void onAlertLeftButton(AlertDialogParams params) {
+        //do nothing by default
+    }
+
+    @Override
+    public void onAlertRightButton(AlertDialogParams params) {
+        //do nothing by default
+    }
+
+    @Override
+    public void onAlertDismissed(AlertDialogParams params) {
+        //do nothing by default
+    }
+
+    public void coinfirmCancel() {
+        AlertDialogParams params = new AlertDialogParams(null, R.string.edit_schedule_confirm_cancel_subtitle);
+        params.setRightButtonTextResourceId(R.string.common_discard);
+        params.setLeftButtonTextResourceId(R.string.common_keep_editing);
+        showAlert(params);
+    }
+
+    public void showError(@StringRes int errorTextResourceId) {
+        alertUtil.showError(errorTextResourceId);
+    }
+
+    public void showAlert(AlertDialogParams params) {
+        alertUtil.showAlert(params);
     }
 
     protected abstract void onSetViewAndRouterOnPresenter();

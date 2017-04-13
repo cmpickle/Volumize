@@ -15,8 +15,17 @@
     <string name="schedule_emptystate">There are currently no scheduled volume settings</string>
     <string name="app_icon">App icon</string>
     <string name="time">Time</string>
-    <string name="reoccuring">Reoccuring</string>
+    <string name="reoccurring">Reoccurring</string>
     <string name="type">Type</string>
     <string name="volume">Volume</string>
     <string name="vibrate">Vibrate</string>
+    <string name="volume_placeholder">%d%%</string>
+    <string name="mute">Mute</string>
+    <string name="common_error">A general error occurred</string>
+    <string name="common_delete">Delete</string>
+    <string name="common_cancel">Cancel</string>
+    <string name="common_discard">Discard</string>
+    <string name="common_keep_editing">Keep Editing</string>
+    <string name="edit_schedule_confirm_cancel_subtitle">Discard Changes</string>
+    <string name="confirm_cancel_subtitle">Discard Changes?</string>
 </resources>

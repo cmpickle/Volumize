@@ -1,6 +1,7 @@
 package com.cmpickle.volumize.Inject.module;
 
 import android.app.Application;
+import android.content.res.Resources;
 
 import dagger.Module;
 import dagger.Provides;
@@ -22,5 +23,10 @@ public class AppModule {
     @Provides
     public Application providesApplication() {
         return application;
+    }
+
+    @Provides
+    public Resources providesResources() {
+        return application.getResources();
     }
 }

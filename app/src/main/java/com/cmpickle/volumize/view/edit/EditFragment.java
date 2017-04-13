@@ -8,6 +8,10 @@ import android.view.MenuItem;
 
 import com.cmpickle.volumize.R;
 import com.cmpickle.volumize.view.BaseFragment;
+import com.cmpickle.volumize.view.alerts.AlertDialogParams;
+import com.cmpickle.volumize.view.alerts.AlertType;
+
+import static com.cmpickle.volumize.view.alerts.AlertType.CONFIRM_DISCARD;
 
 /**
  * @author Cameron Pickle
@@ -20,7 +24,12 @@ public abstract class EditFragment extends BaseFragment implements EditView {
 
     @Override
     public void confirmDelete() {
-//        AlertDialogParams params
+        AlertDialogParams params = new AlertDialogParams(null, getDeleteTitleId());
+        params.setRightButtonTextResourceId(R.string.common_delete);
+        params.setRightButtonColorResourceId(R.color.delete_red);
+        params.setLeftButtonTextResourceId(R.string.common_cancel);
+        params.setType(AlertType.CONFIRM_DELETE);
+        showAlert(params);
     }
 
     @CallSuper
@@ -68,7 +77,30 @@ public abstract class EditFragment extends BaseFragment implements EditView {
 
     @Override
     public void confirmCancel() {
+        AlertDialogParams params = new AlertDialogParams(null, R.string.confirm_cancel_subtitle);
+        params.setRightButtonTextResourceId(R.string.common_discard);
+        params.setLeftButtonTextResourceId(R.string.common_keep_editing);
+        params.setType(CONFIRM_DISCARD);
+        showAlert(params);
+    }
 
+    @Override
+    public void onAlertRightButton(AlertDialogParams params) {
+        AlertType type = params.getType();
+        if (type == null) {
+            super.onAlertRightButton(params);
+            return; // showError alerts don't have a type
+        }
+        switch (type) {
+            case CONFIRM_DELETE:
+                getEditPresenter().onDeleteConfirmed();
+                break;
+            case CONFIRM_DISCARD:
+                getEditPresenter().onCancelConfirmed();
+                break;
+            default:
+                super.onAlertRightButton(params);
+        }
     }
 
     public EditPresenter getEditPresenter() {
