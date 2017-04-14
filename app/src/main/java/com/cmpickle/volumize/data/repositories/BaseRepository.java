@@ -2,8 +2,6 @@ package com.cmpickle.volumize.data.repositories;
 
 import com.cmpickle.volumize.data.db.platform.BaseDatabase;
 
-import java.util.Observable;
-
 /**
  * @author Cameron Pickle
  *         Copyright (C) Cameron Pickle (cmpickle) on 4/3/2017.

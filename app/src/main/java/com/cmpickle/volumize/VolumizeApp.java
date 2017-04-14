@@ -9,8 +9,6 @@ import com.squareup.leakcanary.LeakCanary;
 
 import javax.inject.Inject;
 
-import io.fabric.sdk.android.Fabric;
-
 /**
  * @author Cameron Pickle
  *         Copyright (C) Cameron Pickle (cmpickle) on 4/3/2017.

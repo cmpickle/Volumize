@@ -7,6 +7,7 @@ import com.cmpickle.volumize.view.TopLevelActivity;
 import com.cmpickle.volumize.view.about.AboutFragment;
 import com.cmpickle.volumize.view.profile.ProfileFragment;
 import com.cmpickle.volumize.view.schedule.ScheduleFragment;
+import com.cmpickle.volumize.view.schedule.edit.EditScheduleFragment;
 import com.cmpickle.volumize.view.settings.SettingsFragment;
 import com.cmpickle.volumize.view.volumeadjust.VolumeAdjustFragment;
 
@@ -37,4 +38,6 @@ public interface VolumizeComponent {
     void inject(SettingsFragment settingsFragment);
 
     void inject(AboutFragment aboutFragment);
+
+    void inject(EditScheduleFragment editScheduleFragment);
 }

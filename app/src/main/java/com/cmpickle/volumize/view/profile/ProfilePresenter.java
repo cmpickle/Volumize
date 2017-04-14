@@ -12,7 +12,7 @@ public class ProfilePresenter extends BasePresenter<ProfileView> {
     ProfileView profileView;
 
     @Override
-    protected void setView(ProfileView View) {
+    protected void setView(ProfileView profileView) {
         this.profileView = profileView;
     }
 }

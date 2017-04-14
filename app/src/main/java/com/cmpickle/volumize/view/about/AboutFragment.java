@@ -49,7 +49,7 @@ public class AboutFragment extends BaseFragment {
     }
 
     @Override
-    protected void onSetViewOnPresenter() {
+    protected void onSetViewAndRouterOnPresenter() {
 
     }
 

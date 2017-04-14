@@ -1,7 +1,6 @@
 package com.cmpickle.volumize.view;
 
 import android.os.Bundle;
-import android.view.View;
 
 import icepick.Icepick;
 

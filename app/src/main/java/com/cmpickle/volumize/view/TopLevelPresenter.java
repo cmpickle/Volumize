@@ -19,7 +19,7 @@ public class TopLevelPresenter extends BasePresenter<TopLevelView> {
     }
 
     @Override
-    protected void setView(TopLevelView View) {
+    protected void setView(TopLevelView topLevelView) {
         this.topLevelView = topLevelView;
     }
 

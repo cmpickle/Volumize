@@ -6,6 +6,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.cmpickle.volumize.Inject.Injector;
 import com.cmpickle.volumize.R;
@@ -14,8 +16,7 @@ import com.cmpickle.volumize.view.BasePresenter;
 
 import javax.inject.Inject;
 
-import icepick.State;
-
+import butterknife.BindView;
 
 /**
  * @author Cameron Pickle
@@ -26,6 +27,24 @@ public class VolumeAdjustFragment extends BaseFragment implements VolumeAdjustVi
 
     @Inject
     VolumeAdjustPresenter volumeAdjustPresenter;
+
+    @BindView(R.id.tv_ring_tone_amount)
+    TextView tvRingToneAmount;
+    @BindView(R.id.tv_media_volume_amount)
+    TextView tvMediaVolumeAmount;
+    @BindView(R.id.tv_notifications_amount)
+    TextView tvNotificationsAmount;
+    @BindView(R.id.tv_system_volume_amount)
+    TextView tvSystemVolumeAmount;
+
+    @BindView(R.id.seek_bar_ring_tone)
+    SeekBar seekBarRingTone;
+    @BindView(R.id.seek_bar_media_volume)
+    SeekBar seekBarMediaVolume;
+    @BindView(R.id.seek_bar_notifications)
+    SeekBar seekBarNotifications;
+    @BindView(R.id.seek_bar_system_volume)
+    SeekBar seekBarSystemVolume;
 
     public VolumeAdjustFragment() {
         Injector.get().inject(this);
@@ -44,21 +63,104 @@ public class VolumeAdjustFragment extends BaseFragment implements VolumeAdjustVi
 
         final VolumeAdjustActivity activity = (VolumeAdjustActivity) getActivity();
         Toolbar toolbar = activity.getToolbar();
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        toolbar.setNavigationOnClickListener(v -> activity.openNavigationDrawer());
+
+        seekBarRingTone.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onClick(View v) {
-                activity.openNavigationDrawer();
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                volumeAdjustPresenter.seekBarRingToneMoved(seekBar.getProgress());
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                //required method
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                //required method
+            }
+        });
+
+        seekBarMediaVolume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                volumeAdjustPresenter.seekBarMediaVolumeMoved(seekBar.getProgress());
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                //required method
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                //required method
+            }
+        });
+
+        seekBarNotifications.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                volumeAdjustPresenter.seekBarNotificationMoved(seekBar.getProgress());
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                //required method
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                //required method
+            }
+        });
+
+        seekBarSystemVolume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                volumeAdjustPresenter.seekBarSystemVolumeMoved(seekBar.getProgress());
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                //required method
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                //required method
             }
         });
     }
 
     @Override
-    protected void onSetViewOnPresenter() {
+    protected void onSetViewAndRouterOnPresenter() {
         volumeAdjustPresenter.setView(this);
     }
 
     @Override
     protected BasePresenter getPresenter() {
         return volumeAdjustPresenter;
+    }
+
+    @Override
+    public void setRingToneEditText(int progress) {
+        tvRingToneAmount.setText(String.format(getContext().getString(R.string.volume_placeholder), progress));
+    }
+
+    @Override
+    public void setMediaVolumeEditText(int progress) {
+        tvMediaVolumeAmount.setText(String.format(getContext().getString(R.string.volume_placeholder), progress));
+    }
+
+    @Override
+    public void setNotificationsEditText(int progress) {
+        tvNotificationsAmount.setText(String.format(getContext().getString(R.string.volume_placeholder), progress));
+    }
+
+    @Override
+    public void setSystemVolumeEditText(int progress) {
+        tvSystemVolumeAmount.setText(String.format(getContext().getString(R.string.volume_placeholder), progress));
     }
 }

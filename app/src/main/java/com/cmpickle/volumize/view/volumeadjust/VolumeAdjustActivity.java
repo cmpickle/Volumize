@@ -5,13 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.Toolbar;
 
 import com.cmpickle.volumize.R;
-import com.cmpickle.volumize.view.BaseActivity;
 import com.cmpickle.volumize.view.TopLevelActivity;
-
-import butterknife.BindView;
 
 /**
  * @author Cameron Pickle

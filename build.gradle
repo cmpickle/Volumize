@@ -3,6 +3,7 @@
 buildscript {
     repositories {
         jcenter()
+//        mavenCentral()
         maven { url 'https://maven.fabric.io/public' }
     }
     dependencies {
@@ -10,9 +11,12 @@ buildscript {
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
-
+//        classpath 'me.tatarka:gradle-retrolambda:3.6.0'
         classpath 'io.fabric.tools:gradle:1.+'
     }
+}
+plugins {
+    id "me.tatarka.retrolambda" version "3.6.0"
 }
 
 allprojects {

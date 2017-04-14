@@ -6,4 +6,7 @@
 
     <color name="gradientStart">#FCAF17</color>
     <color name="gradientEnd">#A46F25</color>
+
+    <color name="charcoal_gray">#7E828C</color>
+    <color name="delete_red">#d0021b</color>
 </resources>

@@ -36,6 +36,7 @@
                     android:textSize="@dimen/card_text_title" />
 
                 <SeekBar
+                    android:id="@+id/seek_bar_ring_tone"
                     android:layout_below="@id/tv_ring_tone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -43,6 +44,7 @@
                     android:progress="75" />
 
                 <TextView
+                    android:id="@+id/tv_ring_tone_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -81,6 +83,7 @@
                     android:textSize="@dimen/card_text_title" />
 
                 <SeekBar
+                    android:id="@+id/seek_bar_media_volume"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_media_volume"
@@ -88,6 +91,7 @@
                     android:progress="75" />
 
                 <TextView
+                    android:id="@+id/tv_media_volume_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -126,6 +130,7 @@
                     android:textSize="@dimen/card_text_title" />
 
                 <SeekBar
+                    android:id="@+id/seek_bar_notifications"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_notifications"
@@ -133,6 +138,7 @@
                     android:progress="75" />
 
                 <TextView
+                    android:id="@+id/tv_notifications_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -171,6 +177,7 @@
                     android:textSize="@dimen/card_text_title" />
 
                 <SeekBar
+                    android:id="@+id/seek_bar_system_volume"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_system_volume"
@@ -178,6 +185,7 @@
                     android:progress="75" />
 
                 <TextView
+                    android:id="@+id/tv_system_volume_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
