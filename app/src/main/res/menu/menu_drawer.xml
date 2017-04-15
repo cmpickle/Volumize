@@ -6,22 +6,22 @@
         <item
             android:id="@+id/menu_nav_volumes"
             android:icon="@drawable/ic_volumes"
-            android:title="@string/volumes" />
+            android:title="@string/common_volumes" />
         <item
             android:id="@+id/menu_nav_schedule"
             android:icon="@drawable/ic_schedule"
-            android:title="@string/schedule" />
+            android:title="@string/common_schedule" />
         <item
             android:id="@+id/menu_nav_profiles"
             android:icon="@drawable/ic_profiles"
-            android:title="@string/profiles" />
+            android:title="@string/common_profiles" />
         <item
             android:id="@+id/menu_nav_settings"
             android:icon="@drawable/ic_settings"
-            android:title="@string/settings" />
+            android:title="@string/common_settings" />
         <item
             android:id="@+id/menu_nav_about"
             android:icon="@drawable/ic_about"
-            android:title="@string/about" />
+            android:title="@string/common_about" />
     </group>
 </menu>

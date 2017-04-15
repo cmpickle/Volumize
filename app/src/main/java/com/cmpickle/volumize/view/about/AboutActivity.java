@@ -20,7 +20,7 @@ public class AboutActivity extends TopLevelActivity {
 
     @Override
     public int getToolbarTitle() {
-        return R.string.about;
+        return R.string.common_about;
     }
 
     @Override

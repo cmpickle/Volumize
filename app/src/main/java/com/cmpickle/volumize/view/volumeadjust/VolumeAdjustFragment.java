@@ -65,71 +65,31 @@ public class VolumeAdjustFragment extends BaseFragment implements VolumeAdjustVi
         Toolbar toolbar = activity.getToolbar();
         toolbar.setNavigationOnClickListener(v -> activity.openNavigationDrawer());
 
-        seekBarRingTone.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        seekBarRingTone.setOnSeekBarChangeListener(new OnSeekBarChangedAdapter() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 volumeAdjustPresenter.seekBarRingToneMoved(seekBar.getProgress());
             }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                //required method
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                //required method
-            }
         });
 
-        seekBarMediaVolume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        seekBarMediaVolume.setOnSeekBarChangeListener(new OnSeekBarChangedAdapter() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 volumeAdjustPresenter.seekBarMediaVolumeMoved(seekBar.getProgress());
             }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                //required method
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                //required method
-            }
         });
 
-        seekBarNotifications.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        seekBarNotifications.setOnSeekBarChangeListener(new OnSeekBarChangedAdapter() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 volumeAdjustPresenter.seekBarNotificationMoved(seekBar.getProgress());
             }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                //required method
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                //required method
-            }
         });
 
-        seekBarSystemVolume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        seekBarSystemVolume.setOnSeekBarChangeListener(new OnSeekBarChangedAdapter() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 volumeAdjustPresenter.seekBarSystemVolumeMoved(seekBar.getProgress());
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                //required method
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                //required method
             }
         });
     }
@@ -162,5 +122,16 @@ public class VolumeAdjustFragment extends BaseFragment implements VolumeAdjustVi
     @Override
     public void setSystemVolumeEditText(int progress) {
         tvSystemVolumeAmount.setText(String.format(getContext().getString(R.string.volume_placeholder), progress));
+    }
+
+    private abstract class OnSeekBarChangedAdapter implements SeekBar.OnSeekBarChangeListener {
+        @Override
+        public abstract void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser);
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {}
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {}
     }
 }

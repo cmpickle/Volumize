@@ -2,14 +2,14 @@ package com.cmpickle.volumize.view.settings;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.cmpickle.volumize.Inject.Injector;
 import com.cmpickle.volumize.R;
+import com.cmpickle.volumize.util.preferences.Preferences;
 
 import javax.inject.Inject;
 
@@ -32,12 +32,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
 
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_settings, container, false);
-    }
-
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -48,7 +42,28 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
     }
 
     @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        settingsPresenter.setView(this);
+        settingsPresenter.initialize();
+    }
+
+    @Override
+    public boolean onPreferenceTreeClick(Preference preference) {
+        switch (preference.getKey()) {
+            case Preferences.PREF_PAUSE_EVENTS:
+                return true;
+            case Preferences.PREF_DISPLAY_VOLUME_RESTORE_DIALOG:
+                return true;
+            default:
+                return super.onPreferenceTreeClick(preference);
+        }
+    }
+
+    @Override
     public void buildFragment() {
        addPreferencesFromResource(R.xml.preferences);
     }
+
+    public static SettingsFragment newInstance() {return new SettingsFragment(); }
 }

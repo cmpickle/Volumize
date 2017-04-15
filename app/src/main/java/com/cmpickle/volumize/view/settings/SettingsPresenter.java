@@ -16,4 +16,8 @@ public class SettingsPresenter extends BasePresenter<SettingsView> {
     protected void setView(SettingsView settingsView) {
         this.settingsView = settingsView;
     }
+
+    public void initialize() {
+        settingsView.buildFragment();
+    }
 }

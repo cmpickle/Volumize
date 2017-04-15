@@ -32,7 +32,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentStart="true"
                     android:paddingBottom="8dp"
-                    android:text="@string/ring_tone"
+                    android:text="@string/common_ring_tone"
                     android:textSize="@dimen/card_text_title" />
 
                 <SeekBar
@@ -79,7 +79,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:paddingBottom="8dp"
-                    android:text="@string/media_volume"
+                    android:text="@string/common_media_volume"
                     android:textSize="@dimen/card_text_title" />
 
                 <SeekBar
@@ -126,7 +126,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentStart="true"
                     android:paddingBottom="8dp"
-                    android:text="@string/notifications"
+                    android:text="@string/common_notifications"
                     android:textSize="@dimen/card_text_title" />
 
                 <SeekBar
@@ -173,7 +173,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentStart="true"
                     android:paddingBottom="8dp"
-                    android:text="@string/system_volume"
+                    android:text="@string/common_system_volume"
                     android:textSize="@dimen/card_text_title" />
 
                 <SeekBar

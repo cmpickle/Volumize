@@ -15,12 +15,12 @@ import com.cmpickle.volumize.view.TopLevelActivity;
 public class SettingsActivity extends TopLevelActivity {
     @Override
     protected Fragment createFragment() {
-        return new SettingsFragment();
+        return SettingsFragment.newInstance();
     }
 
     @Override
     public int getToolbarTitle() {
-        return R.string.settings;
+        return R.string.common_settings;
     }
 
     @Override
