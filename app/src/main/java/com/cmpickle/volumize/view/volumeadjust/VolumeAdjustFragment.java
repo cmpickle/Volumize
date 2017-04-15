@@ -65,6 +65,8 @@ public class VolumeAdjustFragment extends BaseFragment implements VolumeAdjustVi
         Toolbar toolbar = activity.getToolbar();
         toolbar.setNavigationOnClickListener(v -> activity.openNavigationDrawer());
 
+        volumeAdjustPresenter.onViewCreated();
+
         seekBarRingTone.setOnSeekBarChangeListener(new OnSeekBarChangedAdapter() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -122,6 +124,46 @@ public class VolumeAdjustFragment extends BaseFragment implements VolumeAdjustVi
     @Override
     public void setSystemVolumeEditText(int progress) {
         tvSystemVolumeAmount.setText(String.format(getContext().getString(R.string.volume_placeholder), progress));
+    }
+
+    @Override
+    public void setRingToneEditTextMaxValue(int max) {
+        seekBarRingTone.setMax(max);
+    }
+
+    @Override
+    public void setMediaVolumeEditTextMaxValue(int max) {
+        seekBarMediaVolume.setMax(max);
+    }
+
+    @Override
+    public void setNotificationsEditTextMaxValue(int max) {
+        seekBarNotifications.setMax(max);
+    }
+
+    @Override
+    public void setSystemVolumeEditTextMaxValue(int max) {
+        seekBarSystemVolume.setMax(max);
+    }
+
+    @Override
+    public void setRingToneEditTextCurrentValue(int currentValue) {
+        seekBarRingTone.setProgress(currentValue);
+    }
+
+    @Override
+    public void setMediaVolumeEditTextCurrentValue(int currentValue) {
+        seekBarMediaVolume.setProgress(currentValue);
+    }
+
+    @Override
+    public void setNotificationsEditTextCurrentValue(int currentValue) {
+        seekBarNotifications.setProgress(currentValue);
+    }
+
+    @Override
+    public void setSystemVolumeEditTextCurrentValue(int currentValue) {
+        seekBarSystemVolume.setProgress(currentValue);
     }
 
     private abstract class OnSeekBarChangedAdapter implements SeekBar.OnSeekBarChangeListener {

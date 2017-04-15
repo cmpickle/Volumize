@@ -14,4 +14,20 @@ public interface VolumeAdjustView {
     void setNotificationsEditText(int progress);
 
     void setSystemVolumeEditText(int progress);
+
+    void setRingToneEditTextMaxValue(int max);
+
+    void setMediaVolumeEditTextMaxValue(int max);
+
+    void setNotificationsEditTextMaxValue(int max);
+
+    void setSystemVolumeEditTextMaxValue(int max);
+
+    void setRingToneEditTextCurrentValue(int currentValue);
+
+    void setMediaVolumeEditTextCurrentValue(int currentValue);
+
+    void setNotificationsEditTextCurrentValue(int currentValue);
+
+    void setSystemVolumeEditTextCurrentValue(int currentValue);
 }

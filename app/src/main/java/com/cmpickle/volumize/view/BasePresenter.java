@@ -11,7 +11,7 @@ import icepick.Icepick;
 
 public abstract class BasePresenter<V> {
 
-    protected abstract void setView(V View);
+    protected abstract void setView(V view);
 
     void saveInstanceState(Bundle out) {
         Icepick.saveInstanceState(this, out);
