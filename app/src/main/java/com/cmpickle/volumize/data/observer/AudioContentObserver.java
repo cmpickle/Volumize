@@ -53,9 +53,11 @@ public class AudioContentObserver extends ContentObserver {
         previousMediaVolume=currentMediaVolume;
         volumeAdjustView.setMediaVolumeSeekBarCurrentValue(currentMediaVolume);
         previousNotificationVolume=currentNotificationVolume;
-        volumeAdjustView.setNotificationsSeekBarCurrentValue(currentNotificationVolume);
+        if(currentNotificationVolume != 0)
+            volumeAdjustView.setNotificationsSeekBarCurrentValue(currentNotificationVolume);
         previousSystemVolume=currentSystemVolume;
-        volumeAdjustView.setSystemVolumeSeekBarCurrentValue(currentSystemVolume);
+        if(currentSystemVolume != 0)
+            volumeAdjustView.setSystemVolumeSeekBarCurrentValue(currentSystemVolume);
     }
 
     public void setVolumeAdjustController(VolumeAdjustView volumeAdjustView) {

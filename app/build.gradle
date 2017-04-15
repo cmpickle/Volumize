@@ -4,6 +4,27 @@ apply plugin: 'com.android.application' //or apply plugin: 'java'
 apply plugin: 'me.tatarka.retrolambda'
 
 android {
+    signingConfigs {
+        def keystorePropertiesFile = rootProject.file('keystore.properties')
+        def keystoreProperties = new Properties()
+        keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+        paidConfig {
+            if(keystorePropertiesFile.exists()) {
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+                storeFile file(keystoreProperties['storeFile'])
+                storePassword keystoreProperties['storePassword']
+            }
+        }
+        config {
+            if (keystorePropertiesFile.exists()) {
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+                storeFile file(keystoreProperties['storeFile'])
+                storePassword keystoreProperties['storePassword']
+            }
+        }
+    }
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
@@ -13,6 +34,11 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    productFlavors {
+        dev
+        envTest
+        myDebug
     }
     buildTypes {
         release {
@@ -91,3 +117,23 @@ dependencies {
         incremental true
     }
 }
+
+//def nameTheApk = {
+//    def newApkName = "volumize-${variantOutput.baseName}.apk"
+//    variantOutput.outputFile = new File(variantOutput.outputFile.parent, newApkName)
+//}
+//
+//def setUpCompileTimeConstants = { flavor ->
+//    flavor.buildConfigField "String", "BUILD_NUMBER", "\"${System.env.BUILD_NUMBER != null ? System.env.BUILD_NUMBER : "Unknown"}\""
+//}
+//
+//android.productFlavors.all { flavor ->
+//    setUpCompileTimeConstants(flavor)
+//}
+//
+//android.applicationVariants.all { variant ->
+//
+//    variant.outputs.each { output ->
+//        nameTheApk(output)
+//    }
+//}
