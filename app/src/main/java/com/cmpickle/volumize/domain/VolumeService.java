@@ -51,7 +51,7 @@ public class VolumeService extends IntentFilter {
         return audioManager.getStreamVolume(AudioManager.STREAM_NOTIFICATION);
     }
 
-    public int getSystemVolumeVolume() {
+    public int getSystemVolume() {
         return audioManager.getStreamVolume(AudioManager.STREAM_SYSTEM);
     }
 
