@@ -7,27 +7,31 @@ package com.cmpickle.volumize.view.volumeadjust;
 
 public interface VolumeAdjustView {
 
-    void setRingToneEditText(int progress);
+    void setRingToneTextView(int progress);
 
-    void setMediaVolumeEditText(int progress);
+    void setMediaVolumeTextView(int progress);
 
-    void setNotificationsEditText(int progress);
+    void setNotificationsTextView(int progress);
 
-    void setSystemVolumeEditText(int progress);
+    void setSystemVolumeTextView(int progress);
 
-    void setRingToneEditTextMaxValue(int max);
+    void setRingToneSeekBarMaxValue(int max);
 
-    void setMediaVolumeEditTextMaxValue(int max);
+    void setMediaVolumeSeekBarMaxValue(int max);
 
-    void setNotificationsEditTextMaxValue(int max);
+    void setNotificationsSeekBarMaxValue(int max);
 
-    void setSystemVolumeEditTextMaxValue(int max);
+    void setSystemVolumeSeekBarMaxValue(int max);
 
-    void setRingToneEditTextCurrentValue(int currentValue);
+    void setRingToneSeekBarCurrentValue(int currentValue);
 
-    void setMediaVolumeEditTextCurrentValue(int currentValue);
+    void setMediaVolumeSeekBarCurrentValue(int currentValue);
 
-    void setNotificationsEditTextCurrentValue(int currentValue);
+    void setNotificationsSeekBarCurrentValue(int currentValue);
 
-    void setSystemVolumeEditTextCurrentValue(int currentValue);
+    void setSystemVolumeSeekBarCurrentValue(int currentValue);
+
+    void setMuteRingerView();
+
+    void setRingerUnmutedView();
 }

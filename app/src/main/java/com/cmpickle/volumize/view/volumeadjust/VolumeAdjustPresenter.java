@@ -26,39 +26,51 @@ public class VolumeAdjustPresenter extends BasePresenter<VolumeAdjustView> {
     }
 
     public void onViewCreated() {
-        volumeAdjustView.setRingToneEditTextMaxValue(volumeService.getRingToneMaxVolume());
-        volumeAdjustView.setMediaVolumeEditTextMaxValue(volumeService.getMediaVolumeMaxVolume());
-        volumeAdjustView.setNotificationsEditTextMaxValue(volumeService.getNotificationsMaxVolume());
-        volumeAdjustView.setSystemVolumeEditTextMaxValue(volumeService.getSystemVolumeMaxVolume());
+        volumeAdjustView.setRingToneSeekBarMaxValue(volumeService.getRingToneMaxVolume());
+        volumeAdjustView.setMediaVolumeSeekBarMaxValue(volumeService.getMediaVolumeMaxVolume());
+        volumeAdjustView.setNotificationsSeekBarMaxValue(volumeService.getNotificationsMaxVolume());
+        volumeAdjustView.setSystemVolumeSeekBarMaxValue(volumeService.getSystemVolumeMaxVolume());
 
-        volumeAdjustView.setRingToneEditText(volumeService.getRingToneVolume());
-        volumeAdjustView.setMediaVolumeEditText(volumeService.getMediaVolumeVolume());
-        volumeAdjustView.setNotificationsEditText(volumeService.getNotificationsVolume());
-        volumeAdjustView.setSystemVolumeEditText(volumeService.getSystemVolumeVolume());
+        volumeAdjustView.setRingToneTextView(volumeService.getRingToneVolume());
+        volumeAdjustView.setMediaVolumeTextView(volumeService.getMediaVolumeVolume());
+        volumeAdjustView.setNotificationsTextView(volumeService.getNotificationsVolume());
+        volumeAdjustView.setSystemVolumeTextView(volumeService.getSystemVolume());
 
-        volumeAdjustView.setRingToneEditTextCurrentValue(volumeService.getRingToneVolume());
-        volumeAdjustView.setMediaVolumeEditTextCurrentValue(volumeService.getMediaVolumeVolume());
-        volumeAdjustView.setNotificationsEditTextCurrentValue(volumeService.getNotificationsVolume());
-        volumeAdjustView.setSystemVolumeEditTextCurrentValue(volumeService.getSystemVolumeVolume());
+        volumeAdjustView.setRingToneSeekBarCurrentValue(volumeService.getRingToneVolume());
+        volumeAdjustView.setMediaVolumeSeekBarCurrentValue(volumeService.getMediaVolumeVolume());
+        volumeAdjustView.setNotificationsSeekBarCurrentValue(volumeService.getNotificationsVolume());
+        volumeAdjustView.setSystemVolumeSeekBarCurrentValue(volumeService.getSystemVolume());
     }
 
     public void seekBarRingToneMoved(int progress) {
+        if(progress == 0) {
+            volumeAdjustView.setMuteRingerView();
+        } else {
+            volumeAdjustView.setRingerUnmutedView();
+        }
         volumeService.setRingToneVolume(progress);
-        volumeAdjustView.setRingToneEditText(progress);
+        volumeAdjustView.setRingToneTextView(progress);
     }
 
     public void seekBarMediaVolumeMoved(int progress) {
         volumeService.setMediaVolume(progress);
-        volumeAdjustView.setMediaVolumeEditText(progress);
+        volumeAdjustView.setMediaVolumeTextView(progress);
     }
 
     public void seekBarNotificationMoved(int progress) {
         volumeService.setNotificationVolume(progress);
-        volumeAdjustView.setNotificationsEditText(progress);
+        volumeAdjustView.setNotificationsTextView(progress);
     }
 
     public void seekBarSystemVolumeMoved(int progress) {
         volumeService.setSystemVolume(progress);
-        volumeAdjustView.setSystemVolumeEditText(progress);
+        volumeAdjustView.setSystemVolumeTextView(progress);
+    }
+
+    public void seekBarUpdateOnUnmute() {
+        volumeAdjustView.setNotificationsSeekBarCurrentValue(volumeService.getNotificationsVolume());
+        volumeAdjustView.setNotificationsTextView(volumeService.getNotificationsVolume());
+        volumeAdjustView.setSystemVolumeSeekBarCurrentValue(volumeService.getSystemVolume());
+        volumeAdjustView.setSystemVolumeTextView(volumeService.getSystemVolume());
     }
 }

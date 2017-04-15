@@ -3,6 +3,7 @@ package com.cmpickle.volumize.Inject;
 import com.cmpickle.volumize.Inject.module.AppModule;
 import com.cmpickle.volumize.Inject.module.PresenterModule;
 import com.cmpickle.volumize.VolumizeApp;
+import com.cmpickle.volumize.data.observer.AudioContentObserver;
 import com.cmpickle.volumize.view.TopLevelActivity;
 import com.cmpickle.volumize.view.about.AboutFragment;
 import com.cmpickle.volumize.view.profile.ProfileFragment;

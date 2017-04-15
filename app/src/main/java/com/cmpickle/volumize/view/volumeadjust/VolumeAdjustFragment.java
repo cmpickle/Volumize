@@ -1,6 +1,8 @@
 package com.cmpickle.volumize.view.volumeadjust;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 
 import com.cmpickle.volumize.Inject.Injector;
 import com.cmpickle.volumize.R;
+import com.cmpickle.volumize.data.observer.AudioContentObserver;
 import com.cmpickle.volumize.view.BaseFragment;
 import com.cmpickle.volumize.view.BasePresenter;
 
@@ -27,6 +30,7 @@ public class VolumeAdjustFragment extends BaseFragment implements VolumeAdjustVi
 
     @Inject
     VolumeAdjustPresenter volumeAdjustPresenter;
+    AudioContentObserver observer;
 
     @BindView(R.id.tv_ring_tone_amount)
     TextView tvRingToneAmount;
@@ -94,6 +98,10 @@ public class VolumeAdjustFragment extends BaseFragment implements VolumeAdjustVi
                 volumeAdjustPresenter.seekBarSystemVolumeMoved(seekBar.getProgress());
             }
         });
+
+        observer = new AudioContentObserver(getActivity(), new Handler());
+        getActivity().getContentResolver().registerContentObserver(Settings.System.CONTENT_URI, true, observer);
+        observer.setVolumeAdjustController(this);
     }
 
     @Override
@@ -107,63 +115,80 @@ public class VolumeAdjustFragment extends BaseFragment implements VolumeAdjustVi
     }
 
     @Override
-    public void setRingToneEditText(int progress) {
+    public void setRingToneTextView(int progress) {
         tvRingToneAmount.setText(String.format(getContext().getString(R.string.volume_placeholder), progress));
     }
 
     @Override
-    public void setMediaVolumeEditText(int progress) {
+    public void setMediaVolumeTextView(int progress) {
         tvMediaVolumeAmount.setText(String.format(getContext().getString(R.string.volume_placeholder), progress));
     }
 
     @Override
-    public void setNotificationsEditText(int progress) {
+    public void setNotificationsTextView(int progress) {
         tvNotificationsAmount.setText(String.format(getContext().getString(R.string.volume_placeholder), progress));
     }
 
     @Override
-    public void setSystemVolumeEditText(int progress) {
+    public void setSystemVolumeTextView(int progress) {
         tvSystemVolumeAmount.setText(String.format(getContext().getString(R.string.volume_placeholder), progress));
     }
 
     @Override
-    public void setRingToneEditTextMaxValue(int max) {
+    public void setRingToneSeekBarMaxValue(int max) {
         seekBarRingTone.setMax(max);
     }
 
     @Override
-    public void setMediaVolumeEditTextMaxValue(int max) {
+    public void setMediaVolumeSeekBarMaxValue(int max) {
         seekBarMediaVolume.setMax(max);
     }
 
     @Override
-    public void setNotificationsEditTextMaxValue(int max) {
+    public void setNotificationsSeekBarMaxValue(int max) {
         seekBarNotifications.setMax(max);
     }
 
     @Override
-    public void setSystemVolumeEditTextMaxValue(int max) {
+    public void setSystemVolumeSeekBarMaxValue(int max) {
         seekBarSystemVolume.setMax(max);
     }
 
     @Override
-    public void setRingToneEditTextCurrentValue(int currentValue) {
+    public void setRingToneSeekBarCurrentValue(int currentValue) {
         seekBarRingTone.setProgress(currentValue);
     }
 
     @Override
-    public void setMediaVolumeEditTextCurrentValue(int currentValue) {
+    public void setMediaVolumeSeekBarCurrentValue(int currentValue) {
         seekBarMediaVolume.setProgress(currentValue);
     }
 
     @Override
-    public void setNotificationsEditTextCurrentValue(int currentValue) {
+    public void setNotificationsSeekBarCurrentValue(int currentValue) {
         seekBarNotifications.setProgress(currentValue);
     }
 
     @Override
-    public void setSystemVolumeEditTextCurrentValue(int currentValue) {
+    public void setSystemVolumeSeekBarCurrentValue(int currentValue) {
         seekBarSystemVolume.setProgress(currentValue);
+    }
+
+    @Override
+    public void setMuteRingerView() {
+        tvNotificationsAmount.setEnabled(false);
+        seekBarNotifications.setEnabled(false);
+        tvSystemVolumeAmount.setEnabled(false);
+        seekBarSystemVolume.setEnabled(false);
+    }
+
+    @Override
+    public void setRingerUnmutedView() {
+        volumeAdjustPresenter.seekBarUpdateOnUnmute();
+        tvNotificationsAmount.setEnabled(true);
+        seekBarNotifications.setEnabled(true);
+        tvSystemVolumeAmount.setEnabled(true);
+        seekBarSystemVolume.setEnabled(true);
     }
 
     private abstract class OnSeekBarChangedAdapter implements SeekBar.OnSeekBarChangeListener {
