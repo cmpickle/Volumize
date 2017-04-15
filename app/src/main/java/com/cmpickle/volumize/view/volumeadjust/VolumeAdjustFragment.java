@@ -175,7 +175,7 @@ public class VolumeAdjustFragment extends BaseFragment implements VolumeAdjustVi
     }
 
     @Override
-    public void setMuteRingerView() {
+    public void setRingerMuteView() {
         tvNotificationsAmount.setEnabled(false);
         seekBarNotifications.setEnabled(false);
         tvSystemVolumeAmount.setEnabled(false);
@@ -184,11 +184,15 @@ public class VolumeAdjustFragment extends BaseFragment implements VolumeAdjustVi
 
     @Override
     public void setRingerUnmutedView() {
-        volumeAdjustPresenter.seekBarUpdateOnUnmute();
         tvNotificationsAmount.setEnabled(true);
         seekBarNotifications.setEnabled(true);
         tvSystemVolumeAmount.setEnabled(true);
         seekBarSystemVolume.setEnabled(true);
+    }
+
+    @Override
+    public boolean isMutedView() {
+        return !tvNotificationsAmount.isEnabled() && !tvSystemVolumeAmount.isEnabled();
     }
 
     private abstract class OnSeekBarChangedAdapter implements SeekBar.OnSeekBarChangeListener {
