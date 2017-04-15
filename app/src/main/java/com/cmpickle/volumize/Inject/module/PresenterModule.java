@@ -1,5 +1,6 @@
 package com.cmpickle.volumize.Inject.module;
 
+import com.cmpickle.volumize.domain.VolumeService;
 import com.cmpickle.volumize.view.about.AboutPresenter;
 import com.cmpickle.volumize.view.profile.ProfilePresenter;
 import com.cmpickle.volumize.view.schedule.SchedulePresenter;
@@ -18,10 +19,10 @@ import dagger.Provides;
 @Module
 public class PresenterModule {
 
-    @Provides
-    public VolumeAdjustPresenter provideVolumeAdjustPresenter() {
-        return new VolumeAdjustPresenter();
-    }
+//    @Provides
+//    public VolumeAdjustPresenter provideVolumeAdjustPresenter() {
+//        return new VolumeAdjustPresenter(VolumeService);
+//    }
 
     @Provides
     public SchedulePresenter providesSchedulePresenter() {

@@ -18,7 +18,7 @@
     <string name="common_discard">Discard</string>
     <string name="common_keep_editing">Keep Editing</string>
     <string name="app_icon">App icon</string>
-    <string name="volume_placeholder">%d%%</string>
+    <string name="volume_placeholder">%d</string>
 
     <string name="menu_edit_save">Save</string>
 

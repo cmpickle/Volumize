@@ -40,8 +40,8 @@
                     android:layout_below="@id/tv_ring_tone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:max="100"
-                    android:progress="75" />
+                    android:max="15"
+                    android:progress="12" />
 
                 <TextView
                     android:id="@+id/tv_ring_tone_amount"
@@ -50,7 +50,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignBaseline="@id/tv_ring_tone"
                     android:textSize="@dimen/card_text_title"
-                    android:text="75%"/>
+                    android:text="12"/>
 
             </RelativeLayout>
 
@@ -87,8 +87,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_media_volume"
-                    android:max="100"
-                    android:progress="75" />
+                    android:max="15"
+                    android:progress="12" />
 
                 <TextView
                     android:id="@+id/tv_media_volume_amount"
@@ -97,7 +97,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignBaseline="@id/tv_media_volume"
                     android:textSize="@dimen/card_text_title"
-                    android:text="75%"/>
+                    android:text="12"/>
 
             </RelativeLayout>
 
@@ -134,8 +134,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_notifications"
-                    android:max="100"
-                    android:progress="75" />
+                    android:max="15"
+                    android:progress="12" />
 
                 <TextView
                     android:id="@+id/tv_notifications_amount"
@@ -144,7 +144,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignBaseline="@id/tv_notifications"
                     android:textSize="@dimen/card_text_title"
-                    android:text="75%"/>
+                    android:text="12"/>
 
             </RelativeLayout>
 
@@ -181,8 +181,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_system_volume"
-                    android:max="100"
-                    android:progress="75" />
+                    android:max="15"
+                    android:progress="12" />
 
                 <TextView
                     android:id="@+id/tv_system_volume_amount"
@@ -191,7 +191,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignBaseline="@id/tv_system_volume"
                     android:textSize="@dimen/card_text_title"
-                    android:text="75%"/>
+                    android:text="12"/>
 
             </RelativeLayout>
 
