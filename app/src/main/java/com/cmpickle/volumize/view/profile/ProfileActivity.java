@@ -20,7 +20,7 @@ public class ProfileActivity extends TopLevelActivity {
 
     @Override
     public int getToolbarTitle() {
-        return R.string.profiles;
+        return R.string.common_profiles;
     }
 
     @Override

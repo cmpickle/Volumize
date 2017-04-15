@@ -29,7 +29,7 @@ public class ScheduleActivity extends TopLevelActivity implements ScheduleRouter
 
     @Override
     public int getToolbarTitle() {
-        return R.string.schedule;
+        return R.string.common_schedule;
     }
 
     @Override

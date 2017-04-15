@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sort_type_names">
+        <item>@string/todays_first</item>
+        <item>@string/weekly_time</item>
+        <item>@string/time_of_day</item>
+        <item>@string/creation_date</item>
+        <item>@string/type_of_event</item>
+    </string-array>
+
+    <string-array name="sort_type_values">
+        <item>@string/todays_first_value</item>
+        <item>@string/weekly_time_value</item>
+        <item>@string/time_of_day_value</item>
+        <item>@string/creation_date_value</item>
+        <item>@string/type_of_event_value</item>
+    </string-array>
+
+    <string-array name="sort_order_names">
+        <item>@string/ascending</item>
+        <item>@string/descending</item>
+    </string-array>
+
+    <string-array name="sort_order_values">
+        <item>@string/ascending_value</item>
+        <item>@string/descending_value</item>
+    </string-array>
+</resources>

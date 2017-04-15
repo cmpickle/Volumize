@@ -6,4 +6,6 @@ package com.cmpickle.volumize.view.settings;
  */
 
 public interface SettingsView {
+
+    public void buildFragment();
 }

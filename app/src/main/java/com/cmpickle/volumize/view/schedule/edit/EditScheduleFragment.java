@@ -52,8 +52,8 @@ public class EditScheduleFragment extends EditFragment implements EditScheduleVi
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_edit, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
