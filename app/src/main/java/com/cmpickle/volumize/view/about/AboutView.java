@@ -6,4 +6,8 @@ package com.cmpickle.volumize.view.about;
  */
 
 public interface AboutView {
+
+    void buildFragment();
+
+    void setVersionNumber();
 }

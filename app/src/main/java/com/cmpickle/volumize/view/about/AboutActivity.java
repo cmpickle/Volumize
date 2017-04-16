@@ -15,7 +15,7 @@ import com.cmpickle.volumize.view.TopLevelActivity;
 public class AboutActivity extends TopLevelActivity {
     @Override
     protected Fragment createFragment() {
-        return new AboutFragment();
+        return AboutFragment.newInstance();
     }
 
     @Override

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Preference
+        android:icon="@mipmap/ic_launcher"
+        android:enabled="false"
+        android:layout="@layout/pref_icon"/>
+
+    <Preference
+        android:title="@string/rate_app" />
+
+    <Preference
+        android:title="@string/homepage" />
+
+    <Preference
+        android:title="@string/feature_request" />
+
+    <Preference
+        android:title="@string/feedback" />
+
+    <Preference
+        android:title="@string/recognitions" />
+
+</PreferenceScreen>
