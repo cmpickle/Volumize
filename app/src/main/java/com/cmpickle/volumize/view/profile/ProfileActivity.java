@@ -6,13 +6,14 @@ import android.support.v4.app.Fragment;
 
 import com.cmpickle.volumize.R;
 import com.cmpickle.volumize.view.TopLevelActivity;
+import com.cmpickle.volumize.view.profile.edit.EditProfileActivity;
 
 /**
  * @author Cameron Pickle
  *         Copyright (C) Cameron Pickle (cmpickle) on 4/7/2017.
  */
 
-public class ProfileActivity extends TopLevelActivity {
+public class ProfileActivity extends TopLevelActivity implements ProfileRouter {
     @Override
     protected Fragment createFragment() {
         return new ProfileFragment();
@@ -31,5 +32,10 @@ public class ProfileActivity extends TopLevelActivity {
     public static void start(Activity activity) {
         Intent intent = new Intent(activity, ProfileActivity.class);
         activity.startActivity(intent);
+    }
+
+    @Override
+    public void moveToEditProfilePage() {
+        EditProfileActivity.start(this);
     }
 }

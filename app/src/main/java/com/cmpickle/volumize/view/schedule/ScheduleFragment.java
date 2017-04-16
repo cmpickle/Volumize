@@ -46,21 +46,11 @@ public class ScheduleFragment extends BaseFragment implements ScheduleView {
 
         final ScheduleActivity activity = (ScheduleActivity) getActivity();
         Toolbar toolbar = activity.getToolbar();
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activity.openNavigationDrawer();
-            }
-        });
+        toolbar.setNavigationOnClickListener(v -> activity.openNavigationDrawer());
 
         schedulePresenter.setRouter(activity);
 
-        fabSchedule.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                schedulePresenter.addSchedule();
-            }
-        });
+        fabSchedule.setOnClickListener(v -> schedulePresenter.addScheduleClicked());
     }
 
     @Override
