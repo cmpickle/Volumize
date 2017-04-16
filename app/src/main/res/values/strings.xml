@@ -61,4 +61,5 @@
     <string name="Recognitions">Recognitions</string>
     <string name="rate_app">Rate App</string>
     <string name="feedback">Feedback</string>
+    <string name="profile_empty_state">There are currently no profiles</string>
 </resources>
