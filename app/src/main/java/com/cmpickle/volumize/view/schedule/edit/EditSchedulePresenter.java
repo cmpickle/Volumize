@@ -31,4 +31,12 @@ public class EditSchedulePresenter extends EditPresenter {
     public void onViewCreated() {
         onEnteredData();
     }
+
+    public void onReoccurringSwitched() {
+        editScheduleView.updateReoccurringView();
+    }
+
+    public void onMuteSwitched() {
+        editScheduleView.updateMuteView();
+    }
 }

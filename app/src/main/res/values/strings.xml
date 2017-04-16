@@ -33,6 +33,9 @@
     <string name="edit_schedule_confirm_cancel_subtitle">Discard Changes</string>
     <string name="confirm_cancel_subtitle">Discard Changes?</string>
 
+    <!-- Schedule -->
+    <string name="time_picker">Choose event time</string>
+
     <!-- Settings Page -->
     <string name="todays_first">Today\'s First</string>
     <string name="weekly_time">Weekly Time</string>

@@ -8,4 +8,8 @@ import com.cmpickle.volumize.view.edit.EditView;
  */
 
 public interface EditScheduleView extends EditView {
+
+    void updateReoccurringView();
+
+    void updateMuteView();
 }
