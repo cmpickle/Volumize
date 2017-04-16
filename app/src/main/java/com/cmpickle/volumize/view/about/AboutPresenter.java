@@ -15,4 +15,9 @@ public class AboutPresenter extends BasePresenter<AboutView> {
     protected void setView(AboutView aboutView) {
         this.aboutView = aboutView;
     }
+
+    public void initialize() {
+        aboutView.buildFragment();
+        aboutView.setVersionNumber();
+    }
 }

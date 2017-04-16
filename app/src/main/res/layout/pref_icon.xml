@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+        android:padding="16dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/element_padding"
+        android:paddingEnd="@dimen/element_padding"
+        android:text="@string/thank_you"/>
+
+    <TextView
+        android:id="@+id/tv_volumize_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/element_padding"
+        android:paddingEnd="@dimen/element_padding"
+        android:paddingBottom="@dimen/element_padding"
+        android:paddingTop="0dp"
+        android:text="@string/version_number"/>
+
+</LinearLayout>
