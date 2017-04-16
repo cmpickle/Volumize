@@ -9,7 +9,11 @@ import com.cmpickle.volumize.view.edit.EditView;
 
 public interface EditScheduleView extends EditView {
 
-    void updateReoccurringView();
+    void setVolumeTV(String level);
+
+    void openTimePicker();
+
+    void onTimePicked(String time);
 
     void updateMuteView();
 }

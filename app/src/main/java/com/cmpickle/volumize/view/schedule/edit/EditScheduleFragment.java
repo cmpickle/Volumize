@@ -1,9 +1,10 @@
 package com.cmpickle.volumize.view.schedule.edit;
 
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
 import android.support.v7.widget.SwitchCompat;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,19 +15,18 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.cmpickle.volumize.Inject.Injector;
 import com.cmpickle.volumize.R;
 import com.cmpickle.volumize.view.BasePresenter;
-import com.cmpickle.volumize.view.alerts.AlertDialogParams;
-import com.cmpickle.volumize.view.alerts.AlertType;
+import com.cmpickle.volumize.view.adapter.OnSeekBarChangedAdapter;
 import com.cmpickle.volumize.view.edit.EditFragment;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import icepick.State;
 
 /**
  * @author Cameron Pickle
@@ -41,13 +41,8 @@ public class EditScheduleFragment extends EditFragment implements EditScheduleVi
     @BindView(R.id.edit_schedule_time_picker)
     EditText timePicker;
 
-    @BindView(R.id.switch_reoccurring)
-    SwitchCompat switchReoccurring;
-
-    @BindView(R.id.days_of_week_top)
-    LinearLayout daysOfWeekTop;
-    @BindView(R.id.days_of_week_bottom)
-    LinearLayout daysOfWeekBottom;
+    @BindView(R.id.switch_repeat_weekly)
+    SwitchCompat switchRepeatWeekly;
 
     @BindView(R.id.toggle_monday)
     ToggleButton mondayToggle;
@@ -70,15 +65,14 @@ public class EditScheduleFragment extends EditFragment implements EditScheduleVi
 
     @BindView(R.id.edit_schedule_volume_layout)
     RelativeLayout volumeLayout;
+    @BindView(R.id.tv_volume_amount)
+    TextView tvVolumeAmount;
 
     @BindView(R.id.seek_bar_edit_schedule_volume)
     SeekBar seekBarVolume;
 
     @BindView(R.id.switch_vibrate)
     SwitchCompat switchVibrate;
-
-    @State
-    boolean reoccurringViewInvisible = false;
 
     public EditScheduleFragment() {
         Injector.get().inject(this);
@@ -100,12 +94,22 @@ public class EditScheduleFragment extends EditFragment implements EditScheduleVi
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        timePicker.setOnClickListener(v -> openTimePicker());
-        switchReoccurring.setOnClickListener(v -> editSchedulePresenter.onReoccurringSwitched());
-        switchReoccurring.setChecked(reoccurringViewInvisible);
-        editSchedulePresenter.onReoccurringSwitched();
+        timePicker.setOnClickListener(v -> editSchedulePresenter.onTimePickerClicked());
+        switchRepeatWeekly.setOnClickListener(v -> editSchedulePresenter.onRepeatWeeklySwitched());
         switchMute.setOnClickListener(v -> editSchedulePresenter.onMuteSwitched());
+        seekBarVolume.setOnSeekBarChangeListener(new OnSeekBarChangedAdapter() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+               editSchedulePresenter.onSeekBarMoved(seekBar.getProgress());
+            }
+        });
         editSchedulePresenter.onViewCreated();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        editSchedulePresenter.onViewResumed();
     }
 
     @Override
@@ -125,32 +129,23 @@ public class EditScheduleFragment extends EditFragment implements EditScheduleVi
         return editSchedulePresenter;
     }
 
-    @StringRes
-    public int getTimePickerTitleId() {
-        return R.string.time_picker;
-    }
-
-    public void openTimePicker() {
-        AlertDialogParams params = new AlertDialogParams(null, getTimePickerTitleId());
-        params.setRightButtonTextResourceId(android.R.string.ok);
-        params.setLeftButtonTextResourceId(R.string.common_cancel);
-        params.setType(AlertType.TIME_PICKER);
-        showAlert(params);
+    @Override
+    public void setVolumeTV(String level) {
+       tvVolumeAmount.setText(level);
     }
 
     @Override
-    public void updateReoccurringView() {
-        if(switchReoccurring.isChecked()) {
-            daysOfWeekTop.setVisibility(View.VISIBLE);
-            daysOfWeekTop.invalidate();
-            daysOfWeekBottom.setVisibility(View.VISIBLE);
-            daysOfWeekBottom.invalidate();
-            reoccurringViewInvisible = false;
-        } else {
-            daysOfWeekTop.setVisibility(View.GONE);
-            daysOfWeekBottom.setVisibility(View.GONE);
-            reoccurringViewInvisible = true;
-        }
+    public void openTimePicker() {
+        TimePickerDialog.OnTimeSetListener onTimeSetListener = (view, hourOfDay, minute) -> {
+            editSchedulePresenter.onTimePicked(hourOfDay, minute);
+        };
+        TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), onTimeSetListener, 0, 0, DateFormat.is24HourFormat(getContext()));
+        timePickerDialog.show();
+    }
+
+    @Override
+    public void onTimePicked(String time) {
+        timePicker.setText(time);
     }
 
     @Override

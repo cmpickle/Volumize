@@ -16,6 +16,7 @@ import com.cmpickle.volumize.R;
 import com.cmpickle.volumize.data.observer.AudioContentObserver;
 import com.cmpickle.volumize.view.BaseFragment;
 import com.cmpickle.volumize.view.BasePresenter;
+import com.cmpickle.volumize.view.adapter.OnSeekBarChangedAdapter;
 
 import javax.inject.Inject;
 
@@ -193,16 +194,5 @@ public class VolumeAdjustFragment extends BaseFragment implements VolumeAdjustVi
     @Override
     public boolean isMutedView() {
         return !tvNotificationsAmount.isEnabled() && !tvSystemVolumeAmount.isEnabled();
-    }
-
-    private abstract class OnSeekBarChangedAdapter implements SeekBar.OnSeekBarChangeListener {
-        @Override
-        public abstract void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser);
-
-        @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {}
-
-        @Override
-        public void onStopTrackingTouch(SeekBar seekBar) {}
     }
 }

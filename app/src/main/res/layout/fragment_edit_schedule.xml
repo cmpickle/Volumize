@@ -25,28 +25,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAlignment="textStart"
+                android:textAlignment="textEnd"
+                android:text="7:00 AM"
                 android:focusable="false"
                 android:focusableInTouchMode="false"/>
         </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/element_padding">
-
-            <TextView
-                android:id="@+id/tv_reoccurring"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/reoccurring" />
-
-            <android.support.v7.widget.SwitchCompat
-                android:id="@+id/switch_reoccurring"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true" />
-        </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/days_of_week_top"
@@ -55,8 +38,7 @@
             android:gravity="center_horizontal"
             android:orientation="horizontal"
             android:paddingBottom="8dp"
-            android:paddingTop="@dimen/element_padding"
-            android:visibility="gone">
+            android:paddingTop="@dimen/element_padding">
 
             <ToggleButton
                 android:id="@+id/toggle_sunday"
@@ -107,8 +89,7 @@
             android:gravity="center_horizontal"
             android:orientation="horizontal"
             android:paddingBottom="@dimen/element_padding"
-            android:paddingTop="8dp"
-            android:visibility="gone">
+            android:paddingTop="8dp">
 
             <ToggleButton
                 android:id="@+id/toggle_thursday"
@@ -142,6 +123,24 @@
 
         </LinearLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/element_padding">
+
+            <TextView
+                android:id="@+id/tv_repeat_weekly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/repeat_weekly" />
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/switch_repeat_weekly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -158,7 +157,9 @@
                 android:id="@+id/spinner_type"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:textAlignment="textEnd"
+                android:entries="@array/schedule_type_spinner">
 
             </Spinner>
 
@@ -199,13 +200,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:text="@string/volume_placeholder" />
+                android:text="12" />
 
             <android.support.v7.widget.AppCompatSeekBar
                 android:id="@+id/seek_bar_edit_schedule_volume"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_volume" />
+                android:layout_below="@id/tv_volume"
+                android:max="15"
+                android:progress="12"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -223,7 +226,8 @@
                 android:id="@+id/switch_vibrate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:checked="true"/>
         </RelativeLayout>
 
     </LinearLayout>
