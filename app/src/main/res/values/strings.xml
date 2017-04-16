@@ -37,6 +37,11 @@
     <string name="time_picker">Choose event time</string>
     <string name="all">All</string>
 
+    <!-- Profile -->
+    <string name="profile_empty_state">There are currently no profiles</string>
+    <!-- EditProfile -->
+    <string name="edit_profile">Edit Profile</string>
+
     <!-- Settings Page -->
     <string name="todays_first">Today\'s First</string>
     <string name="weekly_time">Weekly Time</string>
@@ -61,5 +66,4 @@
     <string name="Recognitions">Recognitions</string>
     <string name="rate_app">Rate App</string>
     <string name="feedback">Feedback</string>
-    <string name="profile_empty_state">There are currently no profiles</string>
 </resources>

@@ -2,6 +2,7 @@ package com.cmpickle.volumize.view.profile;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,8 @@ import com.cmpickle.volumize.view.BasePresenter;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+
 /**
  * @author Cameron Pickle
  *         Copyright (C) Cameron Pickle (cmpickle) on 4/7/2017.
@@ -23,6 +26,9 @@ public class ProfileFragment extends BaseFragment implements ProfileView {
 
     @Inject
     ProfilePresenter profilePresenter;
+
+    @BindView(R.id.fab_profile)
+    FloatingActionButton fabProfile;
 
     public ProfileFragment() {
         Injector.get().inject(this);
@@ -40,17 +46,15 @@ public class ProfileFragment extends BaseFragment implements ProfileView {
 
         final ProfileActivity activity = (ProfileActivity) getActivity();
         Toolbar toolbar = activity.getToolbar();
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activity.openNavigationDrawer();
-            }
-        });
+        toolbar.setNavigationOnClickListener(v -> activity.openNavigationDrawer());
+
+        fabProfile.setOnClickListener(v -> profilePresenter.addProfileClicked());
     }
 
     @Override
     protected void onSetViewAndRouterOnPresenter() {
         profilePresenter.setView(this);
+        profilePresenter.setRouter((ProfileRouter) getActivity());
     }
 
     @Override

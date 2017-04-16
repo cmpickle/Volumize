@@ -7,6 +7,8 @@ import com.cmpickle.volumize.data.observer.AudioContentObserver;
 import com.cmpickle.volumize.view.TopLevelActivity;
 import com.cmpickle.volumize.view.about.AboutFragment;
 import com.cmpickle.volumize.view.profile.ProfileFragment;
+import com.cmpickle.volumize.view.profile.edit.EditProfileFragment;
+import com.cmpickle.volumize.view.profile.edit.EditProfileView;
 import com.cmpickle.volumize.view.schedule.ScheduleFragment;
 import com.cmpickle.volumize.view.schedule.edit.EditScheduleFragment;
 import com.cmpickle.volumize.view.settings.SettingsFragment;
@@ -34,11 +36,13 @@ public interface VolumizeComponent {
 
     void inject(ScheduleFragment scheduleFragment);
 
+    void inject(EditScheduleFragment editScheduleFragment);
+
     void inject(ProfileFragment profileFragment);
+
+    void inject(EditProfileFragment editProfileFragment);
 
     void inject(SettingsFragment settingsFragment);
 
     void inject(AboutFragment aboutFragment);
-
-    void inject(EditScheduleFragment editScheduleFragment);
 }

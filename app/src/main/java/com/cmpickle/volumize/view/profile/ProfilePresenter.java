@@ -10,9 +10,18 @@ import com.cmpickle.volumize.view.BasePresenter;
 public class ProfilePresenter extends BasePresenter<ProfileView> {
 
     ProfileView profileView;
+    ProfileRouter profileRouter;
 
     @Override
     protected void setView(ProfileView profileView) {
         this.profileView = profileView;
+    }
+
+    protected void setRouter(ProfileRouter profileRouter) {
+        this.profileRouter = profileRouter;
+    }
+
+    public void addProfileClicked() {
+        profileRouter.moveToEditProfilePage();
     }
 }
