@@ -21,31 +21,18 @@
                 android:text="@string/time" />
 
             <EditText
+                android:id="@+id/edit_schedule_time_picker"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAlignment="textStart" />
+                android:textAlignment="textEnd"
+                android:text="7:00 AM"
+                android:focusable="false"
+                android:focusableInTouchMode="false"/>
         </LinearLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/element_padding">
-
-            <TextView
-                android:id="@+id/tv_reoccurring"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/reoccurring" />
-
-            <Switch
-                android:id="@+id/toggle_reoccurring"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true" />
-        </RelativeLayout>
-
         <LinearLayout
+            android:id="@+id/days_of_week_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
@@ -96,6 +83,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/days_of_week_bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
@@ -135,6 +123,24 @@
 
         </LinearLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/element_padding">
+
+            <TextView
+                android:id="@+id/tv_repeat_weekly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/repeat_weekly" />
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/switch_repeat_weekly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -148,9 +154,12 @@
                 android:text="@string/type" />
 
             <Spinner
+                android:id="@+id/spinner_type"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:textAlignment="textEnd"
+                android:entries="@array/schedule_type_spinner">
 
             </Spinner>
 
@@ -175,6 +184,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/edit_schedule_volume_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/element_padding">
@@ -190,12 +200,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:text="@string/volume_placeholder" />
+                android:text="12" />
 
             <android.support.v7.widget.AppCompatSeekBar
+                android:id="@+id/seek_bar_edit_schedule_volume"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_volume" />
+                android:layout_below="@id/tv_volume"
+                android:max="15"
+                android:progress="12"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -213,7 +226,8 @@
                 android:id="@+id/switch_vibrate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:checked="true"/>
         </RelativeLayout>
 
     </LinearLayout>

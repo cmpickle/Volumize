@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="schedule_type_spinner">
+        <item>@string/all</item>
+        <item>@string/common_ring_tone</item>
+        <item>@string/common_media_volume</item>
+        <item>@string/common_notifications</item>
+        <item>@string/common_system_volume</item>
+    </string-array>
+
     <string-array name="sort_type_names">
         <item>@string/todays_first</item>
         <item>@string/weekly_time</item>

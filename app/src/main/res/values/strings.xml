@@ -25,13 +25,17 @@
     <!-- Edit volume -->
     <string name="edit_schedule_title">Edit Volume Event</string>
     <string name="schedule_emptystate">There are currently no scheduled volume settings</string>
-    <string name="reoccurring">Reoccurring</string>
+    <string name="repeat_weekly">Repeat Weekly</string>
     <string name="time">Time</string>
     <string name="type">Type</string>
     <string name="vibrate">Vibrate</string>
     <string name="mute">Mute</string>
     <string name="edit_schedule_confirm_cancel_subtitle">Discard Changes</string>
     <string name="confirm_cancel_subtitle">Discard Changes?</string>
+
+    <!-- Schedule -->
+    <string name="time_picker">Choose event time</string>
+    <string name="all">All</string>
 
     <!-- Settings Page -->
     <string name="todays_first">Today\'s First</string>
