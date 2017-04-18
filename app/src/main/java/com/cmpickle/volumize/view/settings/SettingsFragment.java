@@ -33,15 +33,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        final SettingsActivity activity = (SettingsActivity) getActivity();
-        Toolbar toolbar = activity.getToolbar();
-        toolbar.setNavigationOnClickListener(v -> activity.openNavigationDrawer());
-    }
-
-    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         settingsPresenter.setView(this);
@@ -62,7 +53,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
 
     @Override
     public void buildFragment() {
-       addPreferencesFromResource(R.xml.preferences);
+       addPreferencesFromResource(R.xml.settings);
     }
 
     public static SettingsFragment newInstance() {return new SettingsFragment(); }

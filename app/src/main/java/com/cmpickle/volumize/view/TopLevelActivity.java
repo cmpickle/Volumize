@@ -60,6 +60,15 @@ public abstract class TopLevelActivity extends BaseActivity implements TopLevelR
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home) {
+            handleUpArrowSelected();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void moveToVolumePage() {
         VolumeAdjustActivity.start(this);
     }
@@ -123,17 +132,18 @@ public abstract class TopLevelActivity extends BaseActivity implements TopLevelR
     @StringRes
     public abstract int getToolbarTitle();
 
+    protected void handleUpArrowSelected() {
+        openNavigationDrawer();
+    }
+
     @IdRes
     protected abstract int getNavigationMenuItemId();
 
     private void initDrawer() {
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                processNavigationItem(item);
-                navigationDrawerLayout.closeDrawer(GravityCompat.START);
-                return false;
-            }
+        navigationView.setNavigationItemSelectedListener(item -> {
+            processNavigationItem(item);
+            navigationDrawerLayout.closeDrawer(GravityCompat.START);
+            return false;
         });
     }
 

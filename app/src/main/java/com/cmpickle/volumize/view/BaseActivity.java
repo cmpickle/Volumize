@@ -1,15 +1,24 @@
 package com.cmpickle.volumize.view;
 
 import android.os.Bundle;
+import android.support.annotation.CallSuper;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import com.cmpickle.volumize.R;
+import com.cmpickle.volumize.view.alerts.AlertDialogParams;
+import com.cmpickle.volumize.view.alerts.AlertListener;
+import com.cmpickle.volumize.view.alerts.AlertUtil;
+import com.cmpickle.volumize.view.alerts.Alerts;
 import com.crashlytics.android.Crashlytics;
 import com.facebook.stetho.Stetho;
+
+import javax.inject.Inject;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -18,9 +27,29 @@ import io.fabric.sdk.android.Fabric;
  *         Copyright (C) Cameron Pickle (cmpickle) on 4/1/2017.
  */
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements AlertListener {
 
     public static final int FRAME_CONTAINER_ID = R.id.frame_container;
+
+    @Inject
+    Alerts alerts;
+
+    private AlertUtil alertUtil;
+
+    @Override
+    public void onAlertLeftButton(AlertDialogParams params) {
+        //do nothing by default
+    }
+
+    @Override
+    public void onAlertRightButton(AlertDialogParams params) {
+        //do nothing by default
+    }
+
+    @Override
+    public void onAlertDismissed(AlertDialogParams params) {
+        //do nothing by default
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,10 +66,30 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(getLayoutResId());
 
         addFragment();
+
+        alertUtil = new AlertUtil(alerts, this, this);
+        alertUtil.restore(savedInstanceState);
+    }
+
+    @Override
+    @CallSuper
+    protected void onDestroy() {
+        alertUtil.destroy();
+
+        super.onDestroy();
+    }
+
+    public void showError(@StringRes int errorTextResourceId) {
+        alertUtil.showError(errorTextResourceId);
+    }
+
+    public void showAlert(AlertDialogParams params) {
+        alertUtil.showAlert(params);
     }
 
     protected abstract Fragment createFragment();
 
+    @LayoutRes
     protected int getLayoutResId() {
         return R.layout.activity_base;
     }

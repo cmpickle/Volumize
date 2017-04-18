@@ -33,15 +33,6 @@ public class AboutFragment extends PreferenceFragmentCompat implements AboutView
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        final AboutActivity activity = (AboutActivity) getActivity();
-        Toolbar toolbar = activity.getToolbar();
-        toolbar.setNavigationOnClickListener(v -> activity.openNavigationDrawer());
-    }
-
-    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         aboutPresenter.setView(this);
