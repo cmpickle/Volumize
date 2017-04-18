@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <CheckBox
+        android:id="@+id/checkbox_schedule_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:padding="@dimen/item_padding"/>
+
+    <RelativeLayout
+        android:id="@+id/days_of_week_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="5dp"
+        android:paddingStart="5dp"
+        android:layout_toEndOf="@id/checkbox_schedule_item">
+
+        <TextView
+            android:id="@+id/tv_schedule_item_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="@dimen/item_padding"
+            android:paddingStart="@dimen/item_padding"
+            android:paddingEnd="@dimen/item_padding"
+            android:text="9:00 AM"/>
+
+        <TextView
+            android:id="@+id/tv_sunday_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/item_padding"
+            android:paddingEnd="@dimen/item_padding"
+            android:paddingBottom="@dimen/item_padding"
+            android:layout_below="@id/tv_schedule_item_time"
+            android:textSize="16sp"
+            android:text="@string/sunday_short"/>
+
+        <TextView
+            android:id="@+id/tv_monday_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/item_padding"
+            android:paddingEnd="@dimen/item_padding"
+            android:paddingBottom="@dimen/item_padding"
+            android:layout_toEndOf="@id/tv_sunday_item"
+            android:layout_alignBaseline="@id/tv_sunday_item"
+            android:textSize="16sp"
+            android:text="@string/monday_short"/>
+
+        <TextView
+            android:id="@+id/tv_tuesday_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/item_padding"
+            android:paddingEnd="@dimen/item_padding"
+            android:paddingBottom="@dimen/item_padding"
+            android:layout_toEndOf="@id/tv_monday_item"
+            android:layout_alignBaseline="@id/tv_monday_item"
+            android:textSize="16sp"
+            android:text="@string/tuesday_short"/>
+
+        <TextView
+            android:id="@+id/tv_wednesday_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/item_padding"
+            android:paddingEnd="@dimen/item_padding"
+            android:paddingBottom="@dimen/item_padding"
+            android:layout_toEndOf="@id/tv_tuesday_item"
+            android:layout_alignBaseline="@id/tv_tuesday_item"
+            android:textSize="16sp"
+            android:text="@string/wednesday_short"/>
+
+        <TextView
+            android:id="@+id/tv_thursday_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/item_padding"
+            android:paddingEnd="@dimen/item_padding"
+            android:paddingBottom="@dimen/item_padding"
+            android:layout_toEndOf="@id/tv_wednesday_item"
+            android:layout_alignBaseline="@id/tv_wednesday_item"
+            android:textSize="16sp"
+            android:text="@string/thursday_short"/>
+
+        <TextView
+            android:id="@+id/tv_friday_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/item_padding"
+            android:paddingEnd="@dimen/item_padding"
+            android:paddingBottom="@dimen/item_padding"
+            android:layout_toEndOf="@id/tv_thursday_item"
+            android:layout_alignBaseline="@id/tv_thursday_item"
+            android:textSize="16sp"
+            android:text="@string/friday_short"/>
+
+        <TextView
+            android:id="@+id/tv_saturday_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/item_padding"
+            android:paddingEnd="@dimen/item_padding"
+            android:paddingBottom="@dimen/item_padding"
+            android:layout_toEndOf="@id/tv_friday_item"
+            android:layout_alignBaseline="@id/tv_friday_item"
+            android:textSize="16sp"
+            android:text="@string/saturday_short"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/item_schedule_volume_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="5dp"
+        android:paddingStart="5dp"
+        android:layout_toEndOf="@id/days_of_week_item">
+        <TextView
+            android:id="@+id/tv_schedule_item_volume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Volume %d"/>
+
+        <TextView
+            android:id="@+id/tv_schedule_item_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/tv_schedule_item_volume"
+            android:text="Ringer Volume"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/iv_schedule_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="5dp"
+        android:paddingStart="5dp"
+        android:layout_toEndOf="@id/item_schedule_volume_layout"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_volume"/>
+</RelativeLayout>

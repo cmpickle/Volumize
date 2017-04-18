@@ -66,4 +66,11 @@
     <string name="recognitions">Recognitions</string>
     <string name="rate_app">Rate App</string>
     <string name="feedback">Feedback</string>
+    <string name="sunday_short">Su</string>
+    <string name="monday_short">M</string>
+    <string name="tuesday_short">Tu</string>
+    <string name="wednesday_short">W</string>
+    <string name="thursday_short">Th</string>
+    <string name="friday_short">F</string>
+    <string name="saturday_short">Sa</string>
 </resources>

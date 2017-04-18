@@ -44,10 +44,6 @@ public class ProfileFragment extends BaseFragment implements ProfileView {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        final ProfileActivity activity = (ProfileActivity) getActivity();
-        Toolbar toolbar = activity.getToolbar();
-        toolbar.setNavigationOnClickListener(v -> activity.openNavigationDrawer());
-
         fabProfile.setOnClickListener(v -> profilePresenter.addProfileClicked());
     }
 

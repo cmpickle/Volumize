@@ -66,10 +66,6 @@ public class VolumeAdjustFragment extends BaseFragment implements VolumeAdjustVi
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        final VolumeAdjustActivity activity = (VolumeAdjustActivity) getActivity();
-        Toolbar toolbar = activity.getToolbar();
-        toolbar.setNavigationOnClickListener(v -> activity.openNavigationDrawer());
-
         volumeAdjustPresenter.onViewCreated();
 
         seekBarRingTone.setOnSeekBarChangeListener(new OnSeekBarChangedAdapter() {
