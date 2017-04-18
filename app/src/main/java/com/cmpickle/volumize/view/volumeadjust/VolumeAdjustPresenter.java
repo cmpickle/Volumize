@@ -40,6 +40,10 @@ public class VolumeAdjustPresenter extends BasePresenter<VolumeAdjustView> {
         volumeAdjustView.setMediaVolumeSeekBarCurrentValue(volumeService.getMediaVolumeVolume());
         volumeAdjustView.setNotificationsSeekBarCurrentValue(volumeService.getNotificationsVolume());
         volumeAdjustView.setSystemVolumeSeekBarCurrentValue(volumeService.getSystemVolume());
+
+        if(volumeService.getRingToneVolume() == 0) {
+            volumeAdjustView.setRingerMuteView();
+        }
     }
 
     public void seekBarRingToneMoved(int progress) {

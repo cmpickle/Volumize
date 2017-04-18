@@ -19,6 +19,7 @@
         android:title="@string/feedback" />
 
     <Preference
+        android:key="pref_recognitions"
         android:title="@string/recognitions" />
 
 </PreferenceScreen>

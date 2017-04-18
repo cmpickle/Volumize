@@ -14,6 +14,8 @@ public class Preferences extends BasePreferences<Preferences> {
     public static final String PREF_PAUSE_EVENTS = "pref_pause_events";
     public static final String PREF_DISPLAY_VOLUME_RESTORE_DIALOG = "pref_display_volume_restore_dialog";
 
+    public static final String PREF_RECOGNITIONS = "pref_recognitions";
+
     @Inject
     public Preferences(SharedPreferences sharedPreferences) {
         super(sharedPreferences);
