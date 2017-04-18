@@ -2,6 +2,7 @@ package com.cmpickle.volumize.Inject.module;
 
 import com.cmpickle.volumize.domain.VolumeService;
 import com.cmpickle.volumize.view.about.AboutPresenter;
+import com.cmpickle.volumize.view.about.recognitions.RecognitionsPresenter;
 import com.cmpickle.volumize.view.profile.ProfilePresenter;
 import com.cmpickle.volumize.view.profile.edit.EditProfilePresenter;
 import com.cmpickle.volumize.view.schedule.SchedulePresenter;
@@ -53,5 +54,10 @@ public class PresenterModule {
     @Provides
     public AboutPresenter providesAboutPresenter() {
         return new AboutPresenter();
+    }
+
+    @Provides
+    public RecognitionsPresenter providesRecognitionsPresenter() {
+        return new RecognitionsPresenter();
     }
 }

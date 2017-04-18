@@ -10,14 +10,23 @@ import com.cmpickle.volumize.view.BasePresenter;
 public class AboutPresenter extends BasePresenter<AboutView> {
 
     AboutView aboutView;
+    AboutRouter aboutRouter;
 
     @Override
     protected void setView(AboutView aboutView) {
         this.aboutView = aboutView;
     }
 
+    protected void setRouter(AboutRouter aboutRouter) {
+        this.aboutRouter = aboutRouter;
+    }
+
     public void initialize() {
         aboutView.buildFragment();
         aboutView.setVersionNumber();
+    }
+
+    public void moveToRecognitionsPage() {
+        aboutRouter.moveToRecognitoinsPage();
     }
 }
