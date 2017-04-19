@@ -2,6 +2,7 @@ package com.cmpickle.volumize.data.entity;
 
 import com.cmpickle.volumize.data.db.VolumizeDatabase;
 import com.raizlabs.android.dbflow.annotation.Column;
+import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
@@ -12,6 +13,9 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 
 @Table(name = "ScheduleEvent", database = VolumizeDatabase.class)
 public class ScheduleEvent extends BaseModel {
+
+    @PrimaryKey (autoincrement = true)
+    private int rowId;
 
     @Column
     private int option;
@@ -26,10 +30,24 @@ public class ScheduleEvent extends BaseModel {
     private int days;
 
     @Column
+    private int hour;
+
+    @Column
+    private int minute;
+
+    @Column
     private boolean repeatWeekly;
 
     @Column
     private boolean active;
+
+    public int getRowId() {
+        return rowId;
+    }
+
+    public void setRowId(int rowId) {
+        this.rowId = rowId;
+    }
 
     public int getOption() {
         return option;
@@ -47,7 +65,7 @@ public class ScheduleEvent extends BaseModel {
         this.amount = amount;
     }
 
-    public boolean getVibrate() {
+    public boolean isVibrate() {
         return vibrate;
     }
 
@@ -59,11 +77,27 @@ public class ScheduleEvent extends BaseModel {
         return days;
     }
 
+    public int getHour() {
+        return hour;
+    }
+
+    public void setHour(int hour) {
+        this.hour = hour;
+    }
+
+    public int getMinute() {
+        return minute;
+    }
+
+    public void setMinute(int minute) {
+        this.minute = minute;
+    }
+
     public void setDays(int days) {
         this.days = days;
     }
 
-    public boolean getRepeatWeekly() {
+    public boolean isRepeatWeekly() {
         return repeatWeekly;
     }
 
@@ -71,7 +105,7 @@ public class ScheduleEvent extends BaseModel {
         this.repeatWeekly = repeatWeekly;
     }
 
-    public boolean getActive() {
+    public boolean isActive() {
         return active;
     }
 

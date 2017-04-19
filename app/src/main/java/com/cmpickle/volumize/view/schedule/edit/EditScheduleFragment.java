@@ -43,6 +43,8 @@ public class EditScheduleFragment extends EditFragment implements EditScheduleVi
     @BindView(R.id.switch_repeat_weekly)
     SwitchCompat switchRepeatWeekly;
 
+    @BindView(R.id.toggle_sunday)
+    ToggleButton sundayToggle;
     @BindView(R.id.toggle_monday)
     ToggleButton mondayToggle;
     @BindView(R.id.toggle_tuesday)
@@ -135,9 +137,7 @@ public class EditScheduleFragment extends EditFragment implements EditScheduleVi
 
     @Override
     public void openTimePicker() {
-        TimePickerDialog.OnTimeSetListener onTimeSetListener = (view, hourOfDay, minute) -> {
-            editSchedulePresenter.onTimePicked(hourOfDay, minute);
-        };
+        TimePickerDialog.OnTimeSetListener onTimeSetListener = (view, hourOfDay, minute) -> editSchedulePresenter.onTimePicked(hourOfDay, minute);
         TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), onTimeSetListener, 0, 0, DateFormat.is24HourFormat(getContext()));
         timePickerDialog.show();
     }
@@ -154,5 +154,49 @@ public class EditScheduleFragment extends EditFragment implements EditScheduleVi
         } else {
             volumeLayout.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public int getOption() {
+        int pos = spinnerType.getSelectedItemPosition();
+        String[] optionValues = getResources().getStringArray(R.array.schedule_type_spinner_values);
+        return Integer.valueOf(optionValues[pos]);
+    }
+
+    @Override
+    public int getAmount() {
+        if(switchMute.isChecked())
+            return 0;
+        return seekBarVolume.getProgress();
+    }
+
+    @Override
+    public boolean isVibrate() {
+        return switchVibrate.isChecked();
+    }
+
+    @Override
+    public boolean isRepeatWeekly() {
+        return switchRepeatWeekly.isChecked();
+    }
+
+    @Override
+    public int getDays() {
+        int days = 0;
+        if(sundayToggle.isChecked())
+            days += 1;
+        if(mondayToggle.isChecked())
+            days += 2;
+        if(tuesdayToggle.isChecked())
+            days += 4;
+        if(wednesdayToggle.isChecked())
+            days += 8;
+        if(thursdayToggle.isChecked())
+            days += 16;
+        if(fridayToggle.isChecked())
+            days += 32;
+        if(saturdayToggle.isChecked())
+            days += 64;
+        return days;
     }
 }

@@ -8,6 +8,14 @@
         <item>@string/common_system_volume</item>
     </string-array>
 
+    <string-array name="schedule_type_spinner_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>4</item>
+        <item>8</item>
+    </string-array>
+
     <string-array name="sort_type_names">
         <item>@string/todays_first</item>
         <item>@string/weekly_time</item>

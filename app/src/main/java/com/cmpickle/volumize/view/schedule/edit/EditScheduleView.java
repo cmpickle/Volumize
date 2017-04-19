@@ -16,4 +16,14 @@ public interface EditScheduleView extends EditView {
     void onTimePicked(String time);
 
     void updateMuteView();
+
+    int getOption();
+
+    int getAmount();
+
+    boolean isVibrate();
+
+    boolean isRepeatWeekly();
+
+    int getDays();
 }
