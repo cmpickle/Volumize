@@ -3,6 +3,7 @@ package com.cmpickle.volumize.view.schedule;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.cmpickle.volumize.R;
 import com.cmpickle.volumize.view.BaseFragment;
 import com.cmpickle.volumize.view.BasePresenter;
 import com.cmpickle.volumize.view.adapter.ScheduleEventAdapter;
+import com.eyeem.recyclerviewtools.adapter.WrapAdapter;
 
 import javax.inject.Inject;
 
@@ -50,8 +52,9 @@ public class ScheduleFragment extends BaseFragment implements ScheduleView {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         RecyclerView.Adapter adapter = new ScheduleEventAdapter(schedulePresenter.getEvents());
-        recyclerViewSchedules.setAdapter(adapter);
-//        schedulePresenter.onViewCreated();
+        WrapAdapter wrapAdapter = new WrapAdapter(adapter);
+        wrapAdapter.addFooter(getLayoutInflater(savedInstanceState).inflate(R.layout.footer, recyclerViewSchedules, false));
+        recyclerViewSchedules.setAdapter(wrapAdapter);
 
         schedulePresenter.setRouter((ScheduleRouter) getActivity());
 
@@ -61,7 +64,7 @@ public class ScheduleFragment extends BaseFragment implements ScheduleView {
     @Override
     public void onResume() {
         super.onResume();
-        schedulePresenter.onViewCreated();
+        schedulePresenter.onResume();
     }
 
     @Override
@@ -78,7 +81,6 @@ public class ScheduleFragment extends BaseFragment implements ScheduleView {
     @Override
     public void updateAdapter() {
         recyclerViewSchedules.getAdapter().notifyDataSetChanged();
-//        recyclerViewSchedules.setAdapter(new ScheduleEventAdapter(schedulePresenter.getEvents()));
         updateViewState();
     }
 

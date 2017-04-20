@@ -31,7 +31,7 @@ public class SchedulePresenter extends BasePresenter<ScheduleView> {
         this.scheduleView = scheduleView;
     }
 
-    public void onViewCreated() {
+    public void onResume() {
         events.clear();
         events.addAll(repository.findAll());
         updateAdapter();

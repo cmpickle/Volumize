@@ -57,6 +57,8 @@ public class ScheduleEventAdapter extends RecyclerView.Adapter<ScheduleEventAdap
         TextView tvScheduleItemVolume;
         @BindView(R.id.tv_schedule_item_type)
         TextView tvScheduleItemType;
+        @BindView(R.id.recyclerview_item_divider)
+        View dividerView;
 
         public EventHolder(View itemView) {
             super(itemView);
@@ -79,18 +81,32 @@ public class ScheduleEventAdapter extends RecyclerView.Adapter<ScheduleEventAdap
             tvScheduleItemTime.setText(formattedDate);
             if((event.getDays()&1)==1)
                 tvSundayItem.setTextColor(view.getResources().getColor(R.color.colorAccent));
+            else
+                tvSundayItem.setTextColor(view.getResources().getColor(android.R.color.white));
             if(((event.getDays()>>>1)&1)==1)
                 tvMondayItem.setTextColor(view.getResources().getColor(R.color.colorAccent));
+            else
+                tvMondayItem.setTextColor(view.getResources().getColor(android.R.color.white));
             if(((event.getDays()>>>2)&1)==1)
                 tvTuesdayItem.setTextColor(view.getResources().getColor(R.color.colorAccent));
+            else
+                tvTuesdayItem.setTextColor(view.getResources().getColor(android.R.color.white));
             if(((event.getDays()>>>3)&1)==1)
                 tvWednesdayItem.setTextColor(view.getResources().getColor(R.color.colorAccent));
+            else
+                tvWednesdayItem.setTextColor(view.getResources().getColor(android.R.color.white));
             if(((event.getDays()>>>4)&1)==1)
                 tvThursdayItem.setTextColor(view.getResources().getColor(R.color.colorAccent));
+            else
+                tvThursdayItem.setTextColor(view.getResources().getColor(android.R.color.white));
             if(((event.getDays()>>>5)&1)==1)
                 tvFridayItem.setTextColor(view.getResources().getColor(R.color.colorAccent));
+            else
+                tvFridayItem.setTextColor(view.getResources().getColor(android.R.color.white));
             if(((event.getDays()>>>6)&1)==1)
                 tvSaturdayItem.setTextColor(view.getResources().getColor(R.color.colorAccent));
+            else
+                tvSaturdayItem.setTextColor(view.getResources().getColor(android.R.color.white));
             tvScheduleItemVolume.setText(String.format("Volume %d", event.getAmount()));
             String type;
             switch (event.getOption()) {
@@ -130,6 +146,11 @@ public class ScheduleEventAdapter extends RecyclerView.Adapter<ScheduleEventAdap
     @Override
     public void onBindViewHolder(ScheduleEventAdapter.EventHolder holder, int position) {
         ScheduleEvent event = events.get(position);
+        if(position == getItemCount()-1) {
+            holder.dividerView.setVisibility(View.INVISIBLE);
+        } else {
+            holder.dividerView.setVisibility(View.VISIBLE);
+        }
         holder.bindEvent(event);
     }
 

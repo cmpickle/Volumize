@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingTop="8dp"
-    android:paddingBottom="16dp"
     android:paddingStart="16dp"
     android:paddingEnd="16dp">
 
@@ -150,4 +149,13 @@
         android:layout_toEndOf="@id/item_schedule_volume_layout"
         android:layout_centerVertical="true"
         android:src="@drawable/ic_volume"/>
+
+    <View
+        android:id="@+id/recyclerview_item_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#AAAAAA"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="2dp"
+        android:layout_below="@id/days_of_week_item"/>
 </RelativeLayout>
