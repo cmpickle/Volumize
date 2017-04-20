@@ -36,6 +36,8 @@
     <!-- Schedule -->
     <string name="time_picker">Choose event time</string>
     <string name="all">All</string>
+    <string name="media">Media</string>
+    <string name="system">System</string>
 
     <!-- Profile -->
     <string name="profile_empty_state">There are currently no profiles</string>
@@ -73,4 +75,5 @@
     <string name="thursday_short">Th</string>
     <string name="friday_short">F</string>
     <string name="saturday_short">Sa</string>
+    <string name="volume_d">Volume %d</string>
 </resources>

@@ -26,10 +26,10 @@ public class PresenterModule {
 //        return new VolumeAdjustPresenter(VolumeService);
 //    }
 
-    @Provides
-    public SchedulePresenter providesSchedulePresenter() {
-        return new SchedulePresenter();
-    }
+//    @Provides
+//    public SchedulePresenter providesSchedulePresenter() {
+//        return new SchedulePresenter();
+//    }
 
     @Provides
     public EditSchedulePresenter providesEditSchedulePresenter() {

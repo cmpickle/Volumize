@@ -6,4 +6,5 @@ package com.cmpickle.volumize.view.schedule;
  */
 
 public interface ScheduleView {
+    void updateAdapter();
 }
