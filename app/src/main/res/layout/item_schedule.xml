@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingTop="8dp"
+    android:paddingBottom="16dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
 
     <CheckBox
         android:id="@+id/checkbox_schedule_item"
@@ -14,8 +18,8 @@
         android:id="@+id/days_of_week_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingEnd="5dp"
-        android:paddingStart="5dp"
+        android:paddingEnd="8dp"
+        android:paddingStart="8dp"
         android:layout_toEndOf="@id/checkbox_schedule_item">
 
         <TextView
@@ -28,103 +32,106 @@
             android:paddingEnd="@dimen/item_padding"
             android:text="9:00 AM"/>
 
-        <TextView
-            android:id="@+id/tv_sunday_item"
+        <LinearLayout
+            android:id="@+id/week_layout_top"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/item_padding"
-            android:paddingEnd="@dimen/item_padding"
-            android:paddingBottom="@dimen/item_padding"
-            android:layout_below="@id/tv_schedule_item_time"
-            android:textSize="16sp"
-            android:text="@string/sunday_short"/>
+            android:layout_below="@id/tv_schedule_item_time">
+            <TextView
+                android:id="@+id/tv_sunday_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/item_padding"
+                android:paddingEnd="@dimen/item_padding"
+                android:paddingBottom="@dimen/item_padding"
+                android:textSize="16sp"
+                android:text="@string/sunday_short"/>
 
-        <TextView
-            android:id="@+id/tv_monday_item"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="@dimen/item_padding"
-            android:paddingEnd="@dimen/item_padding"
-            android:paddingBottom="@dimen/item_padding"
-            android:layout_toEndOf="@id/tv_sunday_item"
-            android:layout_alignBaseline="@id/tv_sunday_item"
-            android:textSize="16sp"
-            android:text="@string/monday_short"/>
+            <TextView
+                android:id="@+id/tv_monday_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/item_padding"
+                android:paddingEnd="@dimen/item_padding"
+                android:paddingBottom="@dimen/item_padding"
+                android:textSize="16sp"
+                android:text="@string/monday_short"/>
 
-        <TextView
-            android:id="@+id/tv_tuesday_item"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="@dimen/item_padding"
-            android:paddingEnd="@dimen/item_padding"
-            android:paddingBottom="@dimen/item_padding"
-            android:layout_toEndOf="@id/tv_monday_item"
-            android:layout_alignBaseline="@id/tv_monday_item"
-            android:textSize="16sp"
-            android:text="@string/tuesday_short"/>
+            <TextView
+                android:id="@+id/tv_tuesday_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/item_padding"
+                android:paddingEnd="@dimen/item_padding"
+                android:paddingBottom="@dimen/item_padding"
+                android:textSize="16sp"
+                android:text="@string/tuesday_short"/>
 
-        <TextView
-            android:id="@+id/tv_wednesday_item"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="@dimen/item_padding"
-            android:paddingEnd="@dimen/item_padding"
-            android:paddingBottom="@dimen/item_padding"
-            android:layout_toEndOf="@id/tv_tuesday_item"
-            android:layout_alignBaseline="@id/tv_tuesday_item"
-            android:textSize="16sp"
-            android:text="@string/wednesday_short"/>
+            <TextView
+                android:id="@+id/tv_wednesday_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/item_padding"
+                android:paddingEnd="@dimen/item_padding"
+                android:paddingBottom="@dimen/item_padding"
+                android:textSize="16sp"
+                android:text="@string/wednesday_short"/>
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_thursday_item"
+        <LinearLayout
+            android:id="@+id/week_layout_bottom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/item_padding"
-            android:paddingEnd="@dimen/item_padding"
-            android:paddingBottom="@dimen/item_padding"
-            android:layout_toEndOf="@id/tv_wednesday_item"
-            android:layout_alignBaseline="@id/tv_wednesday_item"
-            android:textSize="16sp"
-            android:text="@string/thursday_short"/>
+            android:layout_below="@id/week_layout_top"
+            android:layout_centerHorizontal="true">
+            <TextView
+                android:id="@+id/tv_thursday_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/item_padding"
+                android:paddingEnd="@dimen/item_padding"
+                android:paddingBottom="@dimen/item_padding"
+                android:textSize="16sp"
+                android:text="@string/thursday_short"/>
 
-        <TextView
-            android:id="@+id/tv_friday_item"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="@dimen/item_padding"
-            android:paddingEnd="@dimen/item_padding"
-            android:paddingBottom="@dimen/item_padding"
-            android:layout_toEndOf="@id/tv_thursday_item"
-            android:layout_alignBaseline="@id/tv_thursday_item"
-            android:textSize="16sp"
-            android:text="@string/friday_short"/>
+            <TextView
+                android:id="@+id/tv_friday_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/item_padding"
+                android:paddingEnd="@dimen/item_padding"
+                android:paddingBottom="@dimen/item_padding"
+                android:textSize="16sp"
+                android:text="@string/friday_short"/>
 
-        <TextView
-            android:id="@+id/tv_saturday_item"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="@dimen/item_padding"
-            android:paddingEnd="@dimen/item_padding"
-            android:paddingBottom="@dimen/item_padding"
-            android:layout_toEndOf="@id/tv_friday_item"
-            android:layout_alignBaseline="@id/tv_friday_item"
-            android:textSize="16sp"
-            android:text="@string/saturday_short"/>
+            <TextView
+                android:id="@+id/tv_saturday_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/item_padding"
+                android:paddingEnd="@dimen/item_padding"
+                android:paddingBottom="@dimen/item_padding"
+                android:textSize="16sp"
+                android:text="@string/saturday_short"/>
+        </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/item_schedule_volume_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:paddingEnd="5dp"
         android:paddingStart="5dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_alignBottom="@id/days_of_week_item"
         android:layout_toEndOf="@id/days_of_week_item">
         <TextView
             android:id="@+id/tv_schedule_item_volume"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="Volume %d"/>
+            android:text="@string/volume_d"/>
 
         <TextView
             android:id="@+id/tv_schedule_item_type"
@@ -132,7 +139,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/tv_schedule_item_volume"
-            android:text="Ringer Volume"/>
+            android:text="Ring Tone"/>
 
     </RelativeLayout>
 
@@ -140,8 +147,6 @@
         android:id="@+id/iv_schedule_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingEnd="5dp"
-        android:paddingStart="5dp"
         android:layout_toEndOf="@id/item_schedule_volume_layout"
         android:layout_centerVertical="true"
         android:src="@drawable/ic_volume"/>

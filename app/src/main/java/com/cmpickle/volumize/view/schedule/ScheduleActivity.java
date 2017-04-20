@@ -15,7 +15,7 @@ import com.cmpickle.volumize.view.schedule.edit.EditScheduleActivity;
  *         Copyright (C) Cameron Pickle (cmpickle) on 4/7/2017.
  */
 
-public class ScheduleActivity extends TopLevelActivity implements ScheduleRouter, ScheduleView {
+public class ScheduleActivity extends TopLevelActivity implements ScheduleRouter {
 
     @Override
     protected Fragment createFragment() {

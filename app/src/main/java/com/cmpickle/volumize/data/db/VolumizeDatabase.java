@@ -5,6 +5,8 @@ import android.app.Application;
 import com.cmpickle.volumize.data.db.platform.BaseDatabase;
 import com.raizlabs.android.dbflow.annotation.Database;
 
+import javax.inject.Inject;
+
 /**
  * @author Cameron Pickle
  *         Copyright (C) Cameron Pickle (cmpickle) on 4/3/2017.
@@ -15,6 +17,7 @@ public class VolumizeDatabase extends BaseDatabase {
     public static final String NAME = "VolumizeDatabase";
     public static final int VERSION = 1;
 
+    @Inject
     public VolumizeDatabase(Application application) {
         super(application);
     }
