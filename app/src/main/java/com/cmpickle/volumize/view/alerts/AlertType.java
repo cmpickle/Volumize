@@ -8,5 +8,5 @@ package com.cmpickle.volumize.view.alerts;
 public enum AlertType {
     CONFIRM_DELETE,
     CONFIRM_DISCARD,
-    TIME_PICKER
+    RESTORE_VOLUME
 }

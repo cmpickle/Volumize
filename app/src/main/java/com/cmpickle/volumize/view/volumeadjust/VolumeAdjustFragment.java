@@ -153,22 +153,26 @@ public class VolumeAdjustFragment extends BaseFragment implements VolumeAdjustVi
 
     @Override
     public void setRingToneSeekBarCurrentValue(int currentValue) {
-        seekBarRingTone.setProgress(currentValue);
+        if(seekBarRingTone != null)
+            seekBarRingTone.setProgress(currentValue);
     }
 
     @Override
     public void setMediaVolumeSeekBarCurrentValue(int currentValue) {
-        seekBarMediaVolume.setProgress(currentValue);
+        if(seekBarMediaVolume != null)
+            seekBarMediaVolume.setProgress(currentValue);
     }
 
     @Override
     public void setNotificationsSeekBarCurrentValue(int currentValue) {
-        seekBarNotifications.setProgress(currentValue);
+        if(seekBarNotifications != null)
+            seekBarNotifications.setProgress(currentValue);
     }
 
     @Override
     public void setSystemVolumeSeekBarCurrentValue(int currentValue) {
-        seekBarSystemVolume.setProgress(currentValue);
+        if(seekBarSystemVolume != null)
+            seekBarSystemVolume.setProgress(currentValue);
     }
 
     @Override
