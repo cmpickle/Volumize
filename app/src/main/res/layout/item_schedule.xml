@@ -17,7 +17,7 @@
         android:id="@+id/days_of_week_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingEnd="8dp"
+        android:paddingEnd="6dp"
         android:paddingStart="8dp"
         android:layout_toEndOf="@id/checkbox_schedule_item">
 
@@ -117,10 +117,8 @@
 
     <RelativeLayout
         android:id="@+id/item_schedule_volume_layout"
-        android:layout_width="140dp"
+        android:layout_width="125dp"
         android:layout_height="wrap_content"
-        android:paddingEnd="5dp"
-        android:paddingStart="5dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:layout_alignBottom="@id/days_of_week_item"
@@ -143,12 +141,31 @@
     </RelativeLayout>
 
     <ImageView
+        android:id="@+id/iv_start_vibrate"
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/item_schedule_volume_layout"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_vibration"/>
+
+    <ImageView
         android:id="@+id/iv_schedule_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/item_schedule_volume_layout"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
         android:layout_centerVertical="true"
         android:src="@drawable/ic_volume"/>
+
+    <ImageView
+        android:id="@+id/iv_end_vibrate"
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/iv_start_vibrate"
+        android:layout_marginStart="13dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_vibration"/>
 
     <View
         android:id="@+id/recyclerview_item_divider"
