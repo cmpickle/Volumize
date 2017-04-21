@@ -76,4 +76,8 @@
     <string name="friday_short">F</string>
     <string name="saturday_short">Sa</string>
     <string name="volume_d">Volume %d</string>
+    <string name="restore_volume">Restore Volume</string>
+    <string name="restore_volume_dialog_subtitle">When would you like to restore your volume?</string>
+    <string name="do_not_restore">Do not restore</string>
+    <string name="restore">Restore</string>
 </resources>

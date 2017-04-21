@@ -27,6 +27,15 @@
         <activity android:name=".view.settings.SettingsActivity" />
         <activity android:name=".view.about.AboutActivity" />
         <activity android:name=".view.about.recognitions.RecognitionsActivity" />
+        <activity android:name=".view.dialogs.VolumeRestoreDialog"
+            android:theme="@style/RestoreVolumeDialogTheme"
+            android:noHistory="true"
+            android:excludeFromRecents="true"/>
+        <receiver android:name=".data.receivers.RingerModeStateChangedReceiver">
+            <intent-filter>
+                <action android:name="android.media.RINGER_MODE_CHANGED" />
+            </intent-filter>
+        </receiver>
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="de0dc5800df099c2ec295b7d1b74462a3d03f5d4"
