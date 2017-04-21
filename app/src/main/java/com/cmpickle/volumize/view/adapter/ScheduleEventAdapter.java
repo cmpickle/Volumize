@@ -1,5 +1,6 @@
 package com.cmpickle.volumize.view.adapter;
 
+import android.provider.ContactsContract;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.util.TypedValue;
@@ -7,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cmpickle.volumize.R;
@@ -57,6 +59,12 @@ public class ScheduleEventAdapter extends RecyclerView.Adapter<ScheduleEventAdap
         TextView tvScheduleItemVolume;
         @BindView(R.id.tv_schedule_item_type)
         TextView tvScheduleItemType;
+        @BindView(R.id.iv_schedule_item)
+        ImageView ivScheduleItem;
+        @BindView(R.id.iv_start_vibrate)
+        ImageView ivStartVibrate;
+        @BindView(R.id.iv_end_vibrate)
+        ImageView ivEndVibrate;
         @BindView(R.id.recyclerview_item_divider)
         View dividerView;
 
@@ -130,6 +138,17 @@ public class ScheduleEventAdapter extends RecyclerView.Adapter<ScheduleEventAdap
                     break;
             }
             tvScheduleItemType.setText(type);
+            if(event.isVibrate()) {
+                ivStartVibrate.setVisibility(View.VISIBLE);
+                ivEndVibrate.setVisibility(View.VISIBLE);
+            } else {
+                ivStartVibrate.setVisibility(View.INVISIBLE);
+                ivEndVibrate.setVisibility(View.INVISIBLE);
+            }
+            if(event.getAmount()==0)
+                ivScheduleItem.setImageResource(R.drawable.ic_mute);
+            else
+                ivScheduleItem.setImageResource(R.drawable.ic_volume);
         }
 
         @Override
