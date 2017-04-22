@@ -1,8 +1,18 @@
 package com.cmpickle.volumize.view.schedule.edit;
 
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
+
 import com.cmpickle.volumize.data.entity.ScheduleEvent;
+import com.cmpickle.volumize.data.receivers.AlarmManagerBroadcastReceiver;
+import com.cmpickle.volumize.domain.VolumeService;
 import com.cmpickle.volumize.view.edit.EditPresenter;
+
+import org.joda.time.DateTime;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -51,6 +61,27 @@ public class EditSchedulePresenter extends EditPresenter {
         scheduleEvent.setMinute(minute);
         scheduleEvent.setActive(true);
         scheduleEvent.save();
+
+        AlarmManager alarmManager = (AlarmManager) editScheduleRouter.getContext().getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(editScheduleRouter.getContext(), AlarmManagerBroadcastReceiver.class);
+        intent.putExtra(VolumeService.OPTION, scheduleEvent.getOption());
+        intent.putExtra(VolumeService.AMOUNT, scheduleEvent.getAmount());
+        intent.putExtra(VolumeService.VIBRATE, scheduleEvent.isVibrate());
+        intent.putExtra(VolumeService.REPEAT_WEEKLY, Boolean.TRUE);
+        intent.putExtra(VolumeService.DAYS, scheduleEvent.getDays());
+        intent.putExtra(VolumeService.ACTIVE, scheduleEvent.isActive());
+        PendingIntent pi = PendingIntent.getBroadcast(editScheduleRouter.getContext(), 0, intent, 0);
+        DateTime dateTime = new DateTime();
+        Log.d("EditSchedulePresenter", "hour:  " + scheduleEvent.getHour());
+        Log.d("EditSchedulePresenter", "minute:  " + scheduleEvent.getMinute());
+        DateTime alarmTime = dateTime.withHourOfDay(scheduleEvent.getHour()).withMinuteOfHour(scheduleEvent.getMinute()).withSecondOfMinute(0).withMillisOfSecond(0);
+        Log.d("EditSchedulePresenter", "dateTime:  " + dateTime.getMillis());
+        Log.d("EditSchedulePresenter", "alarmTime:  " + alarmTime.getMillis());
+        if(scheduleEvent.isRepeatWeekly()) {
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, alarmTime.getMillis(), 604800000, pi);
+        } else {
+            alarmManager.setWindow(AlarmManager.RTC_WAKEUP, alarmTime.getMillis(), 30000, pi);
+        }
 
         editScheduleRouter.leave();
     }

@@ -1,5 +1,6 @@
 package com.cmpickle.volumize.Inject.module;
 
+import com.cmpickle.volumize.domain.VolumeAdjustService;
 import com.cmpickle.volumize.domain.VolumeService;
 import com.cmpickle.volumize.view.about.AboutPresenter;
 import com.cmpickle.volumize.view.about.recognitions.RecognitionsPresenter;

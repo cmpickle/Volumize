@@ -1,6 +1,7 @@
 package com.cmpickle.volumize.view.schedule.edit;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 
@@ -31,5 +32,9 @@ public class EditScheduleActivity extends EditActivity implements EditScheduleRo
     @Override
     public void leave() {
        this.finish();
+    }
+
+    public Context getContext() {
+        return this;
     }
 }

@@ -1,5 +1,7 @@
 package com.cmpickle.volumize.view.schedule.edit;
 
+import android.content.Context;
+
 import com.cmpickle.volumize.view.edit.EditRouter;
 
 /**
@@ -8,4 +10,6 @@ import com.cmpickle.volumize.view.edit.EditRouter;
  */
 
 public interface EditScheduleRouter extends EditRouter {
+
+    Context getContext();
 }

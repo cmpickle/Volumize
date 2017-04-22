@@ -14,13 +14,24 @@ import javax.inject.Inject;
 
 public class VolumeService extends IntentFilter {
 
-    Application application;
     AudioManager audioManager;
+    public static final String OPTION = "option";
+    public static final String AMOUNT = "amount";
+    public static final String VIBRATE = "vibrate";
+    public static final String REPEAT_WEEKLY = "repeatWeekly";
+    public static final String DAYS = "days";
+    public static final String ACTIVE = "active";
+
+    public static final int ALL = 0;
+    public static final int RING_TONE = 1;
+    public static final int MEDIA = 2;
+    public static final int NOTIFICATIONS = 3;
+    public static final int SYSTEM = 4;
+
 
     @Inject
-    public VolumeService(Application application) {
-        this.application = application;
-        audioManager = (AudioManager) application.getSystemService(Context.AUDIO_SERVICE);
+    public VolumeService(Context context) {
+        audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
     }
 
     public int getRingToneMaxVolume() {

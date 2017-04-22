@@ -112,6 +112,8 @@ dependencies {
 
     compile "com.eyeem.recyclerviewtools:library:0.4.0"
 
+    compile 'joda-time:joda-time:2.9.9'
+
     retrolambda {
         javaVersion JavaVersion.VERSION_1_7
 //        jvmArgs '-arg1', '-arg2'
