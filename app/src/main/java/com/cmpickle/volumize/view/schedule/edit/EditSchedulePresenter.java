@@ -7,15 +7,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.cmpickle.volumize.R;
 import com.cmpickle.volumize.data.dto.ScheduleEventInfo;
-import com.cmpickle.volumize.data.entity.ScheduleEvent;
 import com.cmpickle.volumize.data.receivers.AlarmManagerBroadcastReceiver;
 import com.cmpickle.volumize.domain.ScheduleEventService;
 import com.cmpickle.volumize.domain.VolumeService;
-import com.cmpickle.volumize.view.alerts.AlertDialogParams;
-import com.cmpickle.volumize.view.alerts.AlertType;
 import com.cmpickle.volumize.view.edit.EditPresenter;
+import com.cmpickle.volumize.view.util.DayUtil;
 
 import org.joda.time.DateTime;
 
@@ -104,6 +101,81 @@ public class EditSchedulePresenter extends EditPresenter {
         }
 
         editScheduleRouter.leave();
+    }
+
+    public void onOptionChanged(int option) {
+        if(newEvent != null) {
+            newEvent.setOption(option);
+        }
+    }
+
+    public void onVolumeChanged(int amount) {
+        if(newEvent != null) {
+            newEvent.setAmount(amount);
+        }
+    }
+
+    public void onVibrateChanged(boolean checked) {
+        if(newEvent != null) {
+            newEvent.setVibrate(checked);
+        }
+    }
+
+    public void onSundayChanged(boolean checked) {
+        if(newEvent != null) {
+            newEvent.setDays(DayUtil.setFlagSunday(checked, newEvent.getDays()));
+        }
+    }
+
+    public void onMondayChanged(boolean checked) {
+        if(newEvent != null) {
+            newEvent.setDays(DayUtil.setFlagMonday(checked, newEvent.getDays()));
+        }
+    }
+
+    public void onTuesdayChanged(boolean checked) {
+        if(newEvent != null) {
+            newEvent.setDays(DayUtil.setFlagTuesday(checked, newEvent.getDays()));
+        }
+    }
+
+    public void onWednesdayChanged(boolean checked) {
+        if(newEvent != null) {
+            newEvent.setDays(DayUtil.setFlagWednesday(checked, newEvent.getDays()));
+        }
+    }
+
+    public void onThursdayChanged(boolean checked) {
+        if(newEvent != null) {
+            newEvent.setDays(DayUtil.setFlagThursday(checked, newEvent.getDays()));
+        }
+    }
+
+    public void onFridayChanged(boolean checked) {
+        if(newEvent != null) {
+            newEvent.setDays(DayUtil.setFlagFriday(checked, newEvent.getDays()));
+        }
+    }
+
+    public void onSaturdayChanged(boolean checked) {
+        if(newEvent != null) {
+            newEvent.setDays(DayUtil.setFlagSaturday(checked, newEvent.getDays()));
+        }
+    }
+
+    public void onTimeChanged(int hour, int minute) {
+        if(newEvent != null) {
+            this.hour = hour;
+            this.minute = minute;
+            newEvent.setHour(hour);
+            newEvent.setMinute(minute);
+        }
+    }
+
+    public void onRepeatWeeklyChanged(boolean checked) {
+        if(newEvent != null) {
+            newEvent.setRepeatWeekly(checked);
+        }
     }
 
     public void onViewCreated() {

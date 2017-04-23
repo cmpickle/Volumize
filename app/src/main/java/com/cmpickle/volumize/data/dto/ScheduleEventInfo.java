@@ -38,7 +38,7 @@ public class ScheduleEventInfo implements Serializable {
         option = scheduleEvent.getOption();
         amount = scheduleEvent.getAmount();
         vibrate = scheduleEvent.isVibrate();
-        days = scheduleEvent.getHour();
+        days = scheduleEvent.getDays();
         hour = scheduleEvent.getHour();
         minute = scheduleEvent.getMinute();
         repeatWeekly = scheduleEvent.isRepeatWeekly();
@@ -145,7 +145,8 @@ public class ScheduleEventInfo implements Serializable {
             return false;
         }
         ScheduleEventInfo scheduleEventInfo = (ScheduleEventInfo) o;
-        return option == scheduleEventInfo.option &&
+        return id.equals(scheduleEventInfo.getId()) &&
+                option == scheduleEventInfo.option &&
                 amount == scheduleEventInfo.amount &&
                 vibrate == scheduleEventInfo.vibrate &&
                 days == scheduleEventInfo.days &&

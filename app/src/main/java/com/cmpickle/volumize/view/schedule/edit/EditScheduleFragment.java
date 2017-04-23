@@ -22,8 +22,6 @@ import com.cmpickle.volumize.R;
 import com.cmpickle.volumize.data.dto.ScheduleEventInfo;
 import com.cmpickle.volumize.view.BasePresenter;
 import com.cmpickle.volumize.view.adapter.OnSeekBarChangedAdapter;
-import com.cmpickle.volumize.view.alerts.AlertDialogParams;
-import com.cmpickle.volumize.view.alerts.AlertType;
 import com.cmpickle.volumize.view.edit.EditFragment;
 import com.cmpickle.volumize.view.util.DayUtil;
 import com.hannesdorfmann.fragmentargs.annotation.Arg;
@@ -35,7 +33,11 @@ import java.util.Calendar;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.OnCheckedChanged;
+import butterknife.OnClick;
+import butterknife.OnItemSelected;
 
+import static com.cmpickle.volumize.view.util.DayUtil.*;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
 /**
@@ -232,13 +234,13 @@ public class EditScheduleFragment extends EditFragment implements EditScheduleVi
         spinnerType.setSelection(eventInfo.getOption());
         seekBarVolume.setProgress(eventInfo.getAmount());
         switchVibrate.setChecked(eventInfo.isVibrate());
-        sundayToggle.setChecked(DayUtil.isSunday(eventInfo.getDays()));
-        mondayToggle.setChecked(DayUtil.isMonday(eventInfo.getDays()));
-        tuesdayToggle.setChecked(DayUtil.isTuesday(eventInfo.getDays()));
-        wednesdayToggle.setChecked(DayUtil.isWednesday(eventInfo.getDays()));
-        thursdayToggle.setChecked(DayUtil.isThursday(eventInfo.getDays()));
-        fridayToggle.setChecked(DayUtil.isFriday(eventInfo.getDays()));
-        saturdayToggle.setChecked(DayUtil.isSaturday(eventInfo.getDays()));
+        sundayToggle.setChecked(isSunday(eventInfo.getDays()));
+        mondayToggle.setChecked(isMonday(eventInfo.getDays()));
+        tuesdayToggle.setChecked(isTuesday(eventInfo.getDays()));
+        wednesdayToggle.setChecked(isWednesday(eventInfo.getDays()));
+        thursdayToggle.setChecked(isThursday(eventInfo.getDays()));
+        fridayToggle.setChecked(isFriday(eventInfo.getDays()));
+        saturdayToggle.setChecked(isSaturday(eventInfo.getDays()));
         SimpleDateFormat format = new SimpleDateFormat("h:mm a");
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, Calendar.getInstance().get(Calendar.YEAR));
@@ -269,5 +271,63 @@ public class EditScheduleFragment extends EditFragment implements EditScheduleVi
 
     public void setEventId(String eventId) {
         this.eventId = eventId;
+    }
+
+    @OnItemSelected(R.id.spinner_type)
+    public void onOptionSelected() {
+        editSchedulePresenter.onOptionChanged(spinnerType.getSelectedItemPosition());
+    }
+
+    public void onAmountChanged(int level) {
+        editSchedulePresenter.onVolumeChanged(level);
+    }
+
+    @OnCheckedChanged(R.id.switch_vibrate)
+    public void onVibrateToggleClicked() {
+        editSchedulePresenter.onVibrateChanged(switchVibrate.isChecked());
+    }
+
+    @OnCheckedChanged(R.id.toggle_sunday)
+    public void onSundayToggleClicked() {
+        editSchedulePresenter.onSundayChanged(sundayToggle.isChecked());
+    }
+
+    @OnCheckedChanged(R.id.toggle_monday)
+    public void onMondayToggleClicked() {
+        editSchedulePresenter.onMondayChanged(mondayToggle.isChecked());
+    }
+
+    @OnCheckedChanged(R.id.toggle_tuesday)
+    public void onTuesdayToggleClicked() {
+        editSchedulePresenter.onTuesdayChanged(tuesdayToggle.isChecked());
+    }
+
+    @OnCheckedChanged(R.id.toggle_wednesday)
+    public void onWednesdayToggleClicked() {
+        editSchedulePresenter.onWednesdayChanged(wednesdayToggle.isChecked());
+    }
+
+    @OnCheckedChanged(R.id.toggle_thursday)
+    public void onThursdayToggleClicked() {
+        editSchedulePresenter.onThursdayChanged(thursdayToggle.isChecked());
+    }
+
+    @OnCheckedChanged(R.id.toggle_friday)
+    public void onFridayToggleClicked() {
+        editSchedulePresenter.onFridayChanged(fridayToggle.isChecked());
+    }
+
+    @OnCheckedChanged(R.id.toggle_saturday)
+    public void onSaturdayToggleClicked() {
+        editSchedulePresenter.onSaturdayChanged(saturdayToggle.isChecked());
+    }
+
+    public void onTimeSelected(int hour, int minute) {
+        editSchedulePresenter.onTimeChanged(hour, minute);
+    }
+
+    @OnCheckedChanged(R.id.switch_repeat_weekly)
+    public void onRepeatWeeklyToggleClicked() {
+        editSchedulePresenter.onRepeatWeeklyChanged(switchRepeatWeekly.isChecked());
     }
 }
