@@ -41,8 +41,8 @@ public class EditSchedulePresenter extends EditPresenter {
     EditScheduleView editScheduleView;
     EditScheduleRouter editScheduleRouter;
 
-    int hour = 7;
-    int minute = 0;
+//    int hour = 7;
+//    int minute = 0;
 
     @Inject
     public EditSchedulePresenter(ScheduleEventService scheduleEventService) {
@@ -55,7 +55,7 @@ public class EditSchedulePresenter extends EditPresenter {
     }
 
     public void onViewResumed() {
-        onRepeatWeeklySwitched();
+//        onRepeatWeeklySwitched();
         onMuteSwitched();
     }
 
@@ -112,6 +112,18 @@ public class EditSchedulePresenter extends EditPresenter {
     public void onVolumeChanged(int amount) {
         if(newEvent != null) {
             newEvent.setAmount(amount);
+            editScheduleView.setVolumeTV(String.valueOf(amount));
+        }
+    }
+
+    public void onMuteChanged(boolean checked, int amount) {
+        if(newEvent != null) {
+            if(checked) {
+                newEvent.setAmount(0);
+            } else {
+                newEvent.setAmount(amount);
+            }
+            editScheduleView.updateMuteView();
         }
     }
 
@@ -163,14 +175,8 @@ public class EditSchedulePresenter extends EditPresenter {
         }
     }
 
-    public void onTimeChanged(int hour, int minute) {
-        if(newEvent != null) {
-            this.hour = hour;
-            this.minute = minute;
-            newEvent.setHour(hour);
-            newEvent.setMinute(minute);
-        }
-    }
+//    public void onTimeChanged(int hour, int minute) {
+//    }
 
     public void onRepeatWeeklyChanged(boolean checked) {
         if(newEvent != null) {
@@ -206,32 +212,35 @@ public class EditSchedulePresenter extends EditPresenter {
     }
 
     public void onTimePickerClicked() {
-        editScheduleView.openTimePicker();
+        if(newEvent != null) {
+            editScheduleView.openTimePicker(newEvent.getHour(), newEvent.getMinute());
+        } else {
+            editScheduleView.openTimePicker(oldEvent.getHour(), oldEvent.getMinute());
+        }
     }
 
     public void onTimePicked(int hourOfDay, int minute) {
-        hour = hourOfDay;
-        this.minute = minute;
-        SimpleDateFormat format = new SimpleDateFormat("h:mm a");
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, Calendar.getInstance().get(Calendar.YEAR));
-        calendar.set(Calendar.MONTH, Calendar.getInstance().get(Calendar.MONTH));
-        calendar.set(Calendar.DAY_OF_MONTH, Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
-        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-        calendar.set(Calendar.MINUTE, minute);
-        String formattedDate = format.format(calendar.getTime());
-        editScheduleView.onTimePicked(formattedDate);
+        if(newEvent != null) {
+//            this.hour = hourOfDay;
+//            this.minute = minute;
+            newEvent.setHour(hourOfDay);
+            newEvent.setMinute(minute);
+            SimpleDateFormat format = new SimpleDateFormat("h:mm a");
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.YEAR, Calendar.getInstance().get(Calendar.YEAR));
+            calendar.set(Calendar.MONTH, Calendar.getInstance().get(Calendar.MONTH));
+            calendar.set(Calendar.DAY_OF_MONTH, Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+            calendar.set(Calendar.MINUTE, minute);
+            String formattedDate = format.format(calendar.getTime());
+            editScheduleView.onTimePicked(formattedDate);
+        }
     }
 
-    public void onRepeatWeeklySwitched() {
-    }
+//    public void onRepeatWeeklySwitched() {
+//    }
 
     public void onMuteSwitched() {
-        editScheduleView.updateMuteView();
-    }
-
-    public void onSeekBarMoved(int progress) {
-        editScheduleView.setVolumeTV(String.valueOf(progress));
     }
 
     public void onDeleteClicked() {

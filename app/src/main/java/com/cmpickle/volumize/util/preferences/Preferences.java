@@ -28,4 +28,12 @@ public class Preferences extends BasePreferences<Preferences> {
 //    public Preferences withPrefPauseEvents(String prefPauseEvents) {
 //        return withSecret(PREF_PAUSE_EVENTS, prefPauseEvents);
 //    }
+
+    public Boolean getDisplayVolumeRestoreDialog() {
+        return getBoolean(PREF_DISPLAY_VOLUME_RESTORE_DIALOG);
+    }
+
+    public void setDisplayVolumeRestoreDialog(Boolean display) {
+        setBoolean(PREF_DISPLAY_VOLUME_RESTORE_DIALOG, display);
+    }
 }

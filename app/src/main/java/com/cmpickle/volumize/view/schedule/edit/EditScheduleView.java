@@ -12,21 +12,21 @@ public interface EditScheduleView extends EditView {
 
     void setVolumeTV(String level);
 
-    void openTimePicker();
+    void openTimePicker(int hour, int minute);
 
     void onTimePicked(String time);
 
     void updateMuteView();
 
-    int getOption();
-
-    int getAmount();
-
-    boolean isVibrate();
-
-    boolean isRepeatWeekly();
-
-    int getDays();
+//    int getOption();
+//
+//    int getAmount();
+//
+//    boolean isVibrate();
+//
+//    boolean isRepeatWeekly();
+//
+//    int getDays();
 
     String getEventId();
 

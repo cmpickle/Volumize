@@ -115,12 +115,12 @@ public class EditScheduleFragment extends EditFragment implements EditScheduleVi
         super.onViewCreated(view, savedInstanceState);
 
         timePicker.setOnClickListener(v -> editSchedulePresenter.onTimePickerClicked());
-        switchRepeatWeekly.setOnClickListener(v -> editSchedulePresenter.onRepeatWeeklySwitched());
-        switchMute.setOnClickListener(v -> editSchedulePresenter.onMuteSwitched());
+//        switchRepeatWeekly.setOnClickListener(v -> editSchedulePresenter.onRepeatWeeklySwitched());
+//        switchMute.setOnClickListener(v -> editSchedulePresenter.onMuteSwitched());
         seekBarVolume.setOnSeekBarChangeListener(new OnSeekBarChangedAdapter() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-               editSchedulePresenter.onSeekBarMoved(seekBar.getProgress());
+               editSchedulePresenter.onVolumeChanged(progress);
             }
         });
         editSchedulePresenter.onViewCreated();
@@ -155,9 +155,9 @@ public class EditScheduleFragment extends EditFragment implements EditScheduleVi
     }
 
     @Override
-    public void openTimePicker() {
-        TimePickerDialog.OnTimeSetListener onTimeSetListener = (view, hourOfDay, minute) -> editSchedulePresenter.onTimePicked(hourOfDay, minute);
-        TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), onTimeSetListener, 0, 0, DateFormat.is24HourFormat(getContext()));
+    public void openTimePicker(int hour, int minute) {
+        TimePickerDialog.OnTimeSetListener onTimeSetListener = (view, hourOfDay, minuteOfDay) -> editSchedulePresenter.onTimePicked(hourOfDay, minuteOfDay);
+        TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), onTimeSetListener, hour, minute, DateFormat.is24HourFormat(getContext()));
         timePickerDialog.show();
     }
 
@@ -179,49 +179,50 @@ public class EditScheduleFragment extends EditFragment implements EditScheduleVi
         }
     }
 
-    @Override
-    public int getOption() {
-        int pos = spinnerType.getSelectedItemPosition();
-        String[] optionValues = getResources().getStringArray(R.array.schedule_type_spinner_values);
-        return Integer.valueOf(optionValues[pos]);
-    }
-
-    @Override
-    public int getAmount() {
-        if(switchMute.isChecked())
-            return 0;
-        return seekBarVolume.getProgress();
-    }
-
-    @Override
-    public boolean isVibrate() {
-        return switchVibrate.isChecked();
-    }
-
-    @Override
-    public boolean isRepeatWeekly() {
-        return switchRepeatWeekly.isChecked();
-    }
-
-    @Override
-    public int getDays() {
-        int days = 0;
-        if(sundayToggle.isChecked())
-            days += 1;
-        if(mondayToggle.isChecked())
-            days += 2;
-        if(tuesdayToggle.isChecked())
-            days += 4;
-        if(wednesdayToggle.isChecked())
-            days += 8;
-        if(thursdayToggle.isChecked())
-            days += 16;
-        if(fridayToggle.isChecked())
-            days += 32;
-        if(saturdayToggle.isChecked())
-            days += 64;
-        return days;
-    }
+//    @Override
+//    public int getOption() {
+////        int pos = spinnerType.getSelectedItemPosition();
+////        String[] optionValues = getResources().getStringArray(R.array.schedule_type_spinner_values);
+////        return Integer.valueOf(optionValues[pos]);
+//        return spinnerType.getSelectedItemPosition();
+//    }
+//
+//    @Override
+//    public int getAmount() {
+//        if(switchMute.isChecked())
+//            return 0;
+//        return seekBarVolume.getProgress();
+//    }
+//
+//    @Override
+//    public boolean isVibrate() {
+//        return switchVibrate.isChecked();
+//    }
+//
+//    @Override
+//    public boolean isRepeatWeekly() {
+//        return switchRepeatWeekly.isChecked();
+//    }
+//
+//    @Override
+//    public int getDays() {
+//        int days = 0;
+//        if(sundayToggle.isChecked())
+//            days += 1;
+//        if(mondayToggle.isChecked())
+//            days += 2;
+//        if(tuesdayToggle.isChecked())
+//            days += 4;
+//        if(wednesdayToggle.isChecked())
+//            days += 8;
+//        if(thursdayToggle.isChecked())
+//            days += 16;
+//        if(fridayToggle.isChecked())
+//            days += 32;
+//        if(saturdayToggle.isChecked())
+//            days += 64;
+//        return days;
+//    }
 
     @Override
     public String getEventId() {
@@ -278,8 +279,12 @@ public class EditScheduleFragment extends EditFragment implements EditScheduleVi
         editSchedulePresenter.onOptionChanged(spinnerType.getSelectedItemPosition());
     }
 
-    public void onAmountChanged(int level) {
-        editSchedulePresenter.onVolumeChanged(level);
+//    public void onAmountChanged(int level) {
+//    }
+
+    @OnCheckedChanged(R.id.switch_mute)
+    public void onMuteToggleClicked() {
+        editSchedulePresenter.onMuteChanged(switchMute.isChecked(), seekBarVolume.getProgress());
     }
 
     @OnCheckedChanged(R.id.switch_vibrate)
@@ -322,9 +327,9 @@ public class EditScheduleFragment extends EditFragment implements EditScheduleVi
         editSchedulePresenter.onSaturdayChanged(saturdayToggle.isChecked());
     }
 
-    public void onTimeSelected(int hour, int minute) {
-        editSchedulePresenter.onTimeChanged(hour, minute);
-    }
+//    public void onTimeSelected(int hour, int minute) {
+//        editSchedulePresenter.onTimeChanged(hour, minute);
+//    }
 
     @OnCheckedChanged(R.id.switch_repeat_weekly)
     public void onRepeatWeeklyToggleClicked() {

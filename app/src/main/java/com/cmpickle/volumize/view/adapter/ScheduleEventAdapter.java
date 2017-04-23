@@ -129,10 +129,10 @@ public class ScheduleEventAdapter extends RecyclerView.Adapter<ScheduleEventAdap
                 case 2:
                     type = view.getResources().getString(R.string.media);
                     break;
-                case 4:
+                case 3:
                     type = view.getResources().getString(R.string.common_notifications);
                     break;
-                case 8:
+                case 4:
                     type = view.getResources().getString(R.string.system);
                     break;
                 default:
@@ -151,8 +151,7 @@ public class ScheduleEventAdapter extends RecyclerView.Adapter<ScheduleEventAdap
                 ivScheduleItem.setImageResource(R.drawable.ic_mute);
             else
                 ivScheduleItem.setImageResource(R.drawable.ic_volume);
-            itemView.setOnClickListener(v -> {onItemClickListener.onItemClick(event);
-                Toast.makeText(view.getContext(), ""+event.getId(), Toast.LENGTH_LONG).show();});
+            itemView.setOnClickListener(v -> onItemClickListener.onItemClick(event));
         }
     }
     @Override
