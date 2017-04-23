@@ -112,9 +112,13 @@ dependencies {
 
     compile "com.eyeem.recyclerviewtools:library:0.4.0"
 
+    compile 'joda-time:joda-time:2.9.9'
+
+    compile 'com.hannesdorfmann.fragmentargs:annotation:3.0.2'
+    annotationProcessor 'com.hannesdorfmann.fragmentargs:processor:3.0.2'
+
     retrolambda {
         javaVersion JavaVersion.VERSION_1_7
-//        jvmArgs '-arg1', '-arg2'
         defaultMethods false
         incremental true
     }

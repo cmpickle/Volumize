@@ -1,10 +1,12 @@
 package com.cmpickle.volumize.view.schedule.edit;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 
 import com.cmpickle.volumize.R;
+import com.cmpickle.volumize.data.entity.ScheduleEvent;
 import com.cmpickle.volumize.view.edit.EditActivity;
 
 /**
@@ -13,9 +15,12 @@ import com.cmpickle.volumize.view.edit.EditActivity;
  */
 
 public class EditScheduleActivity extends EditActivity implements EditScheduleRouter {
+
+    public static final String INTENT_EVENT_ID = "eventId";
+
     @Override
     protected Fragment createFragment() {
-        return new EditScheduleFragment();
+        return EditScheduleFragment.newInstance(getIntentId());
     }
 
     @Override
@@ -28,8 +33,22 @@ public class EditScheduleActivity extends EditActivity implements EditScheduleRo
         activity.startActivity(intent);
     }
 
+    public static void startEditEvent(Activity activity, ScheduleEvent event) {
+        Intent intent = new Intent(activity, EditScheduleActivity.class);
+        intent.putExtra(INTENT_EVENT_ID, event.getId());
+        activity.startActivity(intent);
+    }
+
     @Override
     public void leave() {
        this.finish();
+    }
+
+    public Context getContext() {
+        return this;
+    }
+
+    public String getIntentId() {
+        return getIntent().getStringExtra(INTENT_EVENT_ID);
     }
 }

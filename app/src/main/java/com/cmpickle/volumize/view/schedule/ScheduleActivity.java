@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
 import com.cmpickle.volumize.R;
+import com.cmpickle.volumize.data.entity.ScheduleEvent;
 import com.cmpickle.volumize.view.TopLevelActivity;
 import com.cmpickle.volumize.view.schedule.edit.EditScheduleActivity;
 
@@ -45,5 +46,10 @@ public class ScheduleActivity extends TopLevelActivity implements ScheduleRouter
     @Override
     public void moveToEditSchedulePage() {
         EditScheduleActivity.start(this);
+    }
+
+    @Override
+    public void moveToEditSchedulePage(ScheduleEvent event) {
+        EditScheduleActivity.startEditEvent(this, event);
     }
 }

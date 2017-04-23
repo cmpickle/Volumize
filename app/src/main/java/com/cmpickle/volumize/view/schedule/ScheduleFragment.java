@@ -3,7 +3,6 @@ package com.cmpickle.volumize.view.schedule;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +11,7 @@ import android.widget.TextView;
 
 import com.cmpickle.volumize.Inject.Injector;
 import com.cmpickle.volumize.R;
+import com.cmpickle.volumize.data.entity.ScheduleEvent;
 import com.cmpickle.volumize.view.BaseFragment;
 import com.cmpickle.volumize.view.BasePresenter;
 import com.cmpickle.volumize.view.adapter.ScheduleEventAdapter;
@@ -26,7 +26,7 @@ import butterknife.BindView;
  *         Copyright (C) Cameron Pickle (cmpickle) on 4/7/2017.
  */
 
-public class ScheduleFragment extends BaseFragment implements ScheduleView {
+public class ScheduleFragment extends BaseFragment implements ScheduleView, ScheduleEventAdapter.OnItemClickListener {
 
     @Inject
     SchedulePresenter schedulePresenter;
@@ -51,7 +51,7 @@ public class ScheduleFragment extends BaseFragment implements ScheduleView {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        RecyclerView.Adapter adapter = new ScheduleEventAdapter(schedulePresenter.getEvents());
+        RecyclerView.Adapter adapter = new ScheduleEventAdapter(schedulePresenter.getEvents(), this);
         WrapAdapter wrapAdapter = new WrapAdapter(adapter);
         wrapAdapter.addFooter(getLayoutInflater(savedInstanceState).inflate(R.layout.footer, recyclerViewSchedules, false));
         recyclerViewSchedules.setAdapter(wrapAdapter);
@@ -89,5 +89,10 @@ public class ScheduleFragment extends BaseFragment implements ScheduleView {
             tvScheduleEmptyState.setVisibility(View.GONE);
         else
             tvScheduleEmptyState.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onItemClick(ScheduleEvent event) {
+        schedulePresenter.onScheduleEventClicked(event);
     }
 }

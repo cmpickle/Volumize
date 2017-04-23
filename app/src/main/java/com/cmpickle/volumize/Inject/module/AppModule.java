@@ -1,6 +1,7 @@
 package com.cmpickle.volumize.Inject.module;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.preference.PreferenceManager;
@@ -25,6 +26,11 @@ public class AppModule {
     @Provides
     public Application providesApplication() {
         return application;
+    }
+
+    @Provides
+    public Context providesApplicationContext() {
+        return application.getApplicationContext();
     }
 
     @Provides

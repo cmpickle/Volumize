@@ -52,4 +52,8 @@ public class SchedulePresenter extends BasePresenter<ScheduleView> {
     public void addScheduleClicked() {
         scheduleRouter.moveToEditSchedulePage();
     }
+
+    public void onScheduleEventClicked(ScheduleEvent event) {
+        scheduleRouter.moveToEditSchedulePage(event);
+    }
 }

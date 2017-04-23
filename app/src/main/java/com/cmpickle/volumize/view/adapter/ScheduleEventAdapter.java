@@ -1,15 +1,14 @@
 package com.cmpickle.volumize.view.adapter;
 
-import android.provider.ContactsContract;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cmpickle.volumize.R;
 import com.cmpickle.volumize.data.entity.ScheduleEvent;
@@ -27,15 +26,20 @@ import butterknife.ButterKnife;
 
 public class ScheduleEventAdapter extends RecyclerView.Adapter<ScheduleEventAdapter.EventHolder> {
 
-    ArrayList<ScheduleEvent> events = new ArrayList<>();
+    private final ArrayList<ScheduleEvent> events;
+    private final OnItemClickListener onItemClickListener;
 
-    public ScheduleEventAdapter(ArrayList<ScheduleEvent> events) {
-        this.events = events;
+    public interface OnItemClickListener {
+        void onItemClick(ScheduleEvent scheduleEvent);
     }
 
-    public static class EventHolder extends ViewHolder implements View.OnClickListener {
+    public ScheduleEventAdapter(ArrayList<ScheduleEvent> events, OnItemClickListener onItemClickListener) {
+        this.events = events;
+        this.onItemClickListener = onItemClickListener;
+    }
 
-        ScheduleEvent event;
+    public static class EventHolder extends ViewHolder {
+
         View view;
         @BindView(R.id.checkbox_schedule_item)
         CheckBox checkBoxActive;
@@ -72,11 +76,9 @@ public class ScheduleEventAdapter extends RecyclerView.Adapter<ScheduleEventAdap
             super(itemView);
             this.view = itemView;
             ButterKnife.bind(this, itemView);
-            itemView.setOnClickListener(this);
         }
 
-        public void bindEvent(ScheduleEvent event) {
-            this.event = event;
+        public void bindEvent(ScheduleEvent event, OnItemClickListener onItemClickListener) {
             checkBoxActive.setChecked(event.isActive());
             SimpleDateFormat format = new SimpleDateFormat("h:mm a");
             Calendar calendar = Calendar.getInstance();
@@ -127,10 +129,10 @@ public class ScheduleEventAdapter extends RecyclerView.Adapter<ScheduleEventAdap
                 case 2:
                     type = view.getResources().getString(R.string.media);
                     break;
-                case 4:
+                case 3:
                     type = view.getResources().getString(R.string.common_notifications);
                     break;
-                case 8:
+                case 4:
                     type = view.getResources().getString(R.string.system);
                     break;
                 default:
@@ -149,11 +151,7 @@ public class ScheduleEventAdapter extends RecyclerView.Adapter<ScheduleEventAdap
                 ivScheduleItem.setImageResource(R.drawable.ic_mute);
             else
                 ivScheduleItem.setImageResource(R.drawable.ic_volume);
-        }
-
-        @Override
-        public void onClick(View v) {
-
+            itemView.setOnClickListener(v -> onItemClickListener.onItemClick(event));
         }
     }
     @Override
@@ -170,7 +168,7 @@ public class ScheduleEventAdapter extends RecyclerView.Adapter<ScheduleEventAdap
         } else {
             holder.dividerView.setVisibility(View.VISIBLE);
         }
-        holder.bindEvent(event);
+        holder.bindEvent(event, onItemClickListener);
     }
 
     @Override
