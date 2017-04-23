@@ -6,6 +6,8 @@ import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
+import java.util.UUID;
+
 /**
  * @author Cameron Pickle
  *         Copyright (C) Cameron Pickle (cmpickle) on 4/18/2017.
@@ -14,8 +16,8 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 @Table(name = "ScheduleEvent", database = VolumizeDatabase.class)
 public class ScheduleEvent extends BaseModel {
 
-    @PrimaryKey (autoincrement = true)
-    private int rowId;
+    @PrimaryKey
+    private String id;
 
     @Column
     private int option;
@@ -41,12 +43,16 @@ public class ScheduleEvent extends BaseModel {
     @Column
     private boolean active;
 
-    public int getRowId() {
-        return rowId;
+    public ScheduleEvent() {
+        setId(UUID.randomUUID().toString());
     }
 
-    public void setRowId(int rowId) {
-        this.rowId = rowId;
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public int getOption() {

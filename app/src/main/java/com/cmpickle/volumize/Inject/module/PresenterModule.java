@@ -32,10 +32,10 @@ public class PresenterModule {
 //        return new SchedulePresenter();
 //    }
 
-    @Provides
-    public EditSchedulePresenter providesEditSchedulePresenter() {
-        return new EditSchedulePresenter();
-    }
+//    @Provides
+//    public EditSchedulePresenter providesEditSchedulePresenter() {
+//        return new EditSchedulePresenter();
+//    }
 
     @Provides
     public ProfilePresenter providesProfilePresenter() {

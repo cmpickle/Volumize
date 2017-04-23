@@ -1,5 +1,6 @@
 package com.cmpickle.volumize.view.schedule.edit;
 
+import com.cmpickle.volumize.data.dto.ScheduleEventInfo;
 import com.cmpickle.volumize.view.edit.EditView;
 
 /**
@@ -26,4 +27,14 @@ public interface EditScheduleView extends EditView {
     boolean isRepeatWeekly();
 
     int getDays();
+
+    String getEventId();
+
+    void bindEventOnly(ScheduleEventInfo eventInfo);
+
+    boolean isEditMode();
+
+    void showDeleteTextView();
+
+    void displayDeleteConfirmation();
 }

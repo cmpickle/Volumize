@@ -12,6 +12,7 @@ import com.cmpickle.volumize.view.alerts.AlertDialogParams;
 import com.cmpickle.volumize.view.alerts.AlertListener;
 import com.cmpickle.volumize.view.alerts.AlertUtil;
 import com.cmpickle.volumize.view.alerts.Alerts;
+import com.hannesdorfmann.fragmentargs.FragmentArgs;
 
 import javax.inject.Inject;
 
@@ -36,6 +37,8 @@ public abstract class BaseFragment extends Fragment implements AlertListener {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FragmentArgs.inject(this);
+
         Icepick.restoreInstanceState(this, savedInstanceState);
 
         if(savedInstanceState != null) {

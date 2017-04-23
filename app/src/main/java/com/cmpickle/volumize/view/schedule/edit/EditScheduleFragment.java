@@ -19,23 +19,38 @@ import android.widget.ToggleButton;
 
 import com.cmpickle.volumize.Inject.Injector;
 import com.cmpickle.volumize.R;
+import com.cmpickle.volumize.data.dto.ScheduleEventInfo;
 import com.cmpickle.volumize.view.BasePresenter;
 import com.cmpickle.volumize.view.adapter.OnSeekBarChangedAdapter;
+import com.cmpickle.volumize.view.alerts.AlertDialogParams;
+import com.cmpickle.volumize.view.alerts.AlertType;
 import com.cmpickle.volumize.view.edit.EditFragment;
+import com.cmpickle.volumize.view.util.DayUtil;
+import com.hannesdorfmann.fragmentargs.annotation.Arg;
+import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
+
+import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
 /**
  * @author Cameron Pickle
  *         Copyright (C) Cameron Pickle (cmpickle) on 4/9/2017.
  */
 
+@FragmentWithArgs
 public class EditScheduleFragment extends EditFragment implements EditScheduleView {
 
     @Inject
     EditSchedulePresenter editSchedulePresenter;
+
+    @Arg
+    String eventId;
 
     @BindView(R.id.edit_schedule_time_picker)
     EditText timePicker;
@@ -74,6 +89,8 @@ public class EditScheduleFragment extends EditFragment implements EditScheduleVi
 
     @BindView(R.id.switch_vibrate)
     SwitchCompat switchVibrate;
+    @BindView(R.id.tv_edit_schedule_delete)
+    TextView tvEditScheduleDelete;
 
     public EditScheduleFragment() {
         Injector.get().inject(this);
@@ -142,6 +159,10 @@ public class EditScheduleFragment extends EditFragment implements EditScheduleVi
         timePickerDialog.show();
     }
 
+    public static EditScheduleFragment newInstance(String eventId) {
+        return new EditScheduleFragmentBuilder(eventId).build();
+    }
+
     @Override
     public void onTimePicked(String time) {
         timePicker.setText(time);
@@ -198,5 +219,55 @@ public class EditScheduleFragment extends EditFragment implements EditScheduleVi
         if(saturdayToggle.isChecked())
             days += 64;
         return days;
+    }
+
+    @Override
+    public String getEventId() {
+        return eventId;
+    }
+
+    @Override
+    public void bindEventOnly(ScheduleEventInfo eventInfo) {
+        eventId = eventInfo.getId();
+        spinnerType.setSelection(eventInfo.getOption());
+        seekBarVolume.setProgress(eventInfo.getAmount());
+        switchVibrate.setChecked(eventInfo.isVibrate());
+        sundayToggle.setChecked(DayUtil.isSunday(eventInfo.getDays()));
+        mondayToggle.setChecked(DayUtil.isMonday(eventInfo.getDays()));
+        tuesdayToggle.setChecked(DayUtil.isTuesday(eventInfo.getDays()));
+        wednesdayToggle.setChecked(DayUtil.isWednesday(eventInfo.getDays()));
+        thursdayToggle.setChecked(DayUtil.isThursday(eventInfo.getDays()));
+        fridayToggle.setChecked(DayUtil.isFriday(eventInfo.getDays()));
+        saturdayToggle.setChecked(DayUtil.isSaturday(eventInfo.getDays()));
+        SimpleDateFormat format = new SimpleDateFormat("h:mm a");
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, Calendar.getInstance().get(Calendar.YEAR));
+        calendar.set(Calendar.MONTH, Calendar.getInstance().get(Calendar.MONTH));
+        calendar.set(Calendar.DAY_OF_MONTH, Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+        calendar.set(Calendar.HOUR_OF_DAY, eventInfo.getHour());
+        calendar.set(Calendar.MINUTE, eventInfo.getMinute());
+        String formattedDate = format.format(calendar.getTime());
+        timePicker.setText(formattedDate);
+        switchMute.setChecked(eventInfo.isRepeatWeekly());
+    }
+
+    @Override
+    public boolean isEditMode() {
+        return isNotEmpty(getEventId());
+    }
+
+    @Override
+    public void showDeleteTextView() {
+        tvEditScheduleDelete.setVisibility(View.VISIBLE);
+        tvEditScheduleDelete.setOnClickListener(v -> editSchedulePresenter.onDeleteClicked());
+    }
+
+    @Override
+    public void displayDeleteConfirmation() {
+        confirmDelete();
+    }
+
+    public void setEventId(String eventId) {
+        this.eventId = eventId;
     }
 }

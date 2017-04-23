@@ -230,5 +230,14 @@
                 android:checked="true"/>
         </RelativeLayout>
 
+        <TextView
+            android:id="@+id/tv_edit_schedule_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:visibility="invisible"
+            android:textColor="@android:color/holo_red_dark"
+            android:text="@string/delete"/>
+
     </LinearLayout>
 </ScrollView>

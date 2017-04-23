@@ -7,15 +7,24 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import com.cmpickle.volumize.R;
+import com.cmpickle.volumize.data.dto.ScheduleEventInfo;
 import com.cmpickle.volumize.data.entity.ScheduleEvent;
 import com.cmpickle.volumize.data.receivers.AlarmManagerBroadcastReceiver;
+import com.cmpickle.volumize.domain.ScheduleEventService;
 import com.cmpickle.volumize.domain.VolumeService;
+import com.cmpickle.volumize.view.alerts.AlertDialogParams;
+import com.cmpickle.volumize.view.alerts.AlertType;
 import com.cmpickle.volumize.view.edit.EditPresenter;
 
 import org.joda.time.DateTime;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import javax.inject.Inject;
+
+import icepick.State;
 
 /**
  * @author Cameron Pickle
@@ -24,13 +33,23 @@ import java.util.Calendar;
 
 public class EditSchedulePresenter extends EditPresenter {
 
+    private final ScheduleEventService eventService;
+
+    @State
+    ScheduleEventInfo oldEvent;
+
+    @State
+    ScheduleEventInfo newEvent;
+
     EditScheduleView editScheduleView;
     EditScheduleRouter editScheduleRouter;
 
     int hour = 7;
     int minute = 0;
 
-    public EditSchedulePresenter() {
+    @Inject
+    public EditSchedulePresenter(ScheduleEventService scheduleEventService) {
+        this.eventService = scheduleEventService;
     }
 
     public void setView(EditScheduleView view) {
@@ -51,33 +70,34 @@ public class EditSchedulePresenter extends EditPresenter {
     @Override
     public void onAttemptSave() {
         //save event to database
-        ScheduleEvent scheduleEvent = new ScheduleEvent();
-        scheduleEvent.setOption(editScheduleView.getOption());
-        scheduleEvent.setAmount(editScheduleView.getAmount());
-        scheduleEvent.setVibrate(editScheduleView.isVibrate());
-        scheduleEvent.setRepeatWeekly(editScheduleView.isRepeatWeekly());
-        scheduleEvent.setDays(editScheduleView.getDays());
-        scheduleEvent.setHour(hour);
-        scheduleEvent.setMinute(minute);
-        scheduleEvent.setActive(true);
-        scheduleEvent.save();
+        eventService.saveEvent(newEvent);
+//        ScheduleEvent scheduleEvent = new ScheduleEvent();
+//        scheduleEvent.setOption(editScheduleView.getOption());
+//        scheduleEvent.setAmount(editScheduleView.getAmount());
+//        scheduleEvent.setVibrate(editScheduleView.isVibrate());
+//        scheduleEvent.setRepeatWeekly(editScheduleView.isRepeatWeekly());
+//        scheduleEvent.setDays(editScheduleView.getDays());
+//        scheduleEvent.setHour(hour);
+//        scheduleEvent.setMinute(minute);
+//        scheduleEvent.setActive(true);
+//        scheduleEvent.save();
 
         AlarmManager alarmManager = (AlarmManager) editScheduleRouter.getContext().getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(editScheduleRouter.getContext(), AlarmManagerBroadcastReceiver.class);
-        intent.putExtra(VolumeService.OPTION, scheduleEvent.getOption());
-        intent.putExtra(VolumeService.AMOUNT, scheduleEvent.getAmount());
-        intent.putExtra(VolumeService.VIBRATE, scheduleEvent.isVibrate());
-        intent.putExtra(VolumeService.REPEAT_WEEKLY, Boolean.TRUE);
-        intent.putExtra(VolumeService.DAYS, scheduleEvent.getDays());
-        intent.putExtra(VolumeService.ACTIVE, scheduleEvent.isActive());
+        intent.putExtra(VolumeService.OPTION, newEvent.getOption());
+        intent.putExtra(VolumeService.AMOUNT, newEvent.getAmount());
+        intent.putExtra(VolumeService.VIBRATE, newEvent.isVibrate());
+        intent.putExtra(VolumeService.REPEAT_WEEKLY, newEvent.isRepeatWeekly());
+        intent.putExtra(VolumeService.DAYS, newEvent.getDays());
+        intent.putExtra(VolumeService.ACTIVE, newEvent.isActive());
         PendingIntent pi = PendingIntent.getBroadcast(editScheduleRouter.getContext(), 0, intent, 0);
         DateTime dateTime = new DateTime();
-        Log.d("EditSchedulePresenter", "hour:  " + scheduleEvent.getHour());
-        Log.d("EditSchedulePresenter", "minute:  " + scheduleEvent.getMinute());
-        DateTime alarmTime = dateTime.withHourOfDay(scheduleEvent.getHour()).withMinuteOfHour(scheduleEvent.getMinute()).withSecondOfMinute(0).withMillisOfSecond(0);
+        Log.d("EditSchedulePresenter", "hour:  " + newEvent.getHour());
+        Log.d("EditSchedulePresenter", "minute:  " + newEvent.getMinute());
+        DateTime alarmTime = dateTime.withHourOfDay(newEvent.getHour()).withMinuteOfHour(newEvent.getMinute()).withSecondOfMinute(0).withMillisOfSecond(0);
         Log.d("EditSchedulePresenter", "dateTime:  " + dateTime.getMillis());
         Log.d("EditSchedulePresenter", "alarmTime:  " + alarmTime.getMillis());
-        if(scheduleEvent.isRepeatWeekly()) {
+        if(newEvent.isRepeatWeekly()) {
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, alarmTime.getMillis(), 604800000, pi);
         } else {
             alarmManager.setWindow(AlarmManager.RTC_WAKEUP, alarmTime.getMillis(), 30000, pi);
@@ -87,7 +107,30 @@ public class EditSchedulePresenter extends EditPresenter {
     }
 
     public void onViewCreated() {
+        if(newEvent != null) {
+            if(editScheduleView.isEditMode()) {
+                editScheduleView.showDeleteTextView();
+            }
+        } else {
+            if(editScheduleView.isEditMode()) {
+                loadEvent();
+            } else {
+                oldEvent = new ScheduleEventInfo();
+                editScheduleView.bindEventOnly(oldEvent);
+                if (editScheduleView.getEventId() == null) {
+                    newEvent = new ScheduleEventInfo(oldEvent);
+                }
+            }
+        }
         onEnteredData();
+    }
+
+    private void loadEvent() {
+        oldEvent = eventService.getEventInfo(editScheduleView.getEventId());
+        editScheduleView.bindEventOnly(oldEvent);
+        newEvent = new ScheduleEventInfo(oldEvent);
+
+        editScheduleView.showDeleteTextView();
     }
 
     public void onTimePickerClicked() {
@@ -117,5 +160,15 @@ public class EditSchedulePresenter extends EditPresenter {
 
     public void onSeekBarMoved(int progress) {
         editScheduleView.setVolumeTV(String.valueOf(progress));
+    }
+
+    public void onDeleteClicked() {
+        editScheduleView.displayDeleteConfirmation();
+    }
+
+    @Override
+    public void onDeleteConfirmed() {
+        eventService.deleteEvent(oldEvent.getId());
+        editScheduleRouter.leave();
     }
 }
