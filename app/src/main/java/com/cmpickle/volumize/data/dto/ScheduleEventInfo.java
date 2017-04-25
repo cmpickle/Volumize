@@ -77,6 +77,10 @@ public class ScheduleEventInfo implements Serializable {
         this.amount = amount;
     }
 
+    public boolean isMute() {
+        return amount == 0;
+    }
+
     public boolean isVibrate() {
         return vibrate;
     }

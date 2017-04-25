@@ -56,7 +56,7 @@ public class EditSchedulePresenter extends EditPresenter {
 
     public void onViewResumed() {
 //        onRepeatWeeklySwitched();
-        onMuteSwitched();
+        updateMuteChecked();
     }
 
     public void setScheduleRouter(EditScheduleRouter editScheduleRouter) {
@@ -68,16 +68,6 @@ public class EditSchedulePresenter extends EditPresenter {
     public void onAttemptSave() {
         //save event to database
         eventService.saveEvent(newEvent);
-//        ScheduleEvent scheduleEvent = new ScheduleEvent();
-//        scheduleEvent.setOption(editScheduleView.getOption());
-//        scheduleEvent.setAmount(editScheduleView.getAmount());
-//        scheduleEvent.setVibrate(editScheduleView.isVibrate());
-//        scheduleEvent.setRepeatWeekly(editScheduleView.isRepeatWeekly());
-//        scheduleEvent.setDays(editScheduleView.getDays());
-//        scheduleEvent.setHour(hour);
-//        scheduleEvent.setMinute(minute);
-//        scheduleEvent.setActive(true);
-//        scheduleEvent.save();
 
         AlarmManager alarmManager = (AlarmManager) editScheduleRouter.getContext().getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(editScheduleRouter.getContext(), AlarmManagerBroadcastReceiver.class);
@@ -175,9 +165,6 @@ public class EditSchedulePresenter extends EditPresenter {
         }
     }
 
-//    public void onTimeChanged(int hour, int minute) {
-//    }
-
     public void onRepeatWeeklyChanged(boolean checked) {
         if(newEvent != null) {
             newEvent.setRepeatWeekly(checked);
@@ -221,8 +208,6 @@ public class EditSchedulePresenter extends EditPresenter {
 
     public void onTimePicked(int hourOfDay, int minute) {
         if(newEvent != null) {
-//            this.hour = hourOfDay;
-//            this.minute = minute;
             newEvent.setHour(hourOfDay);
             newEvent.setMinute(minute);
             SimpleDateFormat format = new SimpleDateFormat("h:mm a");
@@ -237,10 +222,8 @@ public class EditSchedulePresenter extends EditPresenter {
         }
     }
 
-//    public void onRepeatWeeklySwitched() {
-//    }
-
-    public void onMuteSwitched() {
+    public void updateMuteChecked() {
+        editScheduleView.updateMuteView();
     }
 
     public void onDeleteClicked() {

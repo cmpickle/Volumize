@@ -5,6 +5,9 @@
     <!--Crashlytics-->
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- Muting phone -->
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+
     <application
         android:name=".VolumizeApp"
         android:allowBackup="true"

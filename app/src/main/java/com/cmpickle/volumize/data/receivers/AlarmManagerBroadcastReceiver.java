@@ -22,7 +22,7 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
         volumeService = new VolumeService(context);
         int amount = intent.getIntExtra(VolumeService.AMOUNT, 12);
         Log.d("AlarmReceiver", "The volume is now " + amount);
-        Toast.makeText(context, "This is where the volume will be changed to " + amount, Toast.LENGTH_LONG).show();
+//        Toast.makeText(context, "This is where the volume will be changed to " + amount, Toast.LENGTH_LONG).show();
         switch (intent.getIntExtra(VolumeService.OPTION, 0)) {
             case VolumeService.ALL:
                 volumeService.setRingToneVolume(amount);
