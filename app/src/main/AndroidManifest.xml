@@ -40,7 +40,6 @@
             </intent-filter>
         </receiver>
         <receiver android:name=".data.receivers.AlarmManagerBroadcastReceiver" />
-        <service android:name=".domain.VolumeAdjustService" />
 
         <meta-data
             android:name="io.fabric.ApiKey"

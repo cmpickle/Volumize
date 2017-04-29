@@ -43,7 +43,5 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
                 volumeService.setSystemVolume(amount);
                 break;
         }
-//        Intent mIntent = new Intent(context, VolumeAdjustService.class);
-//        context.startService(mIntent);
     }
 }

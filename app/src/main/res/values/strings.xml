@@ -81,4 +81,5 @@
     <string name="do_not_restore">Do not restore</string>
     <string name="restore">Restore</string>
     <string name="delete">Delete</string>
+    <string name="how_long_until_your_volume_is_restored">How long until your volume is restored?</string>
 </resources>
