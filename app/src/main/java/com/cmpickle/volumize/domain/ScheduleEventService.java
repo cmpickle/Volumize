@@ -4,6 +4,8 @@ import com.cmpickle.volumize.data.dto.ScheduleEventInfo;
 import com.cmpickle.volumize.data.entity.ScheduleEvent;
 import com.cmpickle.volumize.data.repositories.ScheduleEventRepository;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 /**
@@ -41,5 +43,9 @@ public class ScheduleEventService {
         ScheduleEvent event = eventRepository.findEventById(eventId);
         ScheduleEventInfo scheduleEventInfo = new ScheduleEventInfo(event);
         return scheduleEventInfo;
+    }
+
+    public List<ScheduleEvent> getAllEvents() {
+        return eventRepository.findAll();
     }
 }

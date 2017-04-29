@@ -26,7 +26,7 @@ import butterknife.BindView;
  *         Copyright (C) Cameron Pickle (cmpickle) on 4/7/2017.
  */
 
-public class ScheduleFragment extends BaseFragment implements ScheduleView, ScheduleEventAdapter.OnItemClickListener {
+public class ScheduleFragment extends BaseFragment implements ScheduleView, ScheduleEventAdapter.OnItemClickListener, ScheduleEventAdapter.OnItemCheckListener {
 
     @Inject
     SchedulePresenter schedulePresenter;
@@ -51,7 +51,7 @@ public class ScheduleFragment extends BaseFragment implements ScheduleView, Sche
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        RecyclerView.Adapter adapter = new ScheduleEventAdapter(schedulePresenter.getEvents(), this);
+        RecyclerView.Adapter adapter = new ScheduleEventAdapter(schedulePresenter.getEvents(), this, this);
         WrapAdapter wrapAdapter = new WrapAdapter(adapter);
         wrapAdapter.addFooter(getLayoutInflater(savedInstanceState).inflate(R.layout.footer, recyclerViewSchedules, false));
         recyclerViewSchedules.setAdapter(wrapAdapter);
@@ -94,5 +94,10 @@ public class ScheduleFragment extends BaseFragment implements ScheduleView, Sche
     @Override
     public void onItemClick(ScheduleEvent event) {
         schedulePresenter.onScheduleEventClicked(event);
+    }
+
+    @Override
+    public void onItemCheck(ScheduleEvent scheduleEvent) {
+        schedulePresenter.onScheduleEventChecked(scheduleEvent);
     }
 }

@@ -28,14 +28,20 @@ public class ScheduleEventAdapter extends RecyclerView.Adapter<ScheduleEventAdap
 
     private final ArrayList<ScheduleEvent> events;
     private final OnItemClickListener onItemClickListener;
+    private final OnItemCheckListener onItemCheckListener;
 
     public interface OnItemClickListener {
         void onItemClick(ScheduleEvent scheduleEvent);
     }
 
-    public ScheduleEventAdapter(ArrayList<ScheduleEvent> events, OnItemClickListener onItemClickListener) {
+    public interface OnItemCheckListener {
+        void onItemCheck(ScheduleEvent scheduleEvent);
+    }
+
+    public ScheduleEventAdapter(ArrayList<ScheduleEvent> events, OnItemClickListener onItemClickListener, OnItemCheckListener onItemCheckListener) {
         this.events = events;
         this.onItemClickListener = onItemClickListener;
+        this.onItemCheckListener = onItemCheckListener;
     }
 
     public static class EventHolder extends ViewHolder {
@@ -78,7 +84,7 @@ public class ScheduleEventAdapter extends RecyclerView.Adapter<ScheduleEventAdap
             ButterKnife.bind(this, itemView);
         }
 
-        public void bindEvent(ScheduleEvent event, OnItemClickListener onItemClickListener) {
+        public void bindEvent(ScheduleEvent event, OnItemClickListener onItemClickListener, OnItemCheckListener onItemCheckListener) {
             checkBoxActive.setChecked(event.isActive());
             SimpleDateFormat format = new SimpleDateFormat("h:mm a");
             Calendar calendar = Calendar.getInstance();
@@ -152,6 +158,7 @@ public class ScheduleEventAdapter extends RecyclerView.Adapter<ScheduleEventAdap
             else
                 ivScheduleItem.setImageResource(R.drawable.ic_volume);
             itemView.setOnClickListener(v -> onItemClickListener.onItemClick(event));
+            checkBoxActive.setOnClickListener(v -> onItemCheckListener.onItemCheck(event));
         }
     }
     @Override
@@ -168,7 +175,7 @@ public class ScheduleEventAdapter extends RecyclerView.Adapter<ScheduleEventAdap
         } else {
             holder.dividerView.setVisibility(View.VISIBLE);
         }
-        holder.bindEvent(event, onItemClickListener);
+        holder.bindEvent(event, onItemClickListener, onItemCheckListener);
     }
 
     @Override
