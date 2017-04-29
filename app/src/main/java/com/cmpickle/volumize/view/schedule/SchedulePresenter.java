@@ -1,7 +1,9 @@
 package com.cmpickle.volumize.view.schedule;
 
+import com.cmpickle.volumize.data.dto.ScheduleEventInfo;
 import com.cmpickle.volumize.data.entity.ScheduleEvent;
 import com.cmpickle.volumize.data.repositories.ScheduleEventRepository;
+import com.cmpickle.volumize.domain.ScheduleEventService;
 import com.cmpickle.volumize.view.BasePresenter;
 
 import java.util.ArrayList;
@@ -17,13 +19,13 @@ public class SchedulePresenter extends BasePresenter<ScheduleView> {
 
     ScheduleView scheduleView;
     ScheduleRouter scheduleRouter;
-    ScheduleEventRepository repository;
+    ScheduleEventService scheduleEventService;
 
     ArrayList<ScheduleEvent> events = new ArrayList<>();
 
     @Inject
-    public SchedulePresenter(ScheduleEventRepository repository) {
-        this.repository = repository;
+    public SchedulePresenter(ScheduleEventService scheduleEventService) {
+        this.scheduleEventService = scheduleEventService;
     }
 
     @Override
@@ -33,7 +35,7 @@ public class SchedulePresenter extends BasePresenter<ScheduleView> {
 
     public void onResume() {
         events.clear();
-        events.addAll(repository.findAll());
+        events.addAll(scheduleEventService.getAllEvents());
         updateAdapter();
     }
 
@@ -55,5 +57,12 @@ public class SchedulePresenter extends BasePresenter<ScheduleView> {
 
     public void onScheduleEventClicked(ScheduleEvent event) {
         scheduleRouter.moveToEditSchedulePage(event);
+    }
+
+    public void onScheduleEventChecked(ScheduleEvent event) {
+        ScheduleEventInfo eventInfo = new ScheduleEventInfo(event);
+        eventInfo.setActive(!eventInfo.isActive());
+        scheduleEventService.saveEvent(eventInfo);
+        onResume();
     }
 }
