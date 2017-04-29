@@ -24,7 +24,7 @@
     </ListPreference>
 
     <SwitchPreferenceCompat
-        android:key="pref_volume_restore_dialog"
+        android:key="pref_display_volume_restore_dialog"
         android:title="Display volume restore dialog"
         android:switchTextOff="No volume restore dialog"
         android:switchTextOn="Display volume restore dialog"

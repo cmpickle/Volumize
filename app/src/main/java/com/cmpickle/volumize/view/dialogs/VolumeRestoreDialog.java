@@ -1,6 +1,7 @@
 package com.cmpickle.volumize.view.dialogs;
 
 import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -37,6 +38,13 @@ public class VolumeRestoreDialog extends Activity {
         ButterKnife.bind(this);
 
         timePickerRestore.setIs24HourView(true);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            timePickerRestore.setHour(1);
+            timePickerRestore.setMinute(0);
+        } else {
+            timePickerRestore.setCurrentHour(1);
+            timePickerRestore.setCurrentMinute(0);
+        }
         btnDoNotRestore.setOnClickListener(v -> VolumeRestoreDialog.this.finish());
         btnRestore.setOnClickListener(v -> Log.d("VolumeRestoreDialog", "Store restore time"));
     }
