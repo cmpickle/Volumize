@@ -198,6 +198,7 @@ public class EditScheduleFragment extends EditFragment implements EditScheduleVi
         thursdayToggle.setChecked(isThursday(eventInfo.getDays()));
         fridayToggle.setChecked(isFriday(eventInfo.getDays()));
         saturdayToggle.setChecked(isSaturday(eventInfo.getDays()));
+        switchRepeatWeekly.setChecked(eventInfo.isRepeatWeekly());
         SimpleDateFormat format = new SimpleDateFormat("h:mm a");
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, Calendar.getInstance().get(Calendar.YEAR));
