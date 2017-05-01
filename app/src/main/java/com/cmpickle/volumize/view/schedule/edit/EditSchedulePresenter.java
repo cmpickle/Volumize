@@ -1,20 +1,10 @@
 package com.cmpickle.volumize.view.schedule.edit;
 
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
-
 import com.cmpickle.volumize.data.dto.ScheduleEventInfo;
-import com.cmpickle.volumize.data.receivers.AlarmManagerBroadcastReceiver;
 import com.cmpickle.volumize.domain.ScheduleEventService;
-import com.cmpickle.volumize.domain.VolumeService;
 import com.cmpickle.volumize.view.edit.EditPresenter;
 import com.cmpickle.volumize.view.util.DayUtil;
-
-import org.joda.time.DateTime;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -41,9 +31,6 @@ public class EditSchedulePresenter extends EditPresenter {
     EditScheduleView editScheduleView;
     EditScheduleRouter editScheduleRouter;
 
-//    int hour = 7;
-//    int minute = 0;
-
     @Inject
     public EditSchedulePresenter(ScheduleEventService scheduleEventService) {
         this.eventService = scheduleEventService;
@@ -55,7 +42,6 @@ public class EditSchedulePresenter extends EditPresenter {
     }
 
     public void onViewResumed() {
-//        onRepeatWeeklySwitched();
         updateMuteChecked();
     }
 
@@ -68,27 +54,6 @@ public class EditSchedulePresenter extends EditPresenter {
     public void onAttemptSave() {
         //save event to database
         eventService.saveEvent(newEvent);
-
-        AlarmManager alarmManager = (AlarmManager) editScheduleRouter.getContext().getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(editScheduleRouter.getContext(), AlarmManagerBroadcastReceiver.class);
-        intent.putExtra(VolumeService.OPTION, newEvent.getOption());
-        intent.putExtra(VolumeService.AMOUNT, newEvent.getAmount());
-        intent.putExtra(VolumeService.VIBRATE, newEvent.isVibrate());
-        intent.putExtra(VolumeService.REPEAT_WEEKLY, newEvent.isRepeatWeekly());
-        intent.putExtra(VolumeService.DAYS, newEvent.getDays());
-        intent.putExtra(VolumeService.ACTIVE, newEvent.isActive());
-        PendingIntent pi = PendingIntent.getBroadcast(editScheduleRouter.getContext(), 0, intent, 0);
-        DateTime dateTime = new DateTime();
-        Log.d("EditSchedulePresenter", "hour:  " + newEvent.getHour());
-        Log.d("EditSchedulePresenter", "minute:  " + newEvent.getMinute());
-        DateTime alarmTime = dateTime.withHourOfDay(newEvent.getHour()).withMinuteOfHour(newEvent.getMinute()).withSecondOfMinute(0).withMillisOfSecond(0);
-        Log.d("EditSchedulePresenter", "dateTime:  " + dateTime.getMillis());
-        Log.d("EditSchedulePresenter", "alarmTime:  " + alarmTime.getMillis());
-        if(newEvent.isRepeatWeekly()) {
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, alarmTime.getMillis(), 604800000, pi);
-        } else {
-            alarmManager.setWindow(AlarmManager.RTC_WAKEUP, alarmTime.getMillis(), 30000, pi);
-        }
 
         editScheduleRouter.leave();
     }

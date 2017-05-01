@@ -14,18 +14,17 @@ import com.cmpickle.volumize.view.volumeadjust.VolumeAdjustView;
 
 public class AudioContentObserver extends ContentObserver {
 
-    VolumeAdjustView volumeAdjustView;
-    int previousRingVolume;
-    int previousMediaVolume;
-    int previousNotificationVolume;
-    int previousSystemVolume;
-    Context context;
+    private VolumeAdjustView volumeAdjustView;
+    private int previousRingVolume;
+    private int previousMediaVolume;
+    private int previousNotificationVolume;
+    private int previousSystemVolume;
+    private final AudioManager audio;
 
     public AudioContentObserver(Context c, Handler handler) {
         super(handler);
-        context=c;
 
-        AudioManager audio = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+        audio = (AudioManager) c.getSystemService(Context.AUDIO_SERVICE);
         previousRingVolume = audio.getStreamVolume(AudioManager.STREAM_RING);
         previousMediaVolume = audio.getStreamVolume(AudioManager.STREAM_MUSIC);
         previousNotificationVolume = audio.getStreamVolume(AudioManager.STREAM_NOTIFICATION);
@@ -41,7 +40,6 @@ public class AudioContentObserver extends ContentObserver {
     public void onChange(boolean selfChange) {
         super.onChange(selfChange);
 
-        AudioManager audio = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
         int currentRingVolume = audio.getStreamVolume(AudioManager.STREAM_RING);
         int currentMediaVolume = audio.getStreamVolume(AudioManager.STREAM_MUSIC);
         int currentNotificationVolume = audio.getStreamVolume(AudioManager.STREAM_NOTIFICATION);

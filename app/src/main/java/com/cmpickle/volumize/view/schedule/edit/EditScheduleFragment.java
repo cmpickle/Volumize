@@ -23,7 +23,6 @@ import com.cmpickle.volumize.data.dto.ScheduleEventInfo;
 import com.cmpickle.volumize.view.BasePresenter;
 import com.cmpickle.volumize.view.adapter.OnSeekBarChangedAdapter;
 import com.cmpickle.volumize.view.edit.EditFragment;
-import com.cmpickle.volumize.view.util.DayUtil;
 import com.hannesdorfmann.fragmentargs.annotation.Arg;
 import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs;
 
@@ -34,7 +33,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnCheckedChanged;
-import butterknife.OnClick;
 import butterknife.OnItemSelected;
 
 import static com.cmpickle.volumize.view.util.DayUtil.*;
@@ -115,8 +113,6 @@ public class EditScheduleFragment extends EditFragment implements EditScheduleVi
         super.onViewCreated(view, savedInstanceState);
 
         timePicker.setOnClickListener(v -> editSchedulePresenter.onTimePickerClicked());
-//        switchRepeatWeekly.setOnClickListener(v -> editSchedulePresenter.onRepeatWeeklySwitched());
-//        switchMute.setOnClickListener(v -> editSchedulePresenter.updateMuteChecked());
         seekBarVolume.setOnSeekBarChangeListener(new OnSeekBarChangedAdapter() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -280,10 +276,6 @@ public class EditScheduleFragment extends EditFragment implements EditScheduleVi
     public void onSaturdayToggleClicked() {
         editSchedulePresenter.onSaturdayChanged(saturdayToggle.isChecked());
     }
-
-//    public void onTimeSelected(int hour, int minute) {
-//        editSchedulePresenter.onTimeChanged(hour, minute);
-//    }
 
     @OnCheckedChanged(R.id.switch_repeat_weekly)
     public void onRepeatWeeklyToggleClicked() {

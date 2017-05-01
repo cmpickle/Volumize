@@ -7,6 +7,10 @@ package com.cmpickle.volumize.view.util;
 
 public class DayUtil {
 
+    public static boolean isNone(int days) {
+        return ((days>>>0)&1)==0;
+    }
+
     public static boolean isSunday(int days) {
         return ((days>>>0)&1)==1;
     }

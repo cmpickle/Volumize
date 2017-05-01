@@ -15,33 +15,37 @@ import com.cmpickle.volumize.domain.VolumeService;
 
 public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
 
+    public static final String ACTION_CHANGE_VOLUME = "change_volume";
+
     VolumeService volumeService;
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        volumeService = new VolumeService(context);
-        int amount = intent.getIntExtra(VolumeService.AMOUNT, 12);
-        Log.d("AlarmReceiver", "The volume is now " + amount);
-//        Toast.makeText(context, "This is where the volume will be changed to " + amount, Toast.LENGTH_LONG).show();
-        switch (intent.getIntExtra(VolumeService.OPTION, 0)) {
-            case VolumeService.ALL:
-                volumeService.setRingToneVolume(amount);
-                volumeService.setNotificationVolume(amount);
-                volumeService.setMediaVolume(amount);
-                volumeService.setSystemVolume(amount);
-                break;
-            case VolumeService.RING_TONE:
-                volumeService.setRingToneVolume(amount);
-                break;
-            case VolumeService.MEDIA:
-                volumeService.setMediaVolume(amount);
-                break;
-            case VolumeService.NOTIFICATIONS:
-                volumeService.setNotificationVolume(amount);
-                break;
-            case VolumeService.SYSTEM:
-                volumeService.setSystemVolume(amount);
-                break;
+        if(intent.getBooleanExtra(VolumeService.ACTIVE, true)) {
+            volumeService = new VolumeService(context);
+            int amount = intent.getIntExtra(VolumeService.AMOUNT, 12);
+            Log.d("AlarmReceiver", "The volume is now " + amount);
+//          Toast.makeText(context, "This is where the volume will be changed to " + amount, Toast.LENGTH_LONG).show();
+            switch (intent.getIntExtra(VolumeService.OPTION, 0)) {
+                case VolumeService.ALL:
+                    volumeService.setRingToneVolume(amount);
+                    volumeService.setNotificationVolume(amount);
+                    volumeService.setMediaVolume(amount);
+                    volumeService.setSystemVolume(amount);
+                    break;
+                case VolumeService.RING_TONE:
+                    volumeService.setRingToneVolume(amount);
+                    break;
+                case VolumeService.MEDIA:
+                    volumeService.setMediaVolume(amount);
+                    break;
+                case VolumeService.NOTIFICATIONS:
+                    volumeService.setNotificationVolume(amount);
+                    break;
+                case VolumeService.SYSTEM:
+                    volumeService.setSystemVolume(amount);
+                    break;
+            }
         }
     }
 }
