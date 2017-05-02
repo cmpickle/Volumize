@@ -137,7 +137,7 @@ public class EventPendingIntentService {
     void deleteEventPendingIntent(ScheduleEventInfo eventInfo) {
         Intent intent = new Intent(context, AlarmManagerBroadcastReceiver.class);
         intent.setAction(AlarmManagerBroadcastReceiver.ACTION_CHANGE_VOLUME);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         alarmManager.cancel(pendingIntent);
         pendingIntent.cancel();
     }
