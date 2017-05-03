@@ -9,10 +9,14 @@ import android.util.Log;
 import com.cmpickle.volumize.data.dto.ScheduleEventInfo;
 import com.cmpickle.volumize.data.entity.PendingIntentAlarm;
 import com.cmpickle.volumize.data.receivers.AlarmManagerBroadcastReceiver;
+import com.cmpickle.volumize.data.repositories.PendingIntentAlarmRepository;
 import com.cmpickle.volumize.util.DayUtil;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeConstants;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -25,11 +29,13 @@ public class EventPendingIntentService {
 
     private final Context context;
     private final AlarmManager alarmManager;
+    private PendingIntentAlarmRepository repository;
 
     @Inject
-    public EventPendingIntentService(Context context) {
+    public EventPendingIntentService(Context context, PendingIntentAlarmRepository repository) {
         this.context = context;
         alarmManager =(AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        this.repository = repository;
     }
 
     void setEventPendingIntent(ScheduleEventInfo eventInfo) {
@@ -50,8 +56,13 @@ public class EventPendingIntentService {
         DateTime alarmTime = dateTime.withHourOfDay(eventInfo.getHour()).withMinuteOfHour(eventInfo.getMinute()).withSecondOfMinute(0).withMillisOfSecond(0);
         int days = eventInfo.getDays();
         if(DayUtil.isNone(days)) {
-            PendingIntentAlarm alarm = new PendingIntentAlarm(eventInfo.getId(), DayUtil.NONE);
-            alarm.save();
+            PendingIntentAlarm alarm;
+            if(repository.findAlarmByEventIdAndDay(eventInfo.getId(), DayUtil.NONE) != null) {
+                alarm = repository.findAlarmByEventIdAndDay(eventInfo.getId(), DayUtil.NONE);
+            } else {
+                alarm = new PendingIntentAlarm(eventInfo.getId(), DayUtil.NONE);
+                alarm.save();
+            }
             PendingIntent pi = PendingIntent.getBroadcast(context, alarm.getId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
             if(alarmTime.isBeforeNow())
                 alarmTime = alarmTime.plusWeeks(1);
@@ -62,8 +73,13 @@ public class EventPendingIntentService {
             }
         }
         if(DayUtil.isSunday(days)) {
-            PendingIntentAlarm alarm = new PendingIntentAlarm(eventInfo.getId(), DayUtil.SUNDAY);
-            alarm.save();
+            PendingIntentAlarm alarm;
+            if(repository.findAlarmByEventIdAndDay(eventInfo.getId(), DayUtil.SUNDAY) != null) {
+                alarm = repository.findAlarmByEventIdAndDay(eventInfo.getId(), DayUtil.SUNDAY);
+            } else {
+                alarm = new PendingIntentAlarm(eventInfo.getId(), DayUtil.SUNDAY);
+                alarm.save();
+            }
             PendingIntent pi = PendingIntent.getBroadcast(context, alarm.getId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
             alarmTime = alarmTime.withDayOfWeek(7);
             if(alarmTime.isBeforeNow())
@@ -75,8 +91,13 @@ public class EventPendingIntentService {
             }
         }
         if(DayUtil.isMonday(days)) {
-            PendingIntentAlarm alarm = new PendingIntentAlarm(eventInfo.getId(), DayUtil.MONDAY);
-            alarm.save();
+            PendingIntentAlarm alarm;
+            if(repository.findAlarmByEventIdAndDay(eventInfo.getId(), DayUtil.MONDAY) != null) {
+                alarm = repository.findAlarmByEventIdAndDay(eventInfo.getId(), DayUtil.MONDAY);
+            } else {
+                alarm = new PendingIntentAlarm(eventInfo.getId(), DayUtil.MONDAY);
+                alarm.save();
+            }
             PendingIntent pi = PendingIntent.getBroadcast(context, alarm.getId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
             alarmTime = alarmTime.withDayOfWeek(1);
             if(alarmTime.isBeforeNow())
@@ -88,8 +109,13 @@ public class EventPendingIntentService {
             }
         }
         if(DayUtil.isTuesday(days)) {
-            PendingIntentAlarm alarm = new PendingIntentAlarm(eventInfo.getId(), DayUtil.TUESDAY);
-            alarm.save();
+            PendingIntentAlarm alarm;
+            if(repository.findAlarmByEventIdAndDay(eventInfo.getId(), DayUtil.TUESDAY) != null) {
+                alarm = repository.findAlarmByEventIdAndDay(eventInfo.getId(), DayUtil.TUESDAY);
+            } else {
+                alarm = new PendingIntentAlarm(eventInfo.getId(), DayUtil.TUESDAY);
+                alarm.save();
+            }
             PendingIntent pi = PendingIntent.getBroadcast(context, alarm.getId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
             alarmTime = alarmTime.withDayOfWeek(2);
             if(alarmTime.isBeforeNow())
@@ -101,8 +127,13 @@ public class EventPendingIntentService {
             }
         }
         if(DayUtil.isWednesday(days)) {
-            PendingIntentAlarm alarm = new PendingIntentAlarm(eventInfo.getId(), DayUtil.WEDNESDAY);
-            alarm.save();
+            PendingIntentAlarm alarm;
+            if(repository.findAlarmByEventIdAndDay(eventInfo.getId(), DayUtil.WEDNESDAY) != null) {
+                alarm = repository.findAlarmByEventIdAndDay(eventInfo.getId(), DayUtil.WEDNESDAY);
+            } else {
+                alarm = new PendingIntentAlarm(eventInfo.getId(), DayUtil.WEDNESDAY);
+                alarm.save();
+            }
             PendingIntent pi = PendingIntent.getBroadcast(context, alarm.getId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
             alarmTime = alarmTime.withDayOfWeek(3);
             if(alarmTime.isBeforeNow())
@@ -114,8 +145,13 @@ public class EventPendingIntentService {
             }
         }
         if(DayUtil.isThursday(days)) {
-            PendingIntentAlarm alarm = new PendingIntentAlarm(eventInfo.getId(), DayUtil.THURSDAY);
-            alarm.save();
+            PendingIntentAlarm alarm;
+            if(repository.findAlarmByEventIdAndDay(eventInfo.getId(), DayUtil.THURSDAY) != null) {
+                alarm = repository.findAlarmByEventIdAndDay(eventInfo.getId(), DayUtil.THURSDAY);
+            } else {
+                alarm = new PendingIntentAlarm(eventInfo.getId(), DayUtil.THURSDAY);
+                alarm.save();
+            }
             PendingIntent pi = PendingIntent.getBroadcast(context, alarm.getId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
             alarmTime = alarmTime.withDayOfWeek(4);
             if(alarmTime.isBeforeNow())
@@ -127,8 +163,13 @@ public class EventPendingIntentService {
             }
         }
         if(DayUtil.isFriday(days)) {
-            PendingIntentAlarm alarm = new PendingIntentAlarm(eventInfo.getId(), DayUtil.FRIDAY);
-            alarm.save();
+            PendingIntentAlarm alarm;
+            if(repository.findAlarmByEventIdAndDay(eventInfo.getId(), DayUtil.FRIDAY) != null) {
+                alarm = repository.findAlarmByEventIdAndDay(eventInfo.getId(), DayUtil.FRIDAY);
+            } else {
+                alarm = new PendingIntentAlarm(eventInfo.getId(), DayUtil.FRIDAY);
+                alarm.save();
+            }
             PendingIntent pi = PendingIntent.getBroadcast(context, alarm.getId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
             alarmTime = alarmTime.withDayOfWeek(5);
             if(alarmTime.isBeforeNow())
@@ -140,8 +181,13 @@ public class EventPendingIntentService {
             }
         }
         if(DayUtil.isSaturday(days)) {
-            PendingIntentAlarm alarm = new PendingIntentAlarm(eventInfo.getId(), DayUtil.SATURDAY);
-            alarm.save();
+            PendingIntentAlarm alarm;
+            if(repository.findAlarmByEventIdAndDay(eventInfo.getId(), DayUtil.SATURDAY) != null) {
+                alarm = repository.findAlarmByEventIdAndDay(eventInfo.getId(), DayUtil.SATURDAY);
+            } else {
+                alarm = new PendingIntentAlarm(eventInfo.getId(), DayUtil.SATURDAY);
+                alarm.save();
+            }
             PendingIntent pi = PendingIntent.getBroadcast(context, alarm.getId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
             alarmTime = alarmTime.withDayOfWeek(6);
             if(alarmTime.isBeforeNow())
@@ -161,9 +207,15 @@ public class EventPendingIntentService {
     void deleteEventPendingIntent(ScheduleEventInfo eventInfo) {
         Intent intent = new Intent(context, AlarmManagerBroadcastReceiver.class);
         intent.setAction(AlarmManagerBroadcastReceiver.ACTION_CHANGE_VOLUME);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        alarmManager.cancel(pendingIntent);
-        pendingIntent.cancel();
+        List<PendingIntentAlarm> alarms = repository.findAlarmsByEventId(eventInfo.getId());
+        for (PendingIntentAlarm alarm : alarms) {
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, alarm.getId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            alarmManager.cancel(pendingIntent);
+            pendingIntent.cancel();
+            alarm.delete();
+        }
+//        alarms.forEach(a -> {
+//        });
     }
 
     boolean isEventPendingIntentActive(ScheduleEventInfo scheduleEventInfo) {

@@ -17,7 +17,7 @@ public class DayUtil {
     public static final int SATURDAY = 64;
 
     public static boolean isNone(int days) {
-        return ((days>>>0)&1)==0;
+        return days==0;
     }
 
     public static boolean isSunday(int days) {
