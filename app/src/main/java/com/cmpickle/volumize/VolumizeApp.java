@@ -5,9 +5,13 @@ import android.app.Application;
 import com.cmpickle.volumize.Inject.Injector;
 import com.cmpickle.volumize.data.db.VolumizeDatabase;
 import com.cmpickle.volumize.data.db.platform.DatabaseInitializer;
+import com.crashlytics.android.Crashlytics;
+import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
 
 import javax.inject.Inject;
+
+import io.fabric.sdk.android.Fabric;
 
 /**
  * @author Cameron Pickle
@@ -22,6 +26,15 @@ public class VolumizeApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        final Fabric fabric = new Fabric.Builder(this)
+                .kits(new Crashlytics())
+                .debuggable(true)
+                .build();
+        Fabric.with(fabric);
+
+        Stetho.initializeWithDefaults(this);
+
         if(LeakCanary.isInAnalyzerProcess(this)) {
             return;
         }

@@ -15,12 +15,8 @@ import com.cmpickle.volumize.view.alerts.AlertDialogParams;
 import com.cmpickle.volumize.view.alerts.AlertListener;
 import com.cmpickle.volumize.view.alerts.AlertUtil;
 import com.cmpickle.volumize.view.alerts.Alerts;
-import com.crashlytics.android.Crashlytics;
-import com.facebook.stetho.Stetho;
 
 import javax.inject.Inject;
-
-import io.fabric.sdk.android.Fabric;
 
 /**
  * @author Cameron Pickle
@@ -54,14 +50,6 @@ public abstract class BaseActivity extends AppCompatActivity implements AlertLis
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        final Fabric fabric = new Fabric.Builder(this)
-                .kits(new Crashlytics())
-                .debuggable(true)
-                .build();
-        Fabric.with(fabric);
-
-        Stetho.initializeWithDefaults(this);
 
         setContentView(getLayoutResId());
 

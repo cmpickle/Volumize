@@ -4,7 +4,7 @@ package com.cmpickle.volumize.view.schedule.edit;
 import com.cmpickle.volumize.data.dto.ScheduleEventInfo;
 import com.cmpickle.volumize.domain.ScheduleEventService;
 import com.cmpickle.volumize.view.edit.EditPresenter;
-import com.cmpickle.volumize.view.util.DayUtil;
+import com.cmpickle.volumize.util.DayUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

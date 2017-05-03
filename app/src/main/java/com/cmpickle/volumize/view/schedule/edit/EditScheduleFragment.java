@@ -35,7 +35,7 @@ import butterknife.BindView;
 import butterknife.OnCheckedChanged;
 import butterknife.OnItemSelected;
 
-import static com.cmpickle.volumize.view.util.DayUtil.*;
+import static com.cmpickle.volumize.util.DayUtil.*;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
 /**

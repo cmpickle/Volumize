@@ -7,8 +7,9 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.cmpickle.volumize.data.dto.ScheduleEventInfo;
+import com.cmpickle.volumize.data.entity.PendingIntentAlarm;
 import com.cmpickle.volumize.data.receivers.AlarmManagerBroadcastReceiver;
-import com.cmpickle.volumize.view.util.DayUtil;
+import com.cmpickle.volumize.util.DayUtil;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeConstants;
@@ -45,11 +46,13 @@ public class EventPendingIntentService {
         intent.putExtra(VolumeService.REPEAT_WEEKLY, eventInfo.isRepeatWeekly());
 //        intent.putExtra(VolumeService.DAYS, eventInfo.getDays());
         intent.putExtra(VolumeService.ACTIVE, eventInfo.isActive());
-        PendingIntent pi = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         DateTime dateTime = new DateTime();
         DateTime alarmTime = dateTime.withHourOfDay(eventInfo.getHour()).withMinuteOfHour(eventInfo.getMinute()).withSecondOfMinute(0).withMillisOfSecond(0);
         int days = eventInfo.getDays();
         if(DayUtil.isNone(days)) {
+            PendingIntentAlarm alarm = new PendingIntentAlarm(eventInfo.getId(), DayUtil.NONE);
+            alarm.save();
+            PendingIntent pi = PendingIntent.getBroadcast(context, alarm.getId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
             if(alarmTime.isBeforeNow())
                 alarmTime = alarmTime.plusWeeks(1);
             if(eventInfo.isRepeatWeekly()) {
@@ -59,6 +62,9 @@ public class EventPendingIntentService {
             }
         }
         if(DayUtil.isSunday(days)) {
+            PendingIntentAlarm alarm = new PendingIntentAlarm(eventInfo.getId(), DayUtil.SUNDAY);
+            alarm.save();
+            PendingIntent pi = PendingIntent.getBroadcast(context, alarm.getId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
             alarmTime = alarmTime.withDayOfWeek(7);
             if(alarmTime.isBeforeNow())
                 alarmTime = alarmTime.plusWeeks(1);
@@ -69,6 +75,9 @@ public class EventPendingIntentService {
             }
         }
         if(DayUtil.isMonday(days)) {
+            PendingIntentAlarm alarm = new PendingIntentAlarm(eventInfo.getId(), DayUtil.MONDAY);
+            alarm.save();
+            PendingIntent pi = PendingIntent.getBroadcast(context, alarm.getId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
             alarmTime = alarmTime.withDayOfWeek(1);
             if(alarmTime.isBeforeNow())
                 alarmTime = alarmTime.plusWeeks(1);
@@ -79,6 +88,9 @@ public class EventPendingIntentService {
             }
         }
         if(DayUtil.isTuesday(days)) {
+            PendingIntentAlarm alarm = new PendingIntentAlarm(eventInfo.getId(), DayUtil.TUESDAY);
+            alarm.save();
+            PendingIntent pi = PendingIntent.getBroadcast(context, alarm.getId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
             alarmTime = alarmTime.withDayOfWeek(2);
             if(alarmTime.isBeforeNow())
                 alarmTime = alarmTime.plusWeeks(1);
@@ -89,6 +101,9 @@ public class EventPendingIntentService {
             }
         }
         if(DayUtil.isWednesday(days)) {
+            PendingIntentAlarm alarm = new PendingIntentAlarm(eventInfo.getId(), DayUtil.WEDNESDAY);
+            alarm.save();
+            PendingIntent pi = PendingIntent.getBroadcast(context, alarm.getId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
             alarmTime = alarmTime.withDayOfWeek(3);
             if(alarmTime.isBeforeNow())
                 alarmTime = alarmTime.plusWeeks(1);
@@ -99,6 +114,9 @@ public class EventPendingIntentService {
             }
         }
         if(DayUtil.isThursday(days)) {
+            PendingIntentAlarm alarm = new PendingIntentAlarm(eventInfo.getId(), DayUtil.THURSDAY);
+            alarm.save();
+            PendingIntent pi = PendingIntent.getBroadcast(context, alarm.getId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
             alarmTime = alarmTime.withDayOfWeek(4);
             if(alarmTime.isBeforeNow())
                 alarmTime = alarmTime.plusWeeks(1);
@@ -109,6 +127,9 @@ public class EventPendingIntentService {
             }
         }
         if(DayUtil.isFriday(days)) {
+            PendingIntentAlarm alarm = new PendingIntentAlarm(eventInfo.getId(), DayUtil.FRIDAY);
+            alarm.save();
+            PendingIntent pi = PendingIntent.getBroadcast(context, alarm.getId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
             alarmTime = alarmTime.withDayOfWeek(5);
             if(alarmTime.isBeforeNow())
                 alarmTime = alarmTime.plusWeeks(1);
@@ -119,6 +140,9 @@ public class EventPendingIntentService {
             }
         }
         if(DayUtil.isSaturday(days)) {
+            PendingIntentAlarm alarm = new PendingIntentAlarm(eventInfo.getId(), DayUtil.SATURDAY);
+            alarm.save();
+            PendingIntent pi = PendingIntent.getBroadcast(context, alarm.getId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
             alarmTime = alarmTime.withDayOfWeek(6);
             if(alarmTime.isBeforeNow())
                 alarmTime = alarmTime.plusWeeks(1);

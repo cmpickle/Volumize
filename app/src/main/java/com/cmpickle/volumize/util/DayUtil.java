@@ -1,4 +1,4 @@
-package com.cmpickle.volumize.view.util;
+package com.cmpickle.volumize.util;
 
 /**
  * @author Cameron Pickle
@@ -6,6 +6,15 @@ package com.cmpickle.volumize.view.util;
  */
 
 public class DayUtil {
+
+    public static final int NONE = 0;
+    public static final int SUNDAY = 1;
+    public static final int MONDAY = 2;
+    public static final int TUESDAY = 4;
+    public static final int WEDNESDAY = 8;
+    public static final int THURSDAY = 16;
+    public static final int FRIDAY = 32;
+    public static final int SATURDAY = 64;
 
     public static boolean isNone(int days) {
         return ((days>>>0)&1)==0;
