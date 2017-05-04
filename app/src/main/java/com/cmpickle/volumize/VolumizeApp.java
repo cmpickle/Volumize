@@ -1,10 +1,12 @@
 package com.cmpickle.volumize;
 
 import android.app.Application;
+import android.preference.PreferenceManager;
 
 import com.cmpickle.volumize.Inject.Injector;
 import com.cmpickle.volumize.data.db.VolumizeDatabase;
 import com.cmpickle.volumize.data.db.platform.DatabaseInitializer;
+import com.cmpickle.volumize.util.preferences.Preferences;
 import com.crashlytics.android.Crashlytics;
 import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
@@ -44,5 +46,8 @@ public class VolumizeApp extends Application {
         Injector.get().inject(this);
 
         databaseInitializer.init(this, VolumizeDatabase.class);
+
+        Preferences preferences = new Preferences(PreferenceManager.getDefaultSharedPreferences(this));
+        preferences.init();
     }
 }

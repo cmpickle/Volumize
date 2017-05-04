@@ -3,10 +3,12 @@ package com.cmpickle.volumize.data.receivers;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.cmpickle.volumize.domain.VolumeService;
+import com.cmpickle.volumize.util.preferences.Preferences;
 
 /**
  * @author Cameron Pickle
@@ -21,11 +23,11 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if(intent.getBooleanExtra(VolumeService.ACTIVE, true)) {
+        Preferences preferences = new Preferences(PreferenceManager.getDefaultSharedPreferences(context));
+        if(intent.getBooleanExtra(VolumeService.ACTIVE, true) && !preferences.getPauseScheduledEvents()) {
             volumeService = new VolumeService(context);
             int amount = intent.getIntExtra(VolumeService.AMOUNT, 12);
             Log.d("AlarmReceiver", "The volume is now " + amount);
-//          Toast.makeText(context, "This is where the volume will be changed to " + amount, Toast.LENGTH_LONG).show();
             switch (intent.getIntExtra(VolumeService.OPTION, 0)) {
                 case VolumeService.ALL:
                     volumeService.setRingToneVolume(amount);
