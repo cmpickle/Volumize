@@ -6,6 +6,7 @@ import com.cmpickle.volumize.VolumizeApp;
 import com.cmpickle.volumize.view.TopLevelActivity;
 import com.cmpickle.volumize.view.about.AboutFragment;
 import com.cmpickle.volumize.view.about.recognitions.RecognitionsFragment;
+import com.cmpickle.volumize.view.dialogs.VolumeRestoreDialog;
 import com.cmpickle.volumize.view.profile.ProfileFragment;
 import com.cmpickle.volumize.view.profile.edit.EditProfileFragment;
 import com.cmpickle.volumize.view.schedule.ScheduleFragment;
@@ -46,4 +47,6 @@ public interface VolumizeComponent {
     void inject(AboutFragment aboutFragment);
 
     void inject(RecognitionsFragment recognitionsFragment);
+
+    void inject(VolumeRestoreDialog volumeRestoreDialog);
 }

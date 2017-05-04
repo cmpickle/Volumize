@@ -7,8 +7,6 @@ import android.media.AudioManager;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import com.cmpickle.volumize.VolumizeApp;
-import com.cmpickle.volumize.util.preferences.BasePreferences;
 import com.cmpickle.volumize.util.preferences.Preferences;
 import com.cmpickle.volumize.view.dialogs.VolumeRestoreDialog;
 

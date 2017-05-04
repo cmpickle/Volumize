@@ -2,7 +2,6 @@ package com.cmpickle.volumize.view.schedule;
 
 import com.cmpickle.volumize.data.dto.ScheduleEventInfo;
 import com.cmpickle.volumize.data.entity.ScheduleEvent;
-import com.cmpickle.volumize.data.repositories.ScheduleEventRepository;
 import com.cmpickle.volumize.domain.ScheduleEventService;
 import com.cmpickle.volumize.view.BasePresenter;
 

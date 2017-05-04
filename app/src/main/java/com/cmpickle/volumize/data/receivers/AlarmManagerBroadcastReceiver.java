@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.cmpickle.volumize.domain.VolumeService;
 import com.cmpickle.volumize.util.preferences.Preferences;

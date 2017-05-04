@@ -15,7 +15,6 @@ import com.cmpickle.volumize.util.DayUtil;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeConstants;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;

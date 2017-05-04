@@ -1,11 +1,8 @@
 package com.cmpickle.volumize.view.util;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.InsetDrawable;
 import android.support.annotation.AttrRes;
 import android.support.annotation.ColorRes;
 import android.support.annotation.StringRes;

@@ -79,13 +79,13 @@ public abstract class BaseFragment extends Fragment implements AlertListener {
         alertUtil.save(outState);
     }
 
-    @Override
-    public void onDestroy() {
-        if(getPresenter() != null) {
-//            getPresenter().terminate();
-        }
-        super.onDestroy();
-    }
+//    @Override
+//    public void onDestroy() {
+//        if(getPresenter() != null) {
+////            getPresenter().terminate();
+//        }
+//        super.onDestroy();
+//    }
 
     @Override
     public void onAlertLeftButton(AlertDialogParams params) {

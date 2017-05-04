@@ -146,6 +146,7 @@
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/item_schedule_volume_layout"
         android:layout_centerVertical="true"
+        android:contentDescription="Vibration"
         android:src="@drawable/ic_vibration"/>
 
     <ImageView
@@ -156,6 +157,7 @@
         android:paddingStart="15dp"
         android:paddingEnd="15dp"
         android:layout_centerVertical="true"
+        android:contentDescription="Volume Level"
         android:src="@drawable/ic_volume"/>
 
     <ImageView
@@ -165,6 +167,7 @@
         android:layout_toEndOf="@id/iv_start_vibrate"
         android:layout_marginStart="13dp"
         android:layout_centerVertical="true"
+        android:contentDescription="Vibration"
         android:src="@drawable/ic_vibration"/>
 
     <View

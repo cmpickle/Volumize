@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 
 import com.cmpickle.volumize.R;
-import com.cmpickle.volumize.view.BaseActivity;
 import com.cmpickle.volumize.view.ChildActivity;
 
 /**

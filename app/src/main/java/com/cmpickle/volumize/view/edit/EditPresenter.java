@@ -1,7 +1,6 @@
 package com.cmpickle.volumize.view.edit;
 
 import android.support.annotation.CallSuper;
-import android.util.Log;
 
 import com.cmpickle.volumize.view.BasePresenter;
 

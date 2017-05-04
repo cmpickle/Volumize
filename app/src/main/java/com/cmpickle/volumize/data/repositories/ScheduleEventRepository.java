@@ -2,9 +2,7 @@ package com.cmpickle.volumize.data.repositories;
 
 import com.cmpickle.volumize.data.db.VolumizeDatabase;
 import com.cmpickle.volumize.data.entity.ScheduleEvent;
-//import com.cmpickle.volumize.data.entity.ScheduleEvent_Table;
 import com.cmpickle.volumize.data.entity.ScheduleEvent_Table;
-import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.sql.queriable.StringQuery;
 
 import java.util.List;

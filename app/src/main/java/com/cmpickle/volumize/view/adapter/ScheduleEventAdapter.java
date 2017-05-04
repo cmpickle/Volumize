@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cmpickle.volumize.R;
 import com.cmpickle.volumize.data.entity.ScheduleEvent;
@@ -22,6 +21,7 @@ import butterknife.ButterKnife;
 
 /**
  * Created by cmpickle on 4/19/17.
+ *
  */
 
 public class ScheduleEventAdapter extends RecyclerView.Adapter<ScheduleEventAdapter.EventHolder> {
