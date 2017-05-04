@@ -85,7 +85,7 @@ public class ScheduleFragment extends BaseFragment implements ScheduleView, Sche
     }
 
     public void updateViewState() {
-        if(recyclerViewSchedules.getAdapter().getItemCount()>0)
+        if(recyclerViewSchedules.getAdapter().getItemCount()>1) //There is always one item due to the footer
             tvScheduleEmptyState.setVisibility(View.GONE);
         else
             tvScheduleEmptyState.setVisibility(View.VISIBLE);
