@@ -13,6 +13,7 @@ public class Preferences extends BasePreferences<Preferences> {
 
     public static final String PREF_PAUSE_EVENTS = "pref_pause_events";
     public static final String PREF_DISPLAY_VOLUME_RESTORE_DIALOG = "pref_display_volume_restore_dialog";
+    public static final String PREF_PAUSE_VOLUME_RESTORE_DIALOG = "pref_pause_volume_restore_dialog";
     public static final String PREF_SORT_ORDER = "pref_sort_order";
     public static final String PREF_SORT_TYPE = "pref_sort_type";
 
@@ -26,6 +27,9 @@ public class Preferences extends BasePreferences<Preferences> {
     public void init() {
         if(getDisplayVolumeRestoreDialog() == null) {
             setDisplayVolumeRestoreDialog(true);
+        }
+        if(getPrefPauseVolumeRestoreDialog() == null) {
+            setPrefPauseVolumeRestoreDialog(false);
         }
         if(getPauseScheduledEvents() == null) {
             setPauseScheduledEvents(false);
@@ -52,6 +56,14 @@ public class Preferences extends BasePreferences<Preferences> {
 
     public void setDisplayVolumeRestoreDialog(Boolean display) {
         setBoolean(PREF_DISPLAY_VOLUME_RESTORE_DIALOG, display);
+    }
+
+    public Boolean getPrefPauseVolumeRestoreDialog() {
+        return getBoolean(PREF_PAUSE_VOLUME_RESTORE_DIALOG);
+    }
+
+    public void setPrefPauseVolumeRestoreDialog(Boolean pause) {
+        setBoolean(PREF_PAUSE_VOLUME_RESTORE_DIALOG, pause);
     }
 
     public Boolean getPauseScheduledEvents() {

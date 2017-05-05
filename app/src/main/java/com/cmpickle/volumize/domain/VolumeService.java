@@ -6,7 +6,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
+
+import com.cmpickle.volumize.util.preferences.Preferences;
 
 import javax.inject.Inject;
 
@@ -18,6 +21,7 @@ import javax.inject.Inject;
 public class VolumeService extends IntentFilter {
 
     AudioManager audioManager;
+    Preferences preferences;
     public static final String OPTION = "option";
     public static final String AMOUNT = "amount";
     public static final String VIBRATE = "vibrate";
@@ -35,6 +39,7 @@ public class VolumeService extends IntentFilter {
     @Inject
     public VolumeService(Context context) {
         audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+        preferences = new Preferences(PreferenceManager.getDefaultSharedPreferences(context));
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !notificationManager.isNotificationPolicyAccessGranted()) {
@@ -77,6 +82,9 @@ public class VolumeService extends IntentFilter {
     }
 
     public void setRingToneVolume(int level) {
+        if(preferences.getDisplayVolumeRestoreDialog() && level == 0) {
+            preferences.setPrefPauseVolumeRestoreDialog(true);
+        }
         audioManager.setStreamVolume(AudioManager.STREAM_RING, level, AudioManager.FLAG_PLAY_SOUND);
     }
 

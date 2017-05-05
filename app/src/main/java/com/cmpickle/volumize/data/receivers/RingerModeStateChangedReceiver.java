@@ -22,6 +22,10 @@ public class RingerModeStateChangedReceiver extends BroadcastReceiver {
         int ringerMode = intent.getIntExtra(AudioManager.EXTRA_RINGER_MODE, -1);
         Log.d("Ringer Mode Receiver", ""+ringerMode);
         Preferences preferences = new Preferences(PreferenceManager.getDefaultSharedPreferences(context));
+        if(preferences.getPrefPauseVolumeRestoreDialog()) {
+            preferences.setPrefPauseVolumeRestoreDialog(false);
+            return;
+        }
         if((ringerMode==AudioManager.RINGER_MODE_SILENT || ringerMode==AudioManager.RINGER_MODE_VIBRATE) && preferences.getDisplayVolumeRestoreDialog()) {
             Intent mIntent = new Intent(context, VolumeRestoreDialog.class);
             mIntent.setFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
