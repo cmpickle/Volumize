@@ -1,14 +1,19 @@
 package com.cmpickle.volumize.view.about;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
+import android.view.View;
 
+import com.cmpickle.volumize.BuildConfig;
 import com.cmpickle.volumize.Inject.Injector;
 import com.cmpickle.volumize.R;
 import com.cmpickle.volumize.util.preferences.Preferences;
 
 import javax.inject.Inject;
+
+import static com.cmpickle.volumize.BuildConfig.VERSION_NAME;
 
 /**
  * @author Cameron Pickle
@@ -32,9 +37,16 @@ public class AboutFragment extends PreferenceFragmentCompat implements AboutView
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         aboutPresenter.setView(this);
         aboutPresenter.setRouter((AboutRouter) getActivity());
         aboutPresenter.initialize();
+        Preference customPref = findPreference("version");
+        customPref.setTitle(String.format(getResources().getString(R.string.version_number), VERSION_NAME));
     }
 
     @Override

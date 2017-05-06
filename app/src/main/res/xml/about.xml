@@ -7,15 +7,23 @@
         android:layout="@layout/pref_icon"/>
 
     <Preference
+        android:key="version"
+        android:title="@string/version_number" />
+
+    <Preference
+        android:key="rate_app"
         android:title="@string/rate_app" />
 
     <Preference
+        android:key="homepage"
         android:title="@string/homepage" />
 
     <Preference
+        android:key="feature_request"
         android:title="@string/feature_request" />
 
     <Preference
+        android:key="feedback"
         android:title="@string/feedback" />
 
     <Preference
