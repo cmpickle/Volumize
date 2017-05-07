@@ -8,6 +8,9 @@
     <!-- Muting phone -->
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
 
+    <!-- Restoring Alarms after reboot -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
     <application
         android:name=".VolumizeApp"
         android:allowBackup="true"
@@ -40,7 +43,14 @@
             </intent-filter>
         </receiver>
         <receiver android:name=".data.receivers.AlarmManagerBroadcastReceiver" />
+        <receiver android:name=".data.receivers.BootCompletedReceiver" android:exported="true" android:enabled="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
 
+        <service android:name=".domain.RestoreEventsService" />
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="de0dc5800df099c2ec295b7d1b74462a3d03f5d4"
