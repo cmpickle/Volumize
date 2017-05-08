@@ -3,6 +3,7 @@ package com.cmpickle.volumize.Inject;
 import com.cmpickle.volumize.Inject.module.AppModule;
 import com.cmpickle.volumize.Inject.module.PresenterModule;
 import com.cmpickle.volumize.VolumizeApp;
+import com.cmpickle.volumize.data.receivers.AlarmManagerBroadcastReceiver;
 import com.cmpickle.volumize.domain.RestoreEventsService;
 import com.cmpickle.volumize.view.TopLevelActivity;
 import com.cmpickle.volumize.view.about.AboutFragment;
@@ -52,4 +53,6 @@ public interface VolumizeComponent {
     void inject(VolumeRestoreDialog volumeRestoreDialog);
 
     void inject(RestoreEventsService restoreEventsService);
+
+    void inject(AlarmManagerBroadcastReceiver alarmManagerBroadcastReceiver);
 }
