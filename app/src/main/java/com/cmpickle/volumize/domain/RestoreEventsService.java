@@ -4,11 +4,12 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 
+import com.annimon.stream.Stream;
 import com.cmpickle.volumize.Inject.Injector;
 import com.cmpickle.volumize.data.dto.ScheduleEventInfo;
 import com.cmpickle.volumize.data.entity.ScheduleEvent;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -29,10 +30,7 @@ public class RestoreEventsService extends IntentService {
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        ArrayList<ScheduleEvent> events = new ArrayList<>();
-        events.addAll(helper.getEventRepository().findAll());
-        for(int i=0; i<events.size(); ++i) {
-            helper.getEventService().saveEvent(new ScheduleEventInfo(events.get(i)));
-        }
+        List<ScheduleEvent> events = helper.getEventRepository().findAll();
+        Stream.of(events).forEach(event -> helper.getEventService().saveEvent(new ScheduleEventInfo(event)));
     }
 }
