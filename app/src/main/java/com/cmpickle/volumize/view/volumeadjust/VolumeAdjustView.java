@@ -31,6 +31,8 @@ public interface VolumeAdjustView {
 
     void setSystemVolumeSeekBarCurrentValue(int currentValue);
 
+    void setVibrateSwitchCurrentValue(boolean currentValue);
+
     void setRingerMuteView();
 
     void setRingerUnmutedView();

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import com.cmpickle.volumize.view.adapter.OnSeekBarChangedAdapter;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * @author Cameron Pickle
@@ -49,6 +51,9 @@ public class VolumeAdjustFragment extends BaseFragment implements VolumeAdjustVi
     SeekBar seekBarNotifications;
     @BindView(R.id.seek_bar_system_volume)
     SeekBar seekBarSystemVolume;
+
+    @BindView(R.id.switch_vibrate_adjust)
+    SwitchCompat switchVibrate;
 
     public VolumeAdjustFragment() {
         Injector.get().inject(this);
@@ -175,11 +180,18 @@ public class VolumeAdjustFragment extends BaseFragment implements VolumeAdjustVi
     }
 
     @Override
+    public void setVibrateSwitchCurrentValue(boolean currentValue) {
+        if(switchVibrate != null)
+            switchVibrate.setChecked(currentValue);
+    }
+
+    @Override
     public void setRingerMuteView() {
         tvNotificationsAmount.setEnabled(false);
         seekBarNotifications.setEnabled(false);
         tvSystemVolumeAmount.setEnabled(false);
         seekBarSystemVolume.setEnabled(false);
+        switchVibrate.setEnabled(true);
     }
 
     @Override
@@ -188,10 +200,17 @@ public class VolumeAdjustFragment extends BaseFragment implements VolumeAdjustVi
         seekBarNotifications.setEnabled(true);
         tvSystemVolumeAmount.setEnabled(true);
         seekBarSystemVolume.setEnabled(true);
+        switchVibrate.setChecked(true);
+        switchVibrate.setEnabled(false);
     }
 
     @Override
     public boolean isMutedView() {
         return !tvNotificationsAmount.isEnabled() && !tvSystemVolumeAmount.isEnabled();
+    }
+
+    @OnClick(R.id.switch_vibrate_adjust)
+    public void onVibrateSwitch() {
+        volumeAdjustPresenter.onVibrateSwitch(switchVibrate.isChecked());
     }
 }

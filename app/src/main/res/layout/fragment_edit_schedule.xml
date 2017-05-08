@@ -212,8 +212,10 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/vibrate_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:padding="@dimen/element_padding">
 
             <TextView

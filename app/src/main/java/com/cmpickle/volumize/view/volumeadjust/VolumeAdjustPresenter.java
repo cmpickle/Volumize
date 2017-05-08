@@ -41,6 +41,8 @@ public class VolumeAdjustPresenter extends BasePresenter<VolumeAdjustView> {
         volumeAdjustView.setNotificationsSeekBarCurrentValue(volumeService.getNotificationsVolume());
         volumeAdjustView.setSystemVolumeSeekBarCurrentValue(volumeService.getSystemVolume());
 
+        volumeAdjustView.setVibrateSwitchCurrentValue(!volumeService.isSilentMode());
+
         if(volumeService.getRingToneVolume() == 0) {
             volumeAdjustView.setRingerMuteView();
         }
@@ -52,7 +54,7 @@ public class VolumeAdjustPresenter extends BasePresenter<VolumeAdjustView> {
         } else if(volumeAdjustView.isMutedView()) {
             volumeAdjustView.setRingerUnmutedView();
         }
-        volumeService.setRingToneVolume(progress);
+        volumeService.setRingToneVolume(progress, true);
         volumeAdjustView.setRingToneTextView(progress);
     }
 
@@ -69,5 +71,13 @@ public class VolumeAdjustPresenter extends BasePresenter<VolumeAdjustView> {
     public void seekBarSystemVolumeMoved(int progress) {
         volumeService.setSystemVolume(progress);
         volumeAdjustView.setSystemVolumeTextView(progress);
+    }
+
+    public void onVibrateSwitch(boolean vibrate) {
+        if(vibrate) {
+            volumeService.setRingToneVolume(0, true);
+        } else {
+            volumeService.setRingToneVolume(0, false);
+        }
     }
 }

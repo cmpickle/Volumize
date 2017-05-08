@@ -40,6 +40,7 @@
                     android:layout_below="@id/tv_ring_tone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingBottom="8dp"
                     android:max="15"
                     android:progress="12" />
 
@@ -51,6 +52,23 @@
                     android:layout_alignBaseline="@id/tv_ring_tone"
                     android:textSize="@dimen/card_text_title"
                     android:text="12"/>
+
+                <TextView
+                    android:id="@+id/tv_vibrate_adjust"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/seek_bar_ring_tone"
+                    android:textSize="@dimen/card_text_title"
+                    android:text="@string/vibrate"/>
+
+                <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/switch_vibrate_adjust"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignBaseline="@id/tv_vibrate_adjust"
+                    android:checked="true"
+                    android:enabled="false"/>
 
             </RelativeLayout>
 

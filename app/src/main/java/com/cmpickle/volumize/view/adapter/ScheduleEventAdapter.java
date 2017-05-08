@@ -146,7 +146,7 @@ public class ScheduleEventAdapter extends RecyclerView.Adapter<ScheduleEventAdap
                     break;
             }
             tvScheduleItemType.setText(type);
-            if(event.isVibrate()) {
+            if(event.getAmount() != 0 || event.isVibrate()) {
                 ivStartVibrate.setVisibility(View.VISIBLE);
                 ivEndVibrate.setVisibility(View.VISIBLE);
             } else {
