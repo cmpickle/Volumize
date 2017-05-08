@@ -117,6 +117,8 @@ dependencies {
     compile 'com.hannesdorfmann.fragmentargs:annotation:3.0.2'
     annotationProcessor 'com.hannesdorfmann.fragmentargs:processor:3.0.2'
 
+    compile 'com.annimon:stream:1.1.7'
+
     retrolambda {
         javaVersion JavaVersion.VERSION_1_7
         defaultMethods false
