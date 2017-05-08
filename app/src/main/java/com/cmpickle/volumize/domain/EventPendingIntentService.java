@@ -37,9 +37,14 @@ public class EventPendingIntentService {
         this.repository = repository;
     }
 
-    void setEventPendingIntent(ScheduleEventInfo eventInfo) {
+    void setEventPendingIntent(ScheduleEventInfo eventInfo, boolean autoDelete) {
         Intent intent = new Intent(context, AlarmManagerBroadcastReceiver.class);
-        intent.setAction(AlarmManagerBroadcastReceiver.ACTION_CHANGE_VOLUME);
+        if(autoDelete) {
+            intent.setAction(AlarmManagerBroadcastReceiver.ACTION_CHANGE_VOLUME_TEMP);
+            intent.putExtra("eventId", eventInfo.getId());
+        } else {
+            intent.setAction(AlarmManagerBroadcastReceiver.ACTION_CHANGE_VOLUME);
+        }
         Log.d("PI service", "ACTION " +intent.getAction());
         Log.d("PI service", "CATEGORIES " +intent.getCategories());
         Log.d("PI service", "DATA " +intent.getData());

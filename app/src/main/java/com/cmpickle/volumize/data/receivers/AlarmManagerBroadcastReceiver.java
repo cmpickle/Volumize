@@ -6,8 +6,14 @@ import android.content.Intent;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import com.cmpickle.volumize.Inject.Injector;
+import com.cmpickle.volumize.data.repositories.ScheduleEventRepository;
+import com.cmpickle.volumize.domain.RestoreHelper;
+import com.cmpickle.volumize.domain.ScheduleEventService;
 import com.cmpickle.volumize.domain.VolumeService;
 import com.cmpickle.volumize.util.preferences.Preferences;
+
+import javax.inject.Inject;
 
 /**
  * @author Cameron Pickle
@@ -17,8 +23,16 @@ import com.cmpickle.volumize.util.preferences.Preferences;
 public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
 
     public static final String ACTION_CHANGE_VOLUME = "change_volume";
+    public static final String ACTION_CHANGE_VOLUME_TEMP = "change_volume_temp";
 
     VolumeService volumeService;
+
+    @Inject
+    RestoreHelper helper;
+
+    public AlarmManagerBroadcastReceiver() {
+        Injector.get().inject(this);
+    }
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -47,6 +61,9 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
                     volumeService.setSystemVolume(amount);
                     break;
             }
+        }
+        if(intent.getAction().equals(ACTION_CHANGE_VOLUME_TEMP)) {
+            helper.getEventService().deleteEvent(intent.getStringExtra("eventId"));
         }
     }
 }

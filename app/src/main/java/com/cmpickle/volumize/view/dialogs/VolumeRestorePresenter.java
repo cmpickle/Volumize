@@ -46,7 +46,6 @@ public class VolumeRestorePresenter extends BasePresenter<VolumeRestoreView> {
         event.setMinute(minute+dateTime.getMinuteOfHour());
         event.setRepeatWeekly(false);
         event.setActive(true);
-        scheduleEventService.saveEvent(event);
-        //// TODO: 5/3/2017 This event should autodelete itself upon completion
+        scheduleEventService.saveTempEvent(event);
     }
 }

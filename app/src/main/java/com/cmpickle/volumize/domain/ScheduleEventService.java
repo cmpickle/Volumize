@@ -39,7 +39,19 @@ public class ScheduleEventService {
             scheduleEvent = eventRepository.findEventById(eventInfo.getId());
             eventInfo.update(scheduleEvent);
         }
-        eventPendingIntentService.setEventPendingIntent(eventInfo);
+        eventPendingIntentService.setEventPendingIntent(eventInfo, false);
+        scheduleEvent.save();
+    }
+
+    public void saveTempEvent(ScheduleEventInfo eventInfo) {
+        ScheduleEvent scheduleEvent;
+        if(eventInfo.getId() == null) {
+            scheduleEvent = eventInfo.getScheduleEvent();
+        } else {
+            scheduleEvent = eventRepository.findEventById(eventInfo.getId());
+            eventInfo.update(scheduleEvent);
+        }
+        eventPendingIntentService.setEventPendingIntent(eventInfo, true);
         scheduleEvent.save();
     }
 
