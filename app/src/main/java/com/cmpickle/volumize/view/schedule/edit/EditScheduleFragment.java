@@ -92,6 +92,9 @@ public class EditScheduleFragment extends EditFragment implements EditScheduleVi
     @BindView(R.id.tv_edit_schedule_delete)
     TextView tvEditScheduleDelete;
 
+    @BindView(R.id.vibrate_layout)
+    RelativeLayout vibrateLayout;
+
     public EditScheduleFragment() {
         Injector.get().inject(this);
     }
@@ -170,8 +173,10 @@ public class EditScheduleFragment extends EditFragment implements EditScheduleVi
     public void updateMuteView() {
         if(switchMute.isChecked()) {
             volumeLayout.setVisibility(View.GONE);
+            vibrateLayout.setVisibility(View.VISIBLE);
         } else {
             volumeLayout.setVisibility(View.VISIBLE);
+            vibrateLayout.setVisibility(View.GONE);
         }
     }
 

@@ -37,7 +37,7 @@ public class ScheduleEventInfo implements Serializable {
         id = scheduleEvent.getId();
         option = scheduleEvent.getOption();
         amount = scheduleEvent.getAmount();
-        vibrate = scheduleEvent.isVibrate();
+        vibrate = amount != 0 || scheduleEvent.isVibrate();
         days = scheduleEvent.getDays();
         hour = scheduleEvent.getHour();
         minute = scheduleEvent.getMinute();
@@ -49,7 +49,7 @@ public class ScheduleEventInfo implements Serializable {
         id = eventInfo.getId();
         option = eventInfo.getOption();
         amount = eventInfo.getAmount();
-        vibrate = eventInfo.isVibrate();
+        vibrate = amount != 0 || eventInfo.isVibrate();
         days = eventInfo.getDays();
         hour = eventInfo.getHour();
         minute = eventInfo.getMinute();
@@ -86,7 +86,7 @@ public class ScheduleEventInfo implements Serializable {
     }
 
     public void setVibrate(boolean vibrate) {
-        this.vibrate = vibrate;
+        this.vibrate = amount != 0 || vibrate;
     }
 
     public int getDays() {

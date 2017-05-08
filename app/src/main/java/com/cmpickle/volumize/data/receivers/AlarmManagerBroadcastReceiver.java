@@ -29,13 +29,13 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
             Log.d("AlarmReceiver", "The volume is now " + amount);
             switch (intent.getIntExtra(VolumeService.OPTION, 0)) {
                 case VolumeService.ALL:
-                    volumeService.setRingToneVolume(amount);
+                    volumeService.setRingToneVolume(amount, intent.getBooleanExtra(VolumeService.VIBRATE, true));
                     volumeService.setNotificationVolume(amount);
                     volumeService.setMediaVolume(amount);
                     volumeService.setSystemVolume(amount);
                     break;
                 case VolumeService.RING_TONE:
-                    volumeService.setRingToneVolume(amount);
+                    volumeService.setRingToneVolume(amount, intent.getBooleanExtra(VolumeService.VIBRATE, true));
                     break;
                 case VolumeService.MEDIA:
                     volumeService.setMediaVolume(amount);

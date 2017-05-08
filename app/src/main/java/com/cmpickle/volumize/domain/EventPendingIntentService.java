@@ -49,7 +49,6 @@ public class EventPendingIntentService {
         intent.putExtra(VolumeService.AMOUNT, eventInfo.getAmount());
         intent.putExtra(VolumeService.VIBRATE, eventInfo.isVibrate());
         intent.putExtra(VolumeService.REPEAT_WEEKLY, eventInfo.isRepeatWeekly());
-//        intent.putExtra(VolumeService.DAYS, eventInfo.getDays());
         intent.putExtra(VolumeService.ACTIVE, eventInfo.isActive());
         DateTime dateTime = new DateTime();
         DateTime alarmTime = dateTime.withHourOfDay(eventInfo.getHour()).withMinuteOfHour(eventInfo.getMinute()).withSecondOfMinute(0).withMillisOfSecond(0);

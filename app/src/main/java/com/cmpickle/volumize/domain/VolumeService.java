@@ -81,11 +81,19 @@ public class VolumeService extends IntentFilter {
         return audioManager.getStreamVolume(AudioManager.STREAM_SYSTEM);
     }
 
-    public void setRingToneVolume(int level) {
+    public boolean isSilentMode() {
+        return audioManager.getRingerMode() == AudioManager.RINGER_MODE_SILENT;
+    }
+
+    public void setRingToneVolume(int level, boolean vibrate) {
         if(preferences.getDisplayVolumeRestoreDialog() && level == 0) {
             preferences.setPrefPauseVolumeRestoreDialog(true);
         }
-        audioManager.setStreamVolume(AudioManager.STREAM_RING, level, AudioManager.FLAG_PLAY_SOUND);
+        if(vibrate) {
+            audioManager.setStreamVolume(AudioManager.STREAM_RING, level, AudioManager.FLAG_PLAY_SOUND);
+        } else {
+            audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+        }
     }
 
     public void setMediaVolume(int level) {
