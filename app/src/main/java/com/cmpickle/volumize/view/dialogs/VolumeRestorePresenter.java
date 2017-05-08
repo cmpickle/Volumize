@@ -2,6 +2,7 @@ package com.cmpickle.volumize.view.dialogs;
 
 import com.cmpickle.volumize.data.dto.ScheduleEventInfo;
 import com.cmpickle.volumize.domain.ScheduleEventService;
+import com.cmpickle.volumize.domain.VolumeService;
 import com.cmpickle.volumize.view.BasePresenter;
 
 import org.joda.time.DateTime;
@@ -16,11 +17,13 @@ import javax.inject.Inject;
 public class VolumeRestorePresenter extends BasePresenter<VolumeRestoreView> {
 
     ScheduleEventService scheduleEventService;
+    VolumeService volumeService;
     VolumeRestoreView view;
 
     @Inject
-    public VolumeRestorePresenter(ScheduleEventService scheduleEventService) {
+    public VolumeRestorePresenter(ScheduleEventService scheduleEventService, VolumeService volumeService) {
         this.scheduleEventService = scheduleEventService;
+        this.volumeService = volumeService;
     }
 
     @Override
@@ -28,10 +31,14 @@ public class VolumeRestorePresenter extends BasePresenter<VolumeRestoreView> {
         this.view = view;
     }
 
-    public void onRestoreClicked(int hour, int minute) {
+    public void onCreate() {
+        view.setMaxVolumeRestoreSeekBar(volumeService.getRingToneMaxVolume());
+    }
+
+    public void onRestoreClicked(int hour, int minute, int level) {
         ScheduleEventInfo event = new ScheduleEventInfo();
         event.setOption(1);
-        event.setAmount(12);
+        event.setAmount(level);
         event.setVibrate(true);
         event.setDays(0);
         DateTime dateTime = new DateTime();

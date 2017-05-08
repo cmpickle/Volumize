@@ -6,4 +6,5 @@ package com.cmpickle.volumize.view.dialogs;
  */
 
 public interface VolumeRestoreView {
+    void setMaxVolumeRestoreSeekBar(int max);
 }
