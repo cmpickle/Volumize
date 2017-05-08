@@ -1,6 +1,9 @@
 package com.cmpickle.volumize.util.preferences;
 
 import android.content.SharedPreferences;
+import android.media.AudioManager;
+
+import com.raizlabs.android.dbflow.sql.language.Condition;
 
 import javax.inject.Inject;
 
@@ -16,6 +19,7 @@ public class Preferences extends BasePreferences<Preferences> {
     public static final String PREF_PAUSE_VOLUME_RESTORE_DIALOG = "pref_pause_volume_restore_dialog";
     public static final String PREF_SORT_ORDER = "pref_sort_order";
     public static final String PREF_SORT_TYPE = "pref_sort_type";
+    public static final String PREF_PREVIOUS_RINGER_TYPE = "pref_previous_ringer_type";
 
     public static final String PREF_RECOGNITIONS = "pref_recognitions";
 
@@ -39,6 +43,9 @@ public class Preferences extends BasePreferences<Preferences> {
         }
         if(getSortType() == null) {
             setSortType("todaysfirst");
+        }
+        if(getPrefPreviousRingerType() == null) {
+            setPrefPreviousRingerType(AudioManager.RINGER_MODE_NORMAL);
         }
     }
 
@@ -64,6 +71,14 @@ public class Preferences extends BasePreferences<Preferences> {
 
     public void setPrefPauseVolumeRestoreDialog(Boolean pause) {
         setBoolean(PREF_PAUSE_VOLUME_RESTORE_DIALOG, pause);
+    }
+
+    public Integer getPrefPreviousRingerType() {
+        return getInteger(PREF_PREVIOUS_RINGER_TYPE);
+    }
+
+    public void setPrefPreviousRingerType(int type) {
+        setIngeger(PREF_PREVIOUS_RINGER_TYPE, type);
     }
 
     public Boolean getPauseScheduledEvents() {

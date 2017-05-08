@@ -26,10 +26,13 @@ public class RingerModeStateChangedReceiver extends BroadcastReceiver {
             preferences.setPrefPauseVolumeRestoreDialog(false);
             return;
         }
-        if((ringerMode==AudioManager.RINGER_MODE_SILENT || ringerMode==AudioManager.RINGER_MODE_VIBRATE) && preferences.getDisplayVolumeRestoreDialog()) {
+        if(((ringerMode==AudioManager.RINGER_MODE_SILENT || ringerMode==AudioManager.RINGER_MODE_VIBRATE)
+                && preferences.getPrefPreviousRingerType() == AudioManager.RINGER_MODE_NORMAL)
+                && preferences.getDisplayVolumeRestoreDialog()) {
             Intent mIntent = new Intent(context, VolumeRestoreDialog.class);
             mIntent.setFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(mIntent);
         }
+        preferences.setPrefPreviousRingerType(ringerMode);
     }
 }
