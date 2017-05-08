@@ -5,10 +5,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.TimePicker;
 
 import com.cmpickle.volumize.Inject.Injector;
 import com.cmpickle.volumize.R;
+import com.cmpickle.volumize.view.adapter.OnSeekBarChangedAdapter;
 
 import javax.inject.Inject;
 
@@ -28,6 +30,8 @@ public class VolumeRestoreDialog extends Activity implements VolumeRestoreView {
     Button btnDoNotRestore;
     @BindView(R.id.btn_restore)
     Button btnRestore;
+    @BindView(R.id.seek_bar_volume_restore)
+    SeekBar volumeRestore;
 
     @Inject
     VolumeRestorePresenter presenter;
@@ -43,6 +47,16 @@ public class VolumeRestoreDialog extends Activity implements VolumeRestoreView {
         ButterKnife.bind(this);
 
         presenter.setView(this);
+        presenter.onCreate();
+
+        volumeRestore.setOnSeekBarChangeListener(new OnSeekBarChangedAdapter() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if(progress < 1) {
+                    volumeRestore.setProgress(1);
+                }
+            }
+        });
 
         timePickerRestore.setIs24HourView(true);
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -54,8 +68,13 @@ public class VolumeRestoreDialog extends Activity implements VolumeRestoreView {
         }
         btnDoNotRestore.setOnClickListener(v -> VolumeRestoreDialog.this.finish());
         btnRestore.setOnClickListener(v -> {
-            presenter.onRestoreClicked(timePickerRestore.getCurrentHour(), timePickerRestore.getCurrentMinute());
+            presenter.onRestoreClicked(timePickerRestore.getCurrentHour(), timePickerRestore.getCurrentMinute(), volumeRestore.getProgress());
             VolumeRestoreDialog.this.finish();
         });
+    }
+
+    @Override
+    public void setMaxVolumeRestoreSeekBar(int max) {
+        volumeRestore.setMax(max);
     }
 }
