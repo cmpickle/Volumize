@@ -13,7 +13,7 @@ import com.squareup.leakcanary.LeakCanary;
 
 import javax.inject.Inject;
 
-import io.fabric.sdk.android.Fabric;
+import io.fabric.sdk.android.*;
 
 /**
  * @author Cameron Pickle
@@ -35,12 +35,16 @@ public class VolumizeApp extends Application {
                 .build();
         Fabric.with(fabric);
 
-        Stetho.initializeWithDefaults(this);
-
-        if(LeakCanary.isInAnalyzerProcess(this)) {
-            return;
+        if(BuildConfig.DEBUG) {
+            Stetho.initializeWithDefaults(this);
         }
-        LeakCanary.install(this);
+
+        if(BuildConfig.DEBUG) {
+            if (LeakCanary.isInAnalyzerProcess(this)) {
+                return;
+            }
+            LeakCanary.install(this);
+        }
 
         Injector.init(this);
         Injector.get().inject(this);
