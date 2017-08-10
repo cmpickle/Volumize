@@ -7,5 +7,7 @@ package com.cmpickle.volumize.view.about;
 
 public interface AboutRouter {
 
+    void moveToRateAppPage();
+
     void moveToRecognitoinsPage();
 }

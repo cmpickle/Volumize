@@ -26,6 +26,10 @@ public class AboutPresenter extends BasePresenter<AboutView> {
         aboutView.setVersionNumber();
     }
 
+    public void moveToRateAppPage() {
+        aboutRouter.moveToRateAppPage();
+    }
+
     public void moveToRecognitionsPage() {
         aboutRouter.moveToRecognitoinsPage();
     }

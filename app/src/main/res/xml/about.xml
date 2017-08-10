@@ -11,19 +11,19 @@
         android:title="@string/version_number" />
 
     <Preference
-        android:key="rate_app"
+        android:key="pref_rate_app"
         android:title="@string/rate_app" />
 
     <Preference
-        android:key="homepage"
+        android:key="pref_homepage"
         android:title="@string/homepage" />
 
     <Preference
-        android:key="feature_request"
+        android:key="pref_feature_request"
         android:title="@string/feature_request" />
 
     <Preference
-        android:key="feedback"
+        android:key="pref_feedback"
         android:title="@string/feedback" />
 
     <Preference

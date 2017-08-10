@@ -2,6 +2,7 @@ package com.cmpickle.volumize.view.about;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.Fragment;
 
 import com.cmpickle.volumize.R;
@@ -33,6 +34,13 @@ public class AboutActivity extends TopLevelActivity implements AboutRouter {
     public static void start(Activity activity) {
         Intent intent = new Intent(activity, AboutActivity.class);
         activity.startActivity(intent);
+    }
+
+    @Override
+    public void moveToRateAppPage() {
+        Intent openURL = new Intent(android.content.Intent.ACTION_VIEW);
+        openURL.setData(Uri.parse("https://sites.google.com/site/cmpickle/"));
+        startActivity(openURL);
     }
 
     @Override

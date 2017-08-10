@@ -60,6 +60,9 @@ public class AboutFragment extends PreferenceFragmentCompat implements AboutView
             case Preferences.PREF_RECOGNITIONS:
                 aboutPresenter.moveToRecognitionsPage();
                 return true;
+            case Preferences.PREF_RATE_APP:
+                aboutPresenter.moveToRateAppPage();
+                return true;
             default:
                 return super.onPreferenceTreeClick(preference);
         }

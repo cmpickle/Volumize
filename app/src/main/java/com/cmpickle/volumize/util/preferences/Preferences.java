@@ -21,6 +21,10 @@ public class Preferences extends BasePreferences<Preferences> {
     public static final String PREF_SORT_TYPE = "pref_sort_type";
     public static final String PREF_PREVIOUS_RINGER_TYPE = "pref_previous_ringer_type";
 
+    public static final String PREF_RATE_APP = "pref_rate_app";
+    public static final String PREF_HOMEPAGE = "pref_homepage";
+    public static final String PREF_FEATURE_REQUESTS = "pref_feature_requests";
+    public static final String PREF_FEEDBACK = "pref_feedback";
     public static final String PREF_RECOGNITIONS = "pref_recognitions";
 
     @Inject
