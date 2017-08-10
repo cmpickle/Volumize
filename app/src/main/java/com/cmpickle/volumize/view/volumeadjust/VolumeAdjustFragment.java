@@ -17,6 +17,8 @@ import com.cmpickle.volumize.data.observer.AudioContentObserver;
 import com.cmpickle.volumize.view.BaseFragment;
 import com.cmpickle.volumize.view.BasePresenter;
 import com.cmpickle.volumize.view.adapter.OnSeekBarChangedAdapter;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import javax.inject.Inject;
 
@@ -54,6 +56,9 @@ public class VolumeAdjustFragment extends BaseFragment implements VolumeAdjustVi
 
     @BindView(R.id.switch_vibrate_adjust)
     SwitchCompat switchVibrate;
+
+    @BindView(R.id.adView)
+    AdView adView;
 
     public VolumeAdjustFragment() {
         Injector.get().inject(this);
@@ -103,11 +108,14 @@ public class VolumeAdjustFragment extends BaseFragment implements VolumeAdjustVi
         observer = new AudioContentObserver(getActivity(), new Handler());
         getActivity().getContentResolver().registerContentObserver(Settings.System.CONTENT_URI, true, observer);
         observer.setVolumeAdjustController(this);
+
+        setupAd();
     }
 
     @Override
     protected void onSetViewAndRouterOnPresenter() {
         volumeAdjustPresenter.setView(this);
+        volumeAdjustPresenter.setRouter((VolumeAdjustRouter) getActivity());
     }
 
     @Override
@@ -212,5 +220,11 @@ public class VolumeAdjustFragment extends BaseFragment implements VolumeAdjustVi
     @OnClick(R.id.switch_vibrate_adjust)
     public void onVibrateSwitch() {
         volumeAdjustPresenter.onVibrateSwitch(switchVibrate.isChecked());
+    }
+
+    private void setupAd() {
+        AdRequest.Builder adRequestBuilder = new AdRequest.Builder();
+        adRequestBuilder.addTestDevice("D7125D1B856F1556CBD9932A7F86FC5C");
+        adView.loadAd(adRequestBuilder.build());
     }
 }

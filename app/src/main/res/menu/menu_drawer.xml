@@ -11,10 +11,10 @@
             android:id="@+id/menu_nav_schedule"
             android:icon="@drawable/ic_schedule"
             android:title="@string/common_schedule" />
-        <item
-            android:id="@+id/menu_nav_profiles"
-            android:icon="@drawable/ic_profiles"
-            android:title="@string/common_profiles" />
+        <!--<item-->
+            <!--android:id="@+id/menu_nav_profiles"-->
+            <!--android:icon="@drawable/ic_profiles"-->
+            <!--android:title="@string/common_profiles" />-->
         <item
             android:id="@+id/menu_nav_settings"
             android:icon="@drawable/ic_settings"

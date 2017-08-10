@@ -26,7 +26,8 @@ public class ProfileActivity extends TopLevelActivity implements ProfileRouter {
 
     @Override
     protected int getNavigationMenuItemId() {
-        return R.id.menu_nav_profiles;
+//        return R.id.menu_nav_profiles;
+        return 0;
     }
 
     public static void start(Activity activity) {

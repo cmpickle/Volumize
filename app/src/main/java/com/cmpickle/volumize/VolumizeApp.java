@@ -9,6 +9,7 @@ import com.cmpickle.volumize.data.db.platform.DatabaseInitializer;
 import com.cmpickle.volumize.util.preferences.Preferences;
 import com.crashlytics.android.Crashlytics;
 import com.facebook.stetho.Stetho;
+import com.google.android.gms.ads.MobileAds;
 import com.squareup.leakcanary.LeakCanary;
 
 import javax.inject.Inject;
@@ -45,6 +46,8 @@ public class VolumizeApp extends Application {
             }
             LeakCanary.install(this);
         }
+
+        MobileAds.initialize(this, "ca-app-pub-9007760081684097~4346496568");
 
         Injector.init(this);
         Injector.get().inject(this);

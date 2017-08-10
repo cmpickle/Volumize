@@ -1,5 +1,7 @@
 package com.cmpickle.volumize.view.volumeadjust;
 
+import android.content.Context;
+
 import com.cmpickle.volumize.domain.VolumeService;
 import com.cmpickle.volumize.view.BasePresenter;
 
@@ -14,6 +16,7 @@ public class VolumeAdjustPresenter extends BasePresenter<VolumeAdjustView> {
 
     VolumeService volumeService;
     VolumeAdjustView volumeAdjustView;
+    VolumeAdjustRouter volumeAdjustRouter;
 
     @Inject
     public VolumeAdjustPresenter(VolumeService volumeService) {
@@ -23,6 +26,10 @@ public class VolumeAdjustPresenter extends BasePresenter<VolumeAdjustView> {
     @Override
     protected void setView(VolumeAdjustView volumeAdjustView) {
         this.volumeAdjustView = volumeAdjustView;
+    }
+
+    protected void setRouter(VolumeAdjustRouter volumeAdjustRouter) {
+        this.volumeAdjustRouter = volumeAdjustRouter;
     }
 
     public void onViewCreated() {
@@ -79,5 +86,9 @@ public class VolumeAdjustPresenter extends BasePresenter<VolumeAdjustView> {
         } else {
             volumeService.setRingToneVolume(0, false);
         }
+    }
+
+    public Context getContext() {
+        return volumeAdjustRouter.getContext();
     }
 }

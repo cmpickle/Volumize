@@ -154,9 +154,9 @@ public abstract class TopLevelActivity extends BaseActivity implements TopLevelR
             case R.id.menu_nav_schedule:
                 topLevelPresenter.onScheduleSelected();
                 break;
-            case R.id.menu_nav_profiles:
-                topLevelPresenter.onProfileSelected();
-                break;
+//            case R.id.menu_nav_profiles:
+//                topLevelPresenter.onProfileSelected();
+//                break;
             case R.id.menu_nav_settings:
                 topLevelPresenter.onSettingSelected();
                 break;
