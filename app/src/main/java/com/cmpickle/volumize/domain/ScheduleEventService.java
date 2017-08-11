@@ -1,8 +1,13 @@
 package com.cmpickle.volumize.domain;
 
+import android.app.Application;
+import android.preference.PreferenceManager;
+
+import com.cmpickle.volumize.VolumizeApp;
 import com.cmpickle.volumize.data.dto.ScheduleEventInfo;
 import com.cmpickle.volumize.data.entity.ScheduleEvent;
 import com.cmpickle.volumize.data.repositories.ScheduleEventRepository;
+import com.cmpickle.volumize.util.preferences.Preferences;
 
 import java.util.List;
 
@@ -17,11 +22,13 @@ public class ScheduleEventService {
 
     private final EventPendingIntentService eventPendingIntentService;
     public final ScheduleEventRepository eventRepository;
+    Application volumizeApp;
 
     @Inject
-    public ScheduleEventService(ScheduleEventRepository scheduleEventRepository, EventPendingIntentService eventPendingIntentService) {
+    public ScheduleEventService(ScheduleEventRepository scheduleEventRepository, EventPendingIntentService eventPendingIntentService, Application volumizeApp) {
         this.eventPendingIntentService = eventPendingIntentService;
         this.eventRepository = scheduleEventRepository;
+        this.volumizeApp = volumizeApp;
     }
 
     public void deleteEvent(String eventId) {
@@ -61,6 +68,13 @@ public class ScheduleEventService {
     }
 
     public List<ScheduleEvent> getAllEvents() {
-        return eventRepository.findAll();
+        List<ScheduleEvent> events;
+        Preferences preferences = new Preferences(PreferenceManager.getDefaultSharedPreferences(volumizeApp));
+        if (preferences.getSortType().equals("timeofday")) {
+            events = eventRepository.findAllSortTime();
+        } else {
+            events = eventRepository.findAll();
+        }
+        return events;
     }
 }

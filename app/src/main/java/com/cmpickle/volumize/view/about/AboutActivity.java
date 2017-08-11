@@ -47,4 +47,25 @@ public class AboutActivity extends TopLevelActivity implements AboutRouter {
     public void moveToRecognitoinsPage() {
         RecognitionsActivity.start(this);
     }
+
+    @Override
+    public void moveToHomepage() {
+        Intent openURL = new Intent(android.content.Intent.ACTION_VIEW);
+        openURL.setData(Uri.parse("https://sites.google.com/site/cmpickle/"));
+        startActivity(openURL);
+    }
+
+    @Override
+    public void moveToFeatureRequests() {
+        Intent openURL = new Intent(android.content.Intent.ACTION_VIEW);
+        openURL.setData(Uri.parse("https://sites.google.com/site/cmpickle/"));
+        startActivity(openURL);
+    }
+
+    @Override
+    public void moveToFeedback() {
+        Intent openURL = new Intent(android.content.Intent.ACTION_VIEW);
+        openURL.setData(Uri.parse("https://sites.google.com/site/cmpickle/"));
+        startActivity(openURL);
+    }
 }

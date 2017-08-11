@@ -30,6 +30,18 @@ public class AboutPresenter extends BasePresenter<AboutView> {
         aboutRouter.moveToRateAppPage();
     }
 
+    public void moveToHomepage() {
+        aboutRouter.moveToHomepage();
+    }
+
+    public  void moveToFeatureRequests() {
+        aboutRouter.moveToFeatureRequests();
+    }
+
+    public void moveToFeedback() {
+        aboutRouter.moveToFeedback();
+    }
+
     public void moveToRecognitionsPage() {
         aboutRouter.moveToRecognitoinsPage();
     }

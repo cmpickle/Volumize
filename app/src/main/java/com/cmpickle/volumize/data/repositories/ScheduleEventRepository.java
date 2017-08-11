@@ -27,6 +27,10 @@ public class ScheduleEventRepository extends BaseRepository<VolumizeDatabase> {
         return select().from(ScheduleEvent.class).queryList();
     }
 
+    public List<ScheduleEvent> findAllSortTime() {
+        return select().from(ScheduleEvent.class).orderBy(ScheduleEvent_Table.hour, true).queryList();
+    }
+
     public ScheduleEvent findEventById(String eventId) {
         String sql = queryFindEventsById(eventId);
         return new StringQuery<>(ScheduleEvent.class, sql).querySingle();

@@ -46,7 +46,7 @@ public class Preferences extends BasePreferences<Preferences> {
             setSortOrder("ascending");
         }
         if(getSortType() == null) {
-            setSortType("todaysfirst");
+            setSortType("todays_first");
         }
         if(getPrefPreviousRingerType() == null) {
             setPrefPreviousRingerType(AudioManager.RINGER_MODE_NORMAL);

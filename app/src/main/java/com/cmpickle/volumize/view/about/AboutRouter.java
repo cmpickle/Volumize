@@ -10,4 +10,10 @@ public interface AboutRouter {
     void moveToRateAppPage();
 
     void moveToRecognitoinsPage();
+
+    void moveToHomepage();
+
+    void moveToFeatureRequests();
+
+    void moveToFeedback();
 }
